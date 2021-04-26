@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 1.1日志输出路径 常量 -->
+    <property name="log.path" value="E:/logs/java/"/>
+
+    <!-- 1.2输出格式常量 常量 -->
+    <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|-[%-5p] in %logger.%M[line-%L]-%m%n"/>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 最低输出级别：与root 中的关系为且 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <encoder>
+            <!-- 日志格式 -->
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <!--3.2滚动追加到文件 -->
+    <appender name="file2" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/UserController.log</file>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+         <!--追加策略 日志记录器的滚动策略，按日期，大小记录，文件超出尺寸会新建文件，然后继续写入，如果日期变更也会新建文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 新建文件后源文件 改名为 %i=文件序号 从0开始 -->
+            <fileNamePattern>${file.dir}/${file.name}.%d{yyyy-MM-dd}.${file.ext}</fileNamePattern>
+            <!-- 日志保留天数 -->
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="java.sql.Connection" level="DEBUG" />
+    <logger name="java.sql.Statement" level="DEBUG" />
+    <logger name="java.sql.PreparedStatement" level="DEBUG" />
+    <logger name="java.sql.ResultSet" level="DEBUG" />
+
+    <root level="info">
+        <appender-ref ref="stdout"/>
+        <!-- 待解除 -->
+        <appender-ref ref="file2"/>
+    </root>
+
+</configuration>

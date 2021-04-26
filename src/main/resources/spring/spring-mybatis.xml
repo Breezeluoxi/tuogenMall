@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+<!--
+    1.数据库Maybatis
+-->
+    <!-- 1.1 导入配置文件 -->
+    <context:property-placeholder location="classpath:conf/jdbc.properties"/>
+    <!-- 1.2 配置连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 驱动 -->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <!-- 链接基本配置 -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- 配置初始化大小 最大链接 最小链接 -->
+        <property name="initialSize" value="${jdbc.init}"></property>
+        <property name="minIdle" value="${jdbc.minIdle}"></property>
+        <property name="maxActive" value="${jdbc.maxActive}"></property>
+
+        <!--链接超时等待时间  ms-->
+        <property name="maxWait" value="60000"></property>
+        <!-- 多长时间进行链接检测需要关闭的链接  ms-->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"></property>
+        <!-- 链接池中最小生存时间  ms-->
+        <property name="minEvictableIdleTimeMillis" value="300000"></property>
+    </bean>
+    <!-- 1.3 配置会话工厂 -->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <!-- 1.3.1 配置会话工厂 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 1.3.2 别名扫描 -->
+        <property name="typeAliasesPackage" value="cdu.tuogen.pojo"/>
+        <!-- 1.3.3 配置mybatis 配置文件的位置（插件初始化） -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <!-- 1.3.4 mapper.xml的位置 -->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:cdu/tuogen/mapper/TestMapper.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 1.4 扫描真实mapper接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cdu.tuogen.mapper"/>
+    </bean>
+</beans>
