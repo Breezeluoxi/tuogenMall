@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.OrdersMapper">
+
+    <sql id="order_query">
+        select order_id as orderId, name,mer_id as merId,user_id as userId,admin_id as adminId
+        from orders
+    </sql>
+
+    <select id="queryOrders" resultType="cdu.tuogen.pojo.Orders">
+        <include refid="order_query"/>
+    </select>
+</mapper>

@@ -1,22 +1,13 @@
-package cdu.tuogen.test;
+package cdu.tuogen.mapper;
 
-import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.mapper.TestUserMapper;
-import cdu.tuogen.service.TestUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cdu.tuogen.pojo.Orders;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
- * @date : 2021/4/26
- * @name : tuogenMall_cdu.tuogen.test.springTest
- * @Author: Administrator
+ * @date : 2021/4/30
+ * @name : tuogenMall_cdu.tuogen.mapper_OrdersMapper
+ * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -38,23 +29,11 @@ import java.util.Arrays;
  *                          神兽保佑                   代码无BUG!
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
-public class SpringTest {
 
-    Logger log = LoggerFactory.getLogger(SpringTest.class);
-
-    @Autowired
-    private OrdersMapper ordersMapper;
-
-    @Test
-    public void test1(){
-        log.info("hello world");
-    }
-
-    @Test
-    public void testMapper(){
-        log.debug(ordersMapper.queryOrders().get(0).toString());
-
-    }
+public interface OrdersMapper {
+    /**
+     * 查询所有订单
+     * @return Orders
+     */
+    List<Orders> queryOrders();
 }
