@@ -26,10 +26,8 @@
 package cdu.tuogen.ServiceTest;
 
 import cdu.tuogen.bean.Page;
-import cdu.tuogen.mapper.AdminMapper;
-import cdu.tuogen.mapperTest.AdminTest;
 import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.PrentOrder;
+import cdu.tuogen.pojo.OrderInfo;
 import cdu.tuogen.service.OrderService;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
@@ -51,11 +49,13 @@ public class OrderServiceTest {
 
     @Test
     public void testOrderServiceQueryOrder(){
+        OrderInfo orderInfo = orderService.queryOrder(new Order(1));
+        log.error(orderInfo.toString());
     }
 
     @Test
     public void orderServiceQueryOrders(){
-        PageInfo<PrentOrder> orders = orderService.queryOrders(new Page(1,8));
+        PageInfo<OrderInfo> orders = orderService.queryOrders(new Page(1,4));
         log.error(orders.getList().toString());
     }
 }

@@ -1,6 +1,6 @@
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_UserServiceImpl
+ * @date : 2021/5/3
+ * @name : tuogenMall_cdu.tuogen.utils_BreezeUtil
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,47 +23,47 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
+package cdu.tuogen.utils;
 
 import cdu.tuogen.mapper.AdminMapper;
 import cdu.tuogen.mapper.UserMapper;
-import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.OrderInfo;
 import cdu.tuogen.pojo.User;
-import cdu.tuogen.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
 @SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class UserServiceImpl implements UserService {
+@Component(value = "breeze")
+public class BreezeUtil {
 
+    @Autowired
+    private AdminMapper adminMapper;
     @Autowired
     private UserMapper userMapper;
 
-    @Override
-    public User queryUser(User user) {
-        User queryUser = userMapper.queryUser(user);
-        return queryUser!=null?queryUser:null;
+    public List<OrderInfo> getPrentOrders(List<Order> orders){
+        ArrayList<OrderInfo> orderInfos = new ArrayList<>();
+        for (Order order:
+             orders) {
+            // 1.获取用户信息
+            User user = userMapper.queryUser(new User(order.getUserId()));
+            // 2.封装实体类
+            orderInfos.add(new OrderInfo(order.getOrderId(),user.getUserName(),
+                    order.getOrderTotalAmount(),order.getOrderPayableAmount(),order.getOrderStatus(),order.getOrderPayStatus(), order.getOrderDeliveryMethod(),
+                    order.getCreateTime()));
+        }
+        return orderInfos;
     }
-
-    @Override
-    public Integer insertUser(List<User> users) {
-        return null;
-    }
-
-    @Override
-    public Integer deleteUser(List<Integer> id) {
-        return null;
-    }
-
-    @Override
-    public Integer updateUser(User user) {
-        return null;
+    public OrderInfo getPrentOrder(Order order){
+        // 1.获取用户信息
+        User user = userMapper.queryUser(new User(order.getUserId()));
+        // 2.封装实体类并返回
+        return new OrderInfo(order.getOrderId(), user.getUserName(),
+                order.getOrderTotalAmount(), order.getOrderPayableAmount(), order.getOrderStatus(), order.getOrderPayStatus(), order.getOrderDeliveryMethod(),
+                order.getCreateTime());
     }
 }

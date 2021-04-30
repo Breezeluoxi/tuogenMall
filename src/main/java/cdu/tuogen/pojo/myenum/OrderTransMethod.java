@@ -1,6 +1,8 @@
+package cdu.tuogen.pojo.myenum;
+
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_UserServiceImpl
+ * @date : 2021/5/3
+ * @name : tuogenMall_cdu.tuogen.pojo.myenum_OrderTransMethod
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,47 +25,25 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
 
-import cdu.tuogen.mapper.AdminMapper;
-import cdu.tuogen.mapper.UserMapper;
-import cdu.tuogen.pojo.Admin;
-import cdu.tuogen.pojo.User;
-import cdu.tuogen.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+public enum OrderTransMethod {
+    ZT("中通速递", (byte)1), ST("申通速递",(byte) 2),
+    YT("圆通速递", (byte)3), SF("顺风速递",(byte) 4),
+    JD("京东次日达", (byte)5), JDT("京东物流",(byte) 6),
+    USER_SELF("用户自提", (byte)4);
+    private final String describe;
+    private final Byte status;
 
-import java.util.List;
-
-
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Override
-    public User queryUser(User user) {
-        User queryUser = userMapper.queryUser(user);
-        return queryUser!=null?queryUser:null;
+    OrderTransMethod(String describe, Byte status) {
+        this.describe = describe;
+        this.status = status;
     }
 
-    @Override
-    public Integer insertUser(List<User> users) {
-        return null;
+    public String getDescribe() {
+        return describe;
     }
 
-    @Override
-    public Integer deleteUser(List<Integer> id) {
-        return null;
-    }
-
-    @Override
-    public Integer updateUser(User user) {
-        return null;
+    public Byte getStatus() {
+        return status;
     }
 }

@@ -25,13 +25,10 @@
 
 package cdu.tuogen.controller;
 
-import cdu.tuogen.bean.LoginMsg;
 import cdu.tuogen.bean.NormalMsg;
 import cdu.tuogen.bean.Page;
-import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.PrentOrder;
+import cdu.tuogen.pojo.OrderInfo;
 import cdu.tuogen.service.OrderService;
-import cdu.tuogen.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +37,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @RestController
 public class OrderController {
 
@@ -51,7 +49,7 @@ public class OrderController {
 
     @GetMapping("/orders")
     public NormalMsg queryOrders(int page, int limit){
-        PageInfo<PrentOrder> orders = orderService.queryOrders(new Page(page, limit));
+        PageInfo<OrderInfo> orders = orderService.queryOrders(new Page(page, limit));
         NormalMsg msg;
         if(orders == null){
             log.error("查询失败");

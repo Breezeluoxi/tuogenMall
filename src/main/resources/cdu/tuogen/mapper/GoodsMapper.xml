@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.GoodsMapper">
+    <!--
+        TODO 实现GoodsMapper中定义的相关接口并完成测试
+    -->
+
+</mapper>

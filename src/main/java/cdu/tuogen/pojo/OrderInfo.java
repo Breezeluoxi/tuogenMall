@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class PrentOrder {
+public class OrderInfo {
     /**
      * 订单编号
      */
@@ -38,7 +38,6 @@ public class PrentOrder {
      * 收货人
      */
     private String username;
-
     /**
      * 总金额
      */
@@ -64,30 +63,6 @@ public class PrentOrder {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(Double totalAmount) {
-        this.totalAmount = totalAmount;
-    }
-
-    public Double getPayAbleAmount() {
-        return payAbleAmount;
-    }
-
-    public void setPayAbleAmount(Double payAbleAmount) {
-        this.payAbleAmount = payAbleAmount;
-    }
 
     public Integer getOrderId() {
         return orderId;
@@ -137,12 +112,36 @@ public class PrentOrder {
         this.createTime = createTime;
     }
 
-    public PrentOrder() {
+    public OrderInfo() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getPayAbleAmount() {
+        return payAbleAmount;
+    }
+
+    public void setPayAbleAmount(Double payAbleAmount) {
+        this.payAbleAmount = payAbleAmount;
     }
 
     @Override
     public String toString() {
-        return "PrentOrder{" +
+        return "OrderInfo{" +
                 "orderId=" + orderId +
                 ", username='" + username + '\'' +
                 ", totalAmount=" + totalAmount +
@@ -154,7 +153,17 @@ public class PrentOrder {
                 '}';
     }
 
-    public PrentOrder(Integer orderId, String username, Double totalAmount, Double payAbleAmount, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime) {
+    @Deprecated
+    public OrderInfo(Integer orderId, String name, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime) {
+        this.orderId = orderId;
+        this.username = name;
+        this.orderStatus = orderStatus;
+        this.orderPayStatus = orderPayStatus;
+        this.orderDeliveryMethod = orderDeliveryMethod;
+        this.createTime = createTime;
+    }
+
+    public OrderInfo(Integer orderId, String username, Double totalAmount, Double payAbleAmount, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime) {
         this.orderId = orderId;
         this.username = username;
         this.totalAmount = totalAmount;

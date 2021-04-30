@@ -29,6 +29,14 @@ public class OrderGoods {
     return goodId;
   }
 
+  @Override
+  public String toString() {
+    return "OrderGoods{" +
+            "merId=" + merId +
+            ", goodId=" + goodId +
+            '}';
+  }
+
   public void setGoodId(Integer goodId) {
     this.goodId = goodId;
   }

@@ -6,14 +6,12 @@
 
     <sql id="order_query">
         select *
-        from orders join order_goods
-            on orders.mer_id = order_goods.mer_id
+        from orders
     </sql>
 
     <!-- 映射Map -->
     <resultMap id="order_detail" type="cdu.tuogen.pojo.Order">
         <id column="order_id" property="orderId"/>
-        <result column="name" property="name"/>
         <result column="mer_id" property="merId"/>
         <result column="user_id" property="userId"/>
         <result column="admin_id" property="adminId"/>
@@ -22,18 +20,10 @@
         <result column="order_pay_status" property="orderPayStatus"/>
         <result column="order_pay_status" property="orderPayStatus"/>
         <result column="order_delivery_method" property="orderDeliveryMethod"/>
-        <collection property="goodList" ofType="cdu.tuogen.pojo.OrderGoods">
-            <result column="mer_id" property="merId"/>
-            <result column="good_id" property="goodId"/>
-        </collection>
-        <!-- 嵌套查询 user 详情 -->
-        <collection property="user" ofType="cdu.tuogen.pojo.User"
-                    select="cdu.tuogen.mapper.UserMapper.queryUserById"
-                    column="user_id"/>
-        <!-- 嵌套查询 Admin 详情 -->
-        <collection property="admin" ofType="cdu.tuogen.pojo.Admin"
-                    select="cdu.tuogen.mapper.AdminMapper.queryAdminById"
-                    column="admin_id"/>
+        <result column="order_pay_method" property="orderPayMethod"/>
+        <result column="order_use_coupon" property="orderUseCoupon"/>
+        <result column="order_total_amount" property="orderTotalAmount"/>
+        <result column="order_payable_amount" property="orderPayableAmount"/>
     </resultMap>
 
     <!-- 1.query userLists -->
@@ -41,7 +31,7 @@
         <include refid="order_query"/>
     </select>
 
-    <!-- 2. queryOrder -->
+    <!-- 2. queryOrder by id -->
     <select id="queryOrder" resultMap="order_detail" >
         <include refid="order_query"/>
         <where>
@@ -53,7 +43,17 @@
     <insert id="insertOrder" parameterType="java.util.List">
         insert into orders values
         <foreach collection="list" separator="," item="orderList">
-            (null,#{orderList.name},#{orderList.merId},#{orderList.userId},#{orderList.adminId},#{orderList.createTime})
+            <if test="orderList.orderUseCoupon==null">
+                (null,#{orderList.merId},#{orderList.userId},#{orderList.adminId},
+                #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
+                #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},0,-1.0,-1.0)
+            </if>
+            <if test="orderList.orderUseCoupon!=null">
+                (null,#{orderList.merId},#{orderList.userId},#{orderList.adminId},
+                 #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
+                 #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},#{orderList.orderUseCoupon},
+                 #{orderList.orderTotalAmount},#{orderList.orderPayableAmount})
+            </if>
         </foreach>
     </insert>
 
@@ -68,9 +68,15 @@
     <!-- 5.updateOrder -->
     <select id="updateOrders" parameterType="cdu.tuogen.pojo.Order">
         update orders
-        <trim prefix="set" suffixOverrides=",">
-            <if test="name!=null">name=#{name},</if>
-            <if test="createTime!=null">create_time=#{createTime}</if>
+        <trim prefix="set" suffixOverrides="," >
+            <if test="createTime!=null">create_time=#{createTime},</if>
+            <if test="orderStatus!=null">order_status=#{orderStatus},</if>
+            <if test="orderPayStatus!=null">order_pay_status=#{orderPayStatus},</if>
+            <if test="orderPayMethod!=null">order_pay_method=#{orderPayMethod},</if>
+            <if test="orderDeliveryMethod!=null">order_delivery_method=#{orderDeliveryMethod},</if>
+            <if test="orderUseCoupon!=null">order_use_coupon=#{orderUseCoupon},</if>
+            <if test="orderTotalAmount!=null">order_total_amount=#{orderTotalAmount},</if>
+            <if test="orderPayableAmount!=null">order_payable_amount=#{orderPayableAmount},</if>
         </trim>
         where order_id = #{orderId}
     </select>

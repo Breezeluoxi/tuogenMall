@@ -148,10 +148,22 @@
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    {field: 'orderId', title: '订单编号', width: 80, sort: true, fixed: 'left'}
-                    , {field: 'user.userName', title: '收货人', width: 80}
+                    {field: 'orderId', title: '订单编号', sort: true, fixed: 'left'}
+                    , {field: 'userName', title: '收货人',}
                     , {
-                        field: 'data.orderStatus', title: '订单状态', width: 80,
+                        field: 'data.totalAmount', title: '应付款',
+                        templet: function (data) {
+                            return data.totalAmount<=0?'<span>支付异常</span>':'<span>'+data.totalAmount+'</span>'
+                        }
+                    }
+                    , {
+                        field: 'data.payAbleAmount', title: '实付款',
+                        templet: function (data) {
+                            return data.payAbleAmount<=0?'<span>支付异常</span>':'<span>'+data.payAbleAmount+'</span>'
+                        }
+                    }
+                    , {
+                        field: 'data.orderStatus', title: '订单状态',
                         templet: function (data) {
                             switch (data.orderStatus) {
                                 case 1:
@@ -163,7 +175,8 @@
                             }
                         }
                     }
-                    , {field: 'data.orderPayStatus', title: '发货状态', width: 80,
+                    , {
+                        field: 'data.orderPayStatus', title: '发货状态',
                         templet: function (data) {
                             switch (data.orderPayStatus) {
                                 case 1:
@@ -171,12 +184,12 @@
                                 case -1:
                                     return '<span>未支付</span>'
                                 case 0:
-                                    return '<span>代发货</span>'
+                                    return '<span>待发货</span>'
                             }
                         }
                     }
-                    , {field: 'orderDeliveryMethod', title: '配送方式', width: 177}
-                    , {field: 'createTime', title: '下单时间', width: 80, sort: true}
+                    , {field: 'orderDeliveryMethod', title: '配送方式',}
+                    , {field: 'createTime', title: '下单时间', sort: true}
                 ]]
             });
 

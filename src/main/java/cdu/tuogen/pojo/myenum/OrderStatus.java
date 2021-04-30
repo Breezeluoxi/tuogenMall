@@ -26,7 +26,21 @@
 package cdu.tuogen.pojo.myenum;
 
 public enum OrderStatus {
-    DOWN("已完成", 1), TODO("待处理", -1), IN_TRANS("运输中", 0);
-    OrderStatus(String describe, int status) {
+    DOWN("已完成", (byte)1), TODO("待处理", (byte)-1), IN_TRANS("运输中", (byte)0);
+
+    private final String describe;
+    private final Byte status;
+
+    OrderStatus(String describe, Byte status) {
+        this.describe = describe;
+        this.status = status;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public Byte getStatus() {
+        return status;
     }
 }

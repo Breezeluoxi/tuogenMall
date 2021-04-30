@@ -1,6 +1,12 @@
+package cdu.tuogen.mapper;
+
+import cdu.tuogen.pojo.Goods;
+
+import java.util.List;
+
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_UserServiceImpl
+ * @date : 2021/5/3
+ * @name : tuogenMall_cdu.tuogen.mapper_OrderGoodsMapper
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,47 +29,32 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
 
-import cdu.tuogen.mapper.AdminMapper;
-import cdu.tuogen.mapper.UserMapper;
-import cdu.tuogen.pojo.Admin;
-import cdu.tuogen.pojo.User;
-import cdu.tuogen.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+public interface GoodsMapper {
+    /**
+     * 通过Id 查询商品
+     * @return
+     */
+    Goods queryGoodsById();
 
-import java.util.List;
+    /**
+     * 插入商品
+     * @param goodsList
+     * @return
+     */
+    Integer insertGoods(List<Goods> goodsList);
 
+    /**
+     * 更新商品
+     * @param goods
+     * @return
+     */
+    Integer updateGoods(Goods goods);
 
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Override
-    public User queryUser(User user) {
-        User queryUser = userMapper.queryUser(user);
-        return queryUser!=null?queryUser:null;
-    }
-
-    @Override
-    public Integer insertUser(List<User> users) {
-        return null;
-    }
-
-    @Override
-    public Integer deleteUser(List<Integer> id) {
-        return null;
-    }
-
-    @Override
-    public Integer updateUser(User user) {
-        return null;
-    }
+    /**
+     * 删除商品集合
+     * @param goodsIds
+     * @return
+     */
+    Integer deleteGoods(List<Integer> goodsIds);
 }

@@ -27,7 +27,7 @@ package cdu.tuogen.bean;
 
 import cdu.tuogen.pojo.User;
 
-public class LoginMsg <T extends User>{
+public class LoginMsg <T>{
     /**
      * 状态码
      * 1 :请求正常返回

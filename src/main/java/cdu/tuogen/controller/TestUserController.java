@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
  */
+
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @RestController
 @RequestMapping("/test")
 public class TestUserController {

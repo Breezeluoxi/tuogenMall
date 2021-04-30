@@ -1,151 +1,211 @@
 package cdu.tuogen.pojo;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import cdu.tuogen.pojo.myenum.OrderPayMethod;
+import cdu.tuogen.pojo.myenum.OrderPayStatus;
+import cdu.tuogen.pojo.myenum.OrderStatus;
+import cdu.tuogen.pojo.myenum.OrderTransMethod;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Breezeluoxi
  */
-public class Order extends PrentOrder {
-    /**
-     * 订单编号
-     */
-    private Integer orderId;
-    /**
-     * 商品集合
-     */
-    private List<Goods> goodsList;
-    /**
-     * 订单卖家信息
-     */
-    private User user;
-    /**
-     * 订单商家信息
-     */
-    private Admin admin;
-    /**
-     * 订单物流状态
-     */
-    private Byte orderStatus;
-    /**
-     * 订单支付状态
-     */
-    private Byte orderPayStatus;
-    /**
-     * 订单配送方式
-     */
-    private String orderDeliveryMethod;
-    /**
-     * 订单创建时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
+public class Order{
 
-    public Order(Integer orderId, List<Goods> goodsList, User user, Admin admin) {
-        Double totalAmount = 0.0;
-        for (Goods goods :
-                goodsList) {
-            totalAmount += goods.getGoodPrice();
-        }
-        super.setOrderId(orderId);
-        super.setName(user.getUserName());
-        super.setTotalAmount(totalAmount);
-        //TODO 获取用户打折水平以获得最终应付价格
-        super.setPayAbleAmount(totalAmount);
+  private Integer orderId;
+  private Integer merId;
+  private Integer userId;
+  private Integer adminId;
+  private Date createTime;
+  private Byte orderStatus;
+  private Byte orderPayStatus;
+  private Byte orderPayMethod;
+  private String orderDeliveryMethod;
+  private Long orderUseCoupon=0L;
+  private Double orderTotalAmount=-1.0;
+  private Double orderPayableAmount=-1.0;
 
-        this.goodsList = goodsList;
-        this.user = user;
-        this.admin = admin;
-    }
+  public Order() {
+  }
 
-    public Order(Integer orderId, List<Goods> goodsList, User user, Admin admin, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime) {
-        this.orderId = orderId;
-        this.goodsList = goodsList;
-        this.user = user;
-        this.admin = admin;
-        this.orderStatus = orderStatus;
-        this.orderPayStatus = orderPayStatus;
-        this.orderDeliveryMethod = orderDeliveryMethod;
-        this.createTime = createTime;
-    }
+  public Order(Integer orderId) {
+    this.orderId = orderId;
+  }
 
-    @Override
-    public Integer getOrderId() {
-        return orderId;
-    }
+  /**
+   * 不指定所用优惠券
+   * <p>已过时</p>
+   * @param orderId
+   * @param merId
+   * @param userId
+   * @param adminId
+   * @param createTime
+   * @param orderStatus
+   * @param orderPayStatus
+   * @param orderPayMethod
+   * @param orderDeliveryMethod
+   */
+  @Deprecated
+  public Order(Integer orderId, Integer merId, Integer userId,
+               Integer adminId, Date createTime, Byte orderStatus,
+               Byte orderPayStatus, Byte orderPayMethod,
+               String orderDeliveryMethod) {
+    this.orderId = orderId;
+    this.merId = merId;
+    this.userId = userId;
+    this.adminId = adminId;
+    this.createTime = createTime;
+    this.orderStatus = orderStatus;
+    this.orderPayStatus = orderPayStatus;
+    this.orderPayMethod = orderPayMethod;
+    this.orderDeliveryMethod = orderDeliveryMethod;
+  }
 
-    @Override
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
+  /**
+   * 指定优惠券 总金额 实付款
+   * @param orderId
+   * @param merId
+   * @param userId
+   * @param adminId
+   * @param createTime
+   * @param orderStatus
+   * @param orderPayStatus
+   * @param orderPayMethod
+   * @param orderDeliveryMethod
+   * @param orderUseCoupon
+   * @param orderTotalAmount
+   * @param orderPayableAmount
+   */
+  public Order(Integer orderId, Integer merId, Integer userId, Integer
+                adminId, Date createTime, Byte orderStatus, Byte orderPayStatus,
+                Byte orderPayMethod, String orderDeliveryMethod, Long orderUseCoupon,
+                Double orderTotalAmount, Double orderPayableAmount) {
+    this.orderId = orderId;
+    this.merId = merId;
+    this.userId = userId;
+    this.adminId = adminId;
+    this.createTime = createTime;
+    this.orderStatus = orderStatus;
+    this.orderPayStatus = orderPayStatus;
+    this.orderPayMethod = orderPayMethod;
+    this.orderDeliveryMethod = orderDeliveryMethod;
+    this.orderUseCoupon = orderUseCoupon;
+    this.orderTotalAmount = orderTotalAmount;
+    this.orderPayableAmount = orderPayableAmount;
+  }
 
-    public Order() {
-    }
+  @Override
+  public String toString() {
+    return "Order{" +
+            "orderId=" + orderId +
+            ", merId=" + merId +
+            ", userId=" + userId +
+            ", adminId=" + adminId +
+            ", createTime=" + createTime +
+            ", orderStatus=" + orderStatus +
+            ", orderPayStatus=" + orderPayStatus +
+            ", orderPayMethod=" + orderPayMethod +
+            ", orderDeliveryMethod='" + orderDeliveryMethod + '\'' +
+            ", orderUseCoupon=" + orderUseCoupon +
+            ", orderTotalAmount=" + orderTotalAmount +
+            ", orderPayableAmount=" + orderPayableAmount +
+            '}';
+  }
 
-    @Override
-    public Byte getOrderStatus() {
-        return orderStatus;
-    }
+  public Integer getOrderId() {
+    return orderId;
+  }
 
-    @Override
-    public void setOrderStatus(Byte orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+  public void setOrderId(Integer orderId) {
+    this.orderId = orderId;
+  }
 
-    @Override
-    public Byte getOrderPayStatus() {
-        return orderPayStatus;
-    }
+  public Integer getMerId() {
+    return merId;
+  }
 
-    @Override
-    public void setOrderPayStatus(Byte orderPayStatus) {
-        this.orderPayStatus = orderPayStatus;
-    }
+  public void setMerId(Integer merId) {
+    this.merId = merId;
+  }
 
-    @Override
-    public String getOrderDeliveryMethod() {
-        return orderDeliveryMethod;
-    }
+  public Integer getUserId() {
+    return userId;
+  }
 
-    @Override
-    public void setOrderDeliveryMethod(String orderDeliveryMethod) {
-        this.orderDeliveryMethod = orderDeliveryMethod;
-    }
+  public void setUserId(Integer userId) {
+    this.userId = userId;
+  }
 
-    @Override
-    public Date getCreateTime() {
-        return createTime;
-    }
+  public Integer getAdminId() {
+    return adminId;
+  }
 
-    @Override
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+  public void setAdminId(Integer adminId) {
+    this.adminId = adminId;
+  }
 
-    public List<Goods> getGoodsList() {
-        return goodsList;
-    }
+  public Date getCreateTime() {
+    return createTime;
+  }
 
-    public void setGoodsList(List<Goods> goodsList) {
-        this.goodsList = goodsList;
-    }
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public Byte getOrderStatus() {
+    return orderStatus;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public void setOrderStatus(Byte orderStatus) {
+    this.orderStatus = orderStatus;
+  }
 
-    public Admin getAdmin() {
-        return admin;
-    }
+  public Byte getOrderPayStatus() {
+    return orderPayStatus;
+  }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+  public void setOrderPayStatus(Byte orderPayStatus) {
+    this.orderPayStatus = orderPayStatus;
+  }
+
+  public Byte getOrderPayMethod() {
+    return orderPayMethod;
+  }
+
+  public void setOrderPayMethod(Byte orderPayMethod) {
+    this.orderPayMethod = orderPayMethod;
+  }
+
+  public String getOrderDeliveryMethod() {
+    return orderDeliveryMethod;
+  }
+
+  public void setOrderDeliveryMethod(String orderDeliveryMethod) {
+    this.orderDeliveryMethod = orderDeliveryMethod;
+  }
+
+  public Long getOrderUseCoupon() {
+    return orderUseCoupon;
+  }
+
+  public void setOrderUseCoupon(Long orderUseCoupon) {
+    this.orderUseCoupon = orderUseCoupon;
+  }
+
+  public Double getOrderTotalAmount() {
+    return orderTotalAmount;
+  }
+
+  public void setOrderTotalAmount(Double orderTotalAmount) {
+    this.orderTotalAmount = orderTotalAmount;
+  }
+
+  public Double getOrderPayableAmount() {
+    return orderPayableAmount;
+  }
+
+  public void setOrderPayableAmount(Double orderPayableAmount) {
+    this.orderPayableAmount = orderPayableAmount;
+  }
 }
+

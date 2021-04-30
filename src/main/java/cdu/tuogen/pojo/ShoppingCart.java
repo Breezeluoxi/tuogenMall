@@ -1,7 +1,6 @@
 package cdu.tuogen.pojo;
 
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,12 +11,14 @@ public class ShoppingCart {
   private Integer userId;
   private List<Integer> goodIds;
 
-  @Override
-  public String toString() {
-    return "ShoppingCart{" +
-            "userId=" + userId +
-            ", goodId=" + goodIds.toString() +
-            '}';
+
+  public ShoppingCart() {
+
+  }
+
+  public ShoppingCart(Integer userId, List<Integer> goodIds) {
+    this.userId = userId;
+    this.goodIds = goodIds;
   }
 
   public Integer getUserId() {
@@ -36,11 +37,11 @@ public class ShoppingCart {
     this.goodIds = goodIds;
   }
 
-  public ShoppingCart() {
-  }
-
-  public ShoppingCart(Integer userId, List<Integer> goodIds) {
-    this.userId = userId;
-    this.goodIds = goodIds;
+  @Override
+  public String toString() {
+    return "ShoppingCart{" +
+            "userId=" + userId +
+            ", goodIds=" + goodIds +
+            '}';
   }
 }

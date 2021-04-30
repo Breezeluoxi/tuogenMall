@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
  * @author Breezeluoxi
  */
 
-public class Admin extends Order {
+public class Admin{
 
   private Integer adminId;
   @JsonIgnore
@@ -17,7 +17,14 @@ public class Admin extends Order {
   private String adminShopName;
   private String adminName;
 
-  public Admin( String adminName,String adminPassword) {
+  public Admin() {
+  }
+
+  public Admin(Integer adminId) {
+    this.adminId = adminId;
+  }
+
+  public Admin(String adminName, String adminPassword) {
     this.adminPassword = adminPassword;
     this.adminName = adminName;
   }
@@ -28,9 +35,6 @@ public class Admin extends Order {
     this.adminLevel = adminLevel;
     this.adminShopName = adminShopName;
     this.adminName = adminName;
-  }
-
-  public Admin() {
   }
 
   @Override

@@ -1,6 +1,6 @@
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_UserServiceImpl
+ * @date : 2021/5/3
+ * @name : tuogenMall_cdu.tuogen.pojo.myenum_OrderPayMethod
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,47 +23,23 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
+package cdu.tuogen.pojo.myenum;
 
-import cdu.tuogen.mapper.AdminMapper;
-import cdu.tuogen.mapper.UserMapper;
-import cdu.tuogen.pojo.Admin;
-import cdu.tuogen.pojo.User;
-import cdu.tuogen.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+public enum OrderPayMethod {
+    ALI_PAY("支付宝", (byte)0), CASH_ON_DELIVERY("货到付款",(byte) 1), WEI_CHAT_PAY("微信支付",(byte) 2);
+    private final String payMethod;
+    private final Byte status;
 
-import java.util.List;
-
-
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Override
-    public User queryUser(User user) {
-        User queryUser = userMapper.queryUser(user);
-        return queryUser!=null?queryUser:null;
+    OrderPayMethod(String payMethod, Byte status) {
+        this.payMethod = payMethod;
+        this.status = status;
     }
 
-    @Override
-    public Integer insertUser(List<User> users) {
-        return null;
+    public String getPayMethod() {
+        return payMethod;
     }
 
-    @Override
-    public Integer deleteUser(List<Integer> id) {
-        return null;
-    }
-
-    @Override
-    public Integer updateUser(User user) {
-        return null;
+    public Byte getStatus() {
+        return status;
     }
 }

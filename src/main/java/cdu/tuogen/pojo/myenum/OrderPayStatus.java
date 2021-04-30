@@ -24,7 +24,20 @@
  */
 package cdu.tuogen.pojo.myenum;
 public enum OrderPayStatus {
-    PAID("已支付", 1), UNPAID("未支付", -1), IN_DELIVER("等待商家发货", 0);
-    OrderPayStatus(String describe, int status) {
+    PAID("已支付", (byte)1), UNPAID("未支付", (byte)-1), IN_DELIVER("等待商家发货", (byte)0);
+    private final String describe;
+    private final Byte status;
+
+    OrderPayStatus(String describe, Byte status) {
+        this.describe = describe;
+        this.status = status;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public Byte getStatus() {
+        return status;
     }
 }

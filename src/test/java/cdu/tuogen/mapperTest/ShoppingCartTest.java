@@ -1,6 +1,6 @@
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_UserServiceImpl
+ * @date : 2021/5/1
+ * @name : tuogenMall_cdu.tuogen.test_ShoppingCartTest
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,47 +23,47 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
+package cdu.tuogen.mapperTest;
 
-import cdu.tuogen.mapper.AdminMapper;
-import cdu.tuogen.mapper.UserMapper;
-import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.mapper.OrdersMapper;
+import cdu.tuogen.mapper.ShoppingCartMapper;
+import cdu.tuogen.pojo.ShoppingCart;
 import cdu.tuogen.pojo.User;
-import cdu.tuogen.service.UserService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
-
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class UserServiceImpl implements UserService {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/spring-*.xml")
+public class ShoppingCartTest {
+    Logger log = LoggerFactory.getLogger(ShoppingCartMapper.class);
 
     @Autowired
-    private UserMapper userMapper;
+    private ShoppingCartMapper shoppingCartMapper;
 
-    @Override
-    public User queryUser(User user) {
-        User queryUser = userMapper.queryUser(user);
-        return queryUser!=null?queryUser:null;
+    @Test
+    public void cartMapperInsertCart(){
+        shoppingCartMapper.insertShoppingCart(new ShoppingCart(1, Arrays.asList(4,5,6)));
     }
 
-    @Override
-    public Integer insertUser(List<User> users) {
-        return null;
+    @Test
+    public void cartMapperQueryCart(){
+        List<ShoppingCart> carts = shoppingCartMapper.queryShoppingCart(new User(1));
+        log.error(carts.toString());
     }
 
-    @Override
-    public Integer deleteUser(List<Integer> id) {
-        return null;
+    @Test
+    public void cartMapperDeleteCart(){
+        shoppingCartMapper.deleteShoppingCart(new ShoppingCart(1,Arrays.asList(4)));
     }
 
-    @Override
-    public Integer updateUser(User user) {
-        return null;
-    }
+
+
 }

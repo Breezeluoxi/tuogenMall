@@ -28,8 +28,9 @@ package cdu.tuogen.service.impl;
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.mapper.OrdersMapper;
 import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.PrentOrder;
+import cdu.tuogen.pojo.OrderInfo;
 import cdu.tuogen.service.OrderService;
+import cdu.tuogen.utils.BreezeUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,35 +39,33 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrdersMapper ordersMapper;
+    @Autowired
+    private BreezeUtil breezeUtil;
 
     @Override
-    public PageInfo<PrentOrder> queryOrders(Page page) {
+    public PageInfo<OrderInfo> queryOrders(Page page) {
         // 分页限制查询
         PageHelper.startPage(page.getPageNum(),page.getPageSize());
-        List<Order> queryOrders = ordersMapper.queryOrders();
-        // 降级为PrentOrder
-        List<PrentOrder> orders = new ArrayList<>();
-        for (Order order :
-                queryOrders) {
-            orders.add(order);
-        }
-
-        return new PageInfo<PrentOrder>(orders);
+        List<Order> orders = ordersMapper.queryOrders();
+        List<OrderInfo> orderInfos = breezeUtil.getPrentOrders(orders);
+        return new PageInfo<>(orderInfos);
     }
 
     @Override
-    public Order queryOrder(Order order) {
-        return ordersMapper.queryOrder(order);
+    public OrderInfo queryOrder(Order order) {
+        return breezeUtil.getPrentOrder(ordersMapper.queryOrder(order));
     }
 
     @Override
     public Integer insertOrder(List<Order> orderList) {
-        return null;
+        return ordersMapper.insertOrder(orderList);
     }
 
     @Override

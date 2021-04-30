@@ -32,6 +32,7 @@ import java.util.List;
  *                          神兽保佑                   代码无BUG!
  */
 
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class TestUserServiceImpl implements TestUserService {
 

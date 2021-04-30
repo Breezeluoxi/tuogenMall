@@ -2,6 +2,7 @@ package cdu.tuogen.test;
 
 import cdu.tuogen.mapper.OrdersMapper;
 import cdu.tuogen.mapper.TestUserMapper;
+import cdu.tuogen.pojo.myenum.OrderStatus;
 import cdu.tuogen.service.TestUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,18 +39,19 @@ import java.util.Arrays;
  *                          神兽保佑                   代码无BUG!
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
+
 public class SpringTest {
 
     Logger log = LoggerFactory.getLogger(SpringTest.class);
 
-    @Autowired
-    private OrdersMapper ordersMapper;
-
     @Test
     public void test1(){
         log.info("hello world");
+    }
+
+    @Test
+    public void test2(){
+        System.out.println(OrderStatus.TODO.getStatus());
     }
 
 }
