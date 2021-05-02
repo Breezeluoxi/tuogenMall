@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.ShoppingCartMapper">
+
+    <sql id="cart_query">
+        select *
+        from shopping_cart
+    </sql>
+
+    <!-- 映射Map -->
+    <resultMap id="shopping_cart" type="cdu.tuogen.pojo.ShoppingCart">
+        <id column="user_id" property="userId"/>
+        <collection property="goodIds" ofType="int">
+            <constructor>
+                <arg column="good_id" javaType="_int"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+    <!-- 1.query userLists -->
+    <select id="queryShoppingCart" resultMap="shopping_cart" parameterType="Integer">
+        <include refid="cart_query"/>
+        where user_id = #{userId}
+    </select>
+
+    <!-- 2.insert ShoppingCart -->
+    <insert id="insertShoppingCart" parameterType="cdu.tuogen.pojo.ShoppingCart">
+        INSERT INTO shopping_cart (user_id,good_id) VALUES
+        <foreach collection="goodIds" separator="," item="goodId">
+            (#{userId},#{goodId})
+        </foreach>
+    </insert>
+
+    <!-- 3.delete ShoppingCart -->
+    <delete id="deleteShoppingCart" parameterType="cdu.tuogen.pojo.ShoppingCart">
+        delete from shopping_cart where user_id = #{userId} and good_id in
+        <foreach collection="goodIds" close=")" open="(" separator="," item="goodId">
+            #{goodId}
+        </foreach>
+    </delete>
+</mapper>

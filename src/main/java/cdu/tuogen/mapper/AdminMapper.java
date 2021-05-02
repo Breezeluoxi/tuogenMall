@@ -1,22 +1,14 @@
-package cdu.tuogen.test;
+package cdu.tuogen.mapper;
 
-import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.mapper.TestUserMapper;
-import cdu.tuogen.service.TestUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.pojo.User;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
- * @date : 2021/4/26
- * @name : tuogenMall_cdu.tuogen.test.springTest
- * @Author: Administrator
+ * @date : 2021/5/1
+ * @name : tuogenMall_cdu.tuogen.mapper_AdminMapper
+ * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -36,20 +28,36 @@ import java.util.Arrays;
  *                               //.-~~~-~_--~- |-------~~~~~~~~
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
+ * <p>商家管理员相关Mapper</p>
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
-public class SpringTest {
 
-    Logger log = LoggerFactory.getLogger(SpringTest.class);
+public interface AdminMapper {
+    /**
+     * 查询用户
+     * @param admin
+     * @return
+     */
+    Admin queryAdmin(Admin admin);
 
-    @Autowired
-    private OrdersMapper ordersMapper;
+    /**
+     * 插入Admin
+     * @param admins
+     * @return
+     */
+    Integer insertAdmin(List<Admin> admins);
 
-    @Test
-    public void test1(){
-        log.info("hello world");
-    }
+    /**
+     * 删除用户
+     * @param ids
+     * @return
+     */
+    Integer deleteAdmin(List<Integer> ids);
 
+    /**
+     * 更新用户
+     * @param admin
+     * @return
+     */
+    Integer updateAdmin(Admin admin);
 }

@@ -1,22 +1,13 @@
-package cdu.tuogen.test;
+package cdu.tuogen.mapper;
 
-import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.mapper.TestUserMapper;
-import cdu.tuogen.service.TestUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cdu.tuogen.pojo.User;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
- * @date : 2021/4/26
- * @name : tuogenMall_cdu.tuogen.test.springTest
- * @Author: Administrator
+ * @date : 2021/5/1
+ * @name : tuogenMall_cdu.tuogen.mapper_UserMapper
+ * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -36,20 +27,36 @@ import java.util.Arrays;
  *                               //.-~~~-~_--~- |-------~~~~~~~~
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
+ * <p>买家相关Mapper </p>
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
-public class SpringTest {
 
-    Logger log = LoggerFactory.getLogger(SpringTest.class);
+public interface UserMapper {
+    /**
+     * 查寻用户详情
+     * @param user
+     * @return
+     */
+    User queryUser(User user);
 
-    @Autowired
-    private OrdersMapper ordersMapper;
+    /**
+     * 增加用户List
+     * @param users user集合
+     * @return
+     */
+    Integer insertUser(List<User> users);
 
-    @Test
-    public void test1(){
-        log.info("hello world");
-    }
+    /**
+     * 删除用户
+     * @param id id 集合
+     * @return
+     */
+    Integer deleteUser(List<Integer> id);
 
+    /**
+     * 更新用户
+     * @param user 新用户信息
+     * @return
+     */
+    Integer updateUser(User user);
 }

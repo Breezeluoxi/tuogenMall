@@ -5,11 +5,61 @@
 <mapper namespace="cdu.tuogen.mapper.OrdersMapper">
 
     <sql id="order_query">
-        select order_id as orderId, name,mer_id as merId,user_id as userId,admin_id as adminId
-        from orders
+        select *
+        from orders join order_goods
+            on orders.mer_id = order_goods.mer_id
     </sql>
 
-    <select id="queryOrders" resultType="cdu.tuogen.pojo.Orders">
+    <!-- 映射Map -->
+    <resultMap id="order_detail" type="cdu.tuogen.pojo.Order">
+        <id column="order_id" property="orderId"/>
+        <result column="name" property="name"/>
+        <result column="mer_id" property="merId"/>
+        <result column="user_id" property="userId"/>
+        <result column="admin_id" property="adminId"/>
+        <result column="create_time" property="createTime"/>
+        <collection property="goodList" ofType="cdu.tuogen.pojo.OrderGoods">
+            <result column="mer_id" property="merId"/>
+            <result column="good_id" property="goodId"/>
+        </collection>
+    </resultMap>
+
+    <!-- 1.query userLists -->
+    <select id="queryOrders" resultMap="order_detail">
         <include refid="order_query"/>
+    </select>
+
+    <!-- 2. queryOrder -->
+    <select id="queryOrder" resultMap="order_detail" >
+        <include refid="order_query"/>
+        <where>
+            <if test="orderId!=null">order_id=#{orderId}</if>
+        </where>
+    </select>
+
+    <!-- 3. insertOrders -->
+    <insert id="insertOrder" parameterType="java.util.List">
+        insert into orders values
+        <foreach collection="list" separator="," item="orderList">
+            (null,#{orderList.name},#{orderList.merId},#{orderList.userId},#{orderList.adminId},#{orderList.createTime})
+        </foreach>
+    </insert>
+
+    <!-- 4. deleteOrders -->
+    <delete id="deleteOrders" parameterType="java.util.List">
+        delete from orders where order_id in
+        <foreach collection="list" close=")" open="(" separator="," item="ids">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <!-- 5.updateOrder -->
+    <select id="updateOrders" parameterType="cdu.tuogen.pojo.Order">
+        update orders
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">name=#{name},</if>
+            <if test="createTime!=null">create_time=#{createTime}</if>
+        </trim>
+        where order_id = #{orderId}
     </select>
 </mapper>

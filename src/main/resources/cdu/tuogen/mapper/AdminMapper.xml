@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.AdminMapper">
+
+    <sql id="admin_query">
+        select * from `admin`
+    </sql>
+
+    <!-- 映射Map -->
+    <resultMap id="admin_info" type="cdu.tuogen.pojo.Admin">
+        <id column="admin_id" property="adminId"/>
+        <result column="admin_password" property="adminPassword"/>
+        <result column="admin_level" property="adminLevel"/>
+        <result column="admin_shop_name" property="adminShopName"/>
+        <result column="admin_name" property="adminName"/>
+    </resultMap>
+
+    <!-- 1. query Admin information -->
+    <select id="queryAdmin" resultMap="admin_info" parameterType="cdu.tuogen.pojo.Admin">
+        <include refid="admin_query"/>
+        <where>
+            <if test="adminId!=null">admin_id=#{adminId}</if>
+            <if test="adminPassword!=null and adminName!=null">and admin_name=#{adminName} and admin_password=#{adminPassword}</if>
+        </where>
+    </select>
+
+    <!-- 2.insert user-->
+    <insert id="insertAdmin" parameterType="java.util.List">
+        insert into `admin` values
+        <foreach collection="list" separator="," item="admins">
+            (#{admins.adminId},#{admins.adminPassword},#{admins.adminLevel},
+            #{admins.adminShopName},#{admins.adminName})
+        </foreach>
+    </insert>
+
+    <!-- 3. deleteUsers -->
+    <delete id="deleteAdmin" parameterType="java.util.List">
+        delete from `admin` where admin_id in
+        <foreach collection="list" close=")" open="(" separator="," item="ids">
+            #{ids}
+        </foreach>
+    </delete>
+
+    <!-- 4.update user -->
+    <select id="updateAdmin" parameterType="cdu.tuogen.pojo.User">
+        update `admin`
+        <trim prefix="set" suffixOverrides=",">
+            <if test="adminName!=null">admin_name=#{adminName},</if>
+            <if test="adminPassword!=null">admin_password=#{adminPassword},</if>
+        </trim>
+        where admin_id = #{adminId}
+    </select>
+
+</mapper>

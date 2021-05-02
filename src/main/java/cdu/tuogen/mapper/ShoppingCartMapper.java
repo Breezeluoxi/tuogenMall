@@ -1,22 +1,14 @@
-package cdu.tuogen.test;
+package cdu.tuogen.mapper;
 
-import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.mapper.TestUserMapper;
-import cdu.tuogen.service.TestUserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import cdu.tuogen.pojo.ShoppingCart;
+import cdu.tuogen.pojo.User;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
- * @date : 2021/4/26
- * @name : tuogenMall_cdu.tuogen.test.springTest
- * @Author: Administrator
+ * @date : 2021/5/1
+ * @name : tuogenMall_cdu.tuogen.mapper_shoppingCartMapper
+ * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -36,20 +28,30 @@ import java.util.Arrays;
  *                               //.-~~~-~_--~- |-------~~~~~~~~
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
+ * <p>购物车相关Mapper</p>
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
-public class SpringTest {
 
-    Logger log = LoggerFactory.getLogger(SpringTest.class);
+public interface ShoppingCartMapper {
 
-    @Autowired
-    private OrdersMapper ordersMapper;
+    /**
+     * 根据用户ID查询购物车
+     * @param user 用户
+     * @return
+     */
+    List<ShoppingCart> queryShoppingCart(User user);
 
-    @Test
-    public void test1(){
-        log.info("hello world");
-    }
+    /**
+     * 插入一条购物车
+     * @param shoppingCart  购物车
+     * @return
+     */
+    Integer insertShoppingCart(ShoppingCart shoppingCart);
 
+    /**
+     * 删除一条购物车记录
+     * @param shoppingCart
+     * @return
+     */
+    Integer deleteShoppingCart(ShoppingCart shoppingCart);
 }
