@@ -13,7 +13,8 @@
 <!-- 1.扫描路径 主要负责 controller-->
     <context:component-scan base-package="cdu.tuogen.controller"/>
 <!-- 2.各种适配器 -->
-    <!-- 视图解析器 -->
+    <!-- 2.1视图解析器 -->
     <mvc:annotation-driven></mvc:annotation-driven>
-
+<!--3.放行静态资源-->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
 </beans>

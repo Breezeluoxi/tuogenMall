@@ -1,10 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html  class="x-admin-sm">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<meta charset="UTF-8">
+	<title>后台登录-X-admin2.2</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="./static/css/font.css">
+    <link rel="stylesheet" href="./static/css/login.css">
+	  <link rel="stylesheet" href="./static/css/xadmin.css">
+    <script type="text/javascript" src="./static/js/jquery.min.js"></script>
+    <script src="./static/layui/layui.js" charset="utf-8"></script>
+    <!--[if lt IE 9]>
+      <script src="./static/js/html5.min.js"></script>
+      <script src="./static/js/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-hello world
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">x-admin2.0-管理登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form method="post" class="layui-form">
+            <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <hr class="hr20" >
+        </form>
+    </div>
+
+    <script>
+        console.log("                                                    __----~~~~~~~~~~~------___\n" +
+            "                                   .  .   ~~//====......          __--~ ~~\n" +
+            "                   -.            \\_|//     |||\\\\  ~~~~~~::::... /~\n" +
+            "                ___-==_       _-~o~  \\/    |||  \\\\            _/~~-\n" +
+            "        __---~~~.==~||\\=_    -_--~/_-~|-   |\\\\   \\\\        _/~\n" +
+            "    _-~~     .=~    |  \\\\-_    '-~7  /-   /  ||    \\      /\n" +
+            "  .~       .~       |   \\\\ -_    /  /-   /   ||      \\   /\n" +
+            " /  ____  /         |     \\\\ ~-_/  /|- _/   .||       \\ /\n" +
+            " |~~    ~~|--~~~~--_ \\     ~==-/   | \\~--===~~        .\\\n" +
+            "          '         ~-|      /|    |-~\\~~       __--~~\n" +
+            "                      |-~~-_/ |    |   ~\\_   _-~            /\\\n" +
+            "                           /  \\     \\__   \\/~                \\__\n" +
+            "                       _--~ _/ | .-~~____--~-/                  ~~==.\n" +
+            "                      ((->/~   '.|||' -_|    ~~-/ ,              . _||\n" +
+            "                                 -_     ~\\      ~~---l__i__i__i--~~_/\n" +
+            "                                 _-~-__   ~)  \\--______________--~~\n" +
+            "                               //.-~~~-~_--~- |-------~~~~~~~~\n" +
+            "                                      //.-~~~--\\\n" +
+            "                          神兽保佑                   代码无BUG!")
+        //JavaScript代码区域
+        $(function  () {
+            layui.use('form', function(){
+              var form = layui.form;
+              // layer.msg('玩命卖萌中', function(){
+              //   //关闭后的操作
+              //   });
+              //监听提交
+              form.on('submit(login)', function(data){
+                // alert(888)
+                layer.msg(JSON.stringify(data.field),function(){
+                    let params = data.field
+                    layui.$.ajax({
+                        url: '/login',
+                        data: params,
+                        method: 'post',
+                        success: function (ret) {
+                            console.log(typeof (ret.code));
+                            if(ret.code == 1){
+                                location.href='./view/manager/manager_index.html'
+                            }else{
+                                layer.msg("登录失败请检查！！");
+                            }
+                        }
+                    })
+                });
+                return false;
+              });
+            });
+        })
+    </script>
+    <!-- 底部结束 -->
+    <script>
+    //百度统计可去掉
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 </body>
 </html>

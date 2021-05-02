@@ -4,7 +4,7 @@ package cdu.tuogen.pojo;
 /**
  * @author Breezeluoxi
  */
-public class Admin {
+public class Admin extends User{
 
   private Integer adminId;
   private String adminPassword;

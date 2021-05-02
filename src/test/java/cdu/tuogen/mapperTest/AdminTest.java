@@ -48,10 +48,8 @@ public class AdminTest {
 
     @Test
     public void AdminMapperQueryAdmin(){
-        Admin admin = adminMapper.queryAdmin(new Admin());
-        Admin admin1 = adminMapper.queryAdmin(new Admin("123456","breeze"));
+        Admin admin = adminMapper.queryAdmin(new Admin("123456","breeze"));
         log.error(admin.toString());
-        log.error(admin1.toString());
     }
 
     @Test
