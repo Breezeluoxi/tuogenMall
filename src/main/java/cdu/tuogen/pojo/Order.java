@@ -2,106 +2,150 @@ package cdu.tuogen.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import sun.util.calendar.BaseCalendar;
 
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Breezeluoxi
  */
-public class Order extends PrentOrder{
+public class Order extends PrentOrder {
+    /**
+     * 订单编号
+     */
+    private Integer orderId;
+    /**
+     * 商品集合
+     */
+    private List<Goods> goodsList;
+    /**
+     * 订单卖家信息
+     */
+    private User user;
+    /**
+     * 订单商家信息
+     */
+    private Admin admin;
+    /**
+     * 订单物流状态
+     */
+    private Byte orderStatus;
+    /**
+     * 订单支付状态
+     */
+    private Byte orderPayStatus;
+    /**
+     * 订单配送方式
+     */
+    private String orderDeliveryMethod;
+    /**
+     * 订单创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
-  @JsonIgnore
-  private Integer merId;
-  private Integer userId;
-  private Integer adminId;
+    public Order(Integer orderId, List<Goods> goodsList, User user, Admin admin) {
+        Double totalAmount = 0.0;
+        for (Goods goods :
+                goodsList) {
+            totalAmount += goods.getGoodPrice();
+        }
+        super.setOrderId(orderId);
+        super.setName(user.getUserName());
+        super.setTotalAmount(totalAmount);
+        //TODO 获取用户打折水平以获得最终应付价格
+        super.setPayAbleAmount(totalAmount);
 
-  /**
-   * 订单包含商品列表
-   */
-  private List<OrderGoods> goodList;
-  /**
-   * 订单卖家信息
-   */
-  private User user;
-  /**
-   * 订单商家信息
-   */
-  private Admin admin;
+        this.goodsList = goodsList;
+        this.user = user;
+        this.admin = admin;
+    }
 
-  public User getUser() {
-    return user;
-  }
+    public Order(Integer orderId, List<Goods> goodsList, User user, Admin admin, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime) {
+        this.orderId = orderId;
+        this.goodsList = goodsList;
+        this.user = user;
+        this.admin = admin;
+        this.orderStatus = orderStatus;
+        this.orderPayStatus = orderPayStatus;
+        this.orderDeliveryMethod = orderDeliveryMethod;
+        this.createTime = createTime;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    @Override
+    public Integer getOrderId() {
+        return orderId;
+    }
 
-  public Admin getAdmin() {
-    return admin;
-  }
+    @Override
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
 
-  public void setAdmin(Admin admin) {
-    this.admin = admin;
-  }
+    public Order() {
+    }
 
-  public Order(Integer orderId, String name, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime, Integer merId, Integer userId, Integer adminId, List<OrderGoods> goodList, User user, Admin admin) {
-    super(orderId, user.getUserName(), orderStatus, orderPayStatus, orderDeliveryMethod, createTime);
-    this.merId = merId;
-    this.userId = userId;
-    this.adminId = adminId;
-    this.goodList = goodList;
-    this.user = user;
-    this.admin = admin;
-  }
+    @Override
+    public Byte getOrderStatus() {
+        return orderStatus;
+    }
 
-  public Order(Integer merId, Integer userId, Integer adminId, List<OrderGoods> goodList, User user, Admin admin) {
-    this.merId = merId;
-    this.userId = userId;
-    this.adminId = adminId;
-    this.goodList = goodList;
-    this.user = user;
-    this.admin = admin;
-  }
+    @Override
+    public void setOrderStatus(Byte orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
-  public Order() {
-  }
+    @Override
+    public Byte getOrderPayStatus() {
+        return orderPayStatus;
+    }
 
-  public Order(Integer merId) {
-    this.merId = merId;
-  }
+    @Override
+    public void setOrderPayStatus(Byte orderPayStatus) {
+        this.orderPayStatus = orderPayStatus;
+    }
 
-  public Integer getMerId() {
-    return merId;
-  }
+    @Override
+    public String getOrderDeliveryMethod() {
+        return orderDeliveryMethod;
+    }
 
-  public void setMerId(Integer merId) {
-    this.merId = merId;
-  }
+    @Override
+    public void setOrderDeliveryMethod(String orderDeliveryMethod) {
+        this.orderDeliveryMethod = orderDeliveryMethod;
+    }
 
-  public Integer getUserId() {
-    return userId;
-  }
+    @Override
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-  public void setUserId(Integer userId) {
-    this.userId = userId;
-  }
+    @Override
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-  public Integer getAdminId() {
-    return adminId;
-  }
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
 
-  public void setAdminId(Integer adminId) {
-    this.adminId = adminId;
-  }
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
+    }
 
-  public List<OrderGoods> getGoodList() {
-    return goodList;
-  }
+    public User getUser() {
+        return user;
+    }
 
-  public void setGoodList(List<OrderGoods> goodList) {
-    this.goodList = goodList;
-  }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
  * @author Breezeluoxi
  */
 
-public class Admin extends User{
+public class Admin extends Order {
 
   private Integer adminId;
   @JsonIgnore

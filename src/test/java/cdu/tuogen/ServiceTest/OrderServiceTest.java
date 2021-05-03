@@ -51,8 +51,6 @@ public class OrderServiceTest {
 
     @Test
     public void testOrderServiceQueryOrder(){
-        Order order = orderService.queryOrder(new Order(1));
-        log.error(order.toString());
     }
 
     @Test

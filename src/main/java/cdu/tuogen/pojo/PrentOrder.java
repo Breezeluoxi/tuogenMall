@@ -38,6 +38,7 @@ public class PrentOrder {
      * 收货人
      */
     private String username;
+
     /**
      * 总金额
      */
@@ -63,6 +64,30 @@ public class PrentOrder {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Double getPayAbleAmount() {
+        return payAbleAmount;
+    }
+
+    public void setPayAbleAmount(Double payAbleAmount) {
+        this.payAbleAmount = payAbleAmount;
+    }
 
     public Integer getOrderId() {
         return orderId;
