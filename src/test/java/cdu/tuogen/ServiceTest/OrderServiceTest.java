@@ -51,6 +51,7 @@ public class OrderServiceTest {
     public void testOrderServiceQueryOrder(){
         OrderInfo orderInfo = orderService.queryOrder(new Order(1));
         log.error(orderInfo.toString());
+        System.out.println("hello git");
     }
 
     @Test
