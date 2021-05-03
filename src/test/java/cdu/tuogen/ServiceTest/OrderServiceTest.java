@@ -51,12 +51,12 @@ public class OrderServiceTest {
     public void testOrderServiceQueryOrder(){
         OrderInfo orderInfo = orderService.queryOrder(new Order(1));
         log.error(orderInfo.toString());
-        System.out.println("hello breeze`s git ");
     }
 
     @Test
     public void orderServiceQueryOrders(){
         PageInfo<OrderInfo> orders = orderService.queryOrders(new Page(1,4));
         log.error(orders.getList().toString());
+        System.out.println("there is breeze branch 1");
     }
 }
