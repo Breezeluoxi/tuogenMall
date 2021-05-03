@@ -25,15 +25,23 @@
 
 package cdu.tuogen.service.impl;
 
+import cdu.tuogen.mapper.AdminMapper;
 import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AdminServiceImpl implements AdminService {
+
+    @Autowired
+    private AdminMapper adminMapper;
+
     @Override
     public Admin queryAdmin(Admin admin) {
-        return null;
+        return adminMapper.queryAdmin(admin);
     }
 
     @Override

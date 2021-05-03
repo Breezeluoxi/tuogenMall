@@ -1,12 +1,15 @@
 package cdu.tuogen.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Breezeluoxi
  */
 public class User {
 
   private Integer userId;
+  @JsonIgnore
   private String userPassword;
   private String userVipLevel;
   private String userName;

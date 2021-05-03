@@ -1,18 +1,23 @@
 package cdu.tuogen.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.context.annotation.Bean;
+
 /**
  * @author Breezeluoxi
  */
+
 public class Admin extends User{
 
   private Integer adminId;
+  @JsonIgnore
   private String adminPassword;
   private String adminLevel;
   private String adminShopName;
   private String adminName;
 
-  public Admin(String adminPassword, String adminName) {
+  public Admin( String adminName,String adminPassword) {
     this.adminPassword = adminPassword;
     this.adminName = adminName;
   }

@@ -18,10 +18,22 @@
         <result column="user_id" property="userId"/>
         <result column="admin_id" property="adminId"/>
         <result column="create_time" property="createTime"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="order_pay_status" property="orderPayStatus"/>
+        <result column="order_pay_status" property="orderPayStatus"/>
+        <result column="order_delivery_method" property="orderDeliveryMethod"/>
         <collection property="goodList" ofType="cdu.tuogen.pojo.OrderGoods">
             <result column="mer_id" property="merId"/>
             <result column="good_id" property="goodId"/>
         </collection>
+        <!-- 嵌套查询 user 详情 -->
+        <collection property="user" ofType="cdu.tuogen.pojo.User"
+                    select="cdu.tuogen.mapper.UserMapper.queryUserById"
+                    column="user_id"/>
+        <!-- 嵌套查询 Admin 详情 -->
+        <collection property="admin" ofType="cdu.tuogen.pojo.Admin"
+                    select="cdu.tuogen.mapper.AdminMapper.queryAdminById"
+                    column="admin_id"/>
     </resultMap>
 
     <!-- 1.query userLists -->

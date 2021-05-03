@@ -2,6 +2,7 @@ package cdu.tuogen.service;
 
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.PrentOrder;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public interface OrderService {
      * @param page 分页信息
      * @return Orders
      */
-    PageInfo<Order> queryOrders(Page page);
+    PageInfo<PrentOrder> queryOrders(Page page);
 
     /**
      * 通过id查询单个用户

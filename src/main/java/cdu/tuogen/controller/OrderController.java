@@ -29,6 +29,7 @@ import cdu.tuogen.bean.LoginMsg;
 import cdu.tuogen.bean.NormalMsg;
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.PrentOrder;
 import cdu.tuogen.service.OrderService;
 import cdu.tuogen.service.UserService;
 import com.github.pagehelper.PageInfo;
@@ -49,15 +50,15 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/orders")
-    public NormalMsg queryOrders(int pageNum, int pageSize){
-        PageInfo<Order> orders = orderService.queryOrders(new Page(pageNum, pageSize));
+    public NormalMsg queryOrders(int page, int limit){
+        PageInfo<PrentOrder> orders = orderService.queryOrders(new Page(page, limit));
         NormalMsg msg;
-        if(orders != null){
-            log.error("登录是失败");
-            msg = new NormalMsg(0,"登录失败",0L, null);
+        if(orders == null){
+            log.error("查询失败");
+            msg = new NormalMsg(-1,"查询失败",0L, null);
         }else{
-            msg = new NormalMsg(1, "登录成功",orders.getTotal(), orders.getList());
-            log.error("登录成功");
+            log.error("查询成功");
+            msg = new NormalMsg(0, "查询成功",orders.getTotal(), orders.getList());
         }
         return msg;
     }

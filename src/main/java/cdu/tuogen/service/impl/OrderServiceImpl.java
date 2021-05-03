@@ -28,12 +28,14 @@ package cdu.tuogen.service.impl;
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.mapper.OrdersMapper;
 import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.PrentOrder;
 import cdu.tuogen.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,15 +45,23 @@ public class OrderServiceImpl implements OrderService {
     private OrdersMapper ordersMapper;
 
     @Override
-    public PageInfo<Order> queryOrders(Page page) {
+    public PageInfo<PrentOrder> queryOrders(Page page) {
         // 分页限制查询
         PageHelper.startPage(page.getPageNum(),page.getPageSize());
-        return new PageInfo<Order>(ordersMapper.queryOrders());
+        List<Order> queryOrders = ordersMapper.queryOrders();
+        // 降级为PrentOrder
+        List<PrentOrder> orders = new ArrayList<>();
+        for (Order order :
+                queryOrders) {
+            orders.add(order);
+        }
+
+        return new PageInfo<PrentOrder>(orders);
     }
 
     @Override
     public Order queryOrder(Order order) {
-        return null;
+        return ordersMapper.queryOrder(order);
     }
 
     @Override

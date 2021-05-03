@@ -71,4 +71,10 @@ public class AdminTest {
     public void AdminMapperUpdateAdmin(){
         adminMapper.updateAdmin(new Admin(713163288,"pujinmin3344","1","4518482458","洛溪"));
     }
+
+    @Test
+    public void AdminMapperQueryAdminById(){
+        Admin admin = adminMapper.queryAdminById(1);
+        log.error(admin.toString());
+    }
 }

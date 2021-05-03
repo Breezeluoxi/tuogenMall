@@ -1,6 +1,6 @@
 /**
  * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.bean_LoginMsg
+ * @name : tuogenMall_cdu.tuogen.ServiceTest_OrderServiceTest
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,59 +23,41 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.bean;
+package cdu.tuogen.ServiceTest;
 
-import cdu.tuogen.pojo.User;
+import cdu.tuogen.bean.Page;
+import cdu.tuogen.mapper.AdminMapper;
+import cdu.tuogen.mapperTest.AdminTest;
+import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.PrentOrder;
+import cdu.tuogen.service.OrderService;
+import com.github.pagehelper.PageInfo;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-public class LoginMsg <T extends User>{
-    /**
-     * 状态码
-     * 1 :请求正常返回
-     * 0 :请求参数不完整或异常
-     */
-    private Integer code;
-    /**
-     * 返回消息
-     */
-    private String message;
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/spring-*.xml")
+public class OrderServiceTest {
 
-    private T user;
+    Logger log = LoggerFactory.getLogger(OrderServiceTest.class);
 
-    public LoginMsg(Integer code, String message, T user) {
-        this.code = code;
-        this.message = message;
-        this.user = user;
+    @Autowired
+    private OrderService orderService;
+
+    @Test
+    public void testOrderServiceQueryOrder(){
+        Order order = orderService.queryOrder(new Order(1));
+        log.error(order.toString());
     }
 
-    public T getUser() {
-        return user;
-    }
-
-    public void setUser(T user) {
-        this.user = user;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LoginMsg() {
-    }
-
-    public LoginMsg(Integer code, String message) {
-        this.code = code;
-        this.message = message;
+    @Test
+    public void orderServiceQueryOrders(){
+        PageInfo<PrentOrder> orders = orderService.queryOrders(new Page(1,8));
+        log.error(orders.getList().toString());
     }
 }

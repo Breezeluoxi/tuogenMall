@@ -1,6 +1,8 @@
 package cdu.tuogen.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sun.util.calendar.BaseCalendar;
 
 import java.util.List;
@@ -9,77 +11,66 @@ import java.util.Date;
 /**
  * @author Breezeluoxi
  */
-public class Order {
+public class Order extends PrentOrder{
 
-  private Integer orderId;
-  private String name;
+  @JsonIgnore
   private Integer merId;
   private Integer userId;
   private Integer adminId;
+
+  /**
+   * 订单包含商品列表
+   */
   private List<OrderGoods> goodList;
-  private Date createTime;
+  /**
+   * 订单卖家信息
+   */
+  private User user;
+  /**
+   * 订单商家信息
+   */
+  private Admin admin;
 
-  public Date getCreateTime() {
-    return createTime;
+  public User getUser() {
+    return user;
   }
 
-  public void setCreateTime(Date createTime) {
-    this.createTime = createTime;
+  public void setUser(User user) {
+    this.user = user;
   }
 
-  public Order(Integer orderId, String name, Integer merId, Integer userId, Integer adminId, List<OrderGoods> goodList, Date createTime) {
-    this.orderId = orderId;
-    this.name = name;
+  public Admin getAdmin() {
+    return admin;
+  }
+
+  public void setAdmin(Admin admin) {
+    this.admin = admin;
+  }
+
+  public Order(Integer orderId, String name, Byte orderStatus, Byte orderPayStatus, String orderDeliveryMethod, Date createTime, Integer merId, Integer userId, Integer adminId, List<OrderGoods> goodList, User user, Admin admin) {
+    super(orderId, user.getUserName(), orderStatus, orderPayStatus, orderDeliveryMethod, createTime);
     this.merId = merId;
     this.userId = userId;
     this.adminId = adminId;
     this.goodList = goodList;
-    this.createTime = createTime;
+    this.user = user;
+    this.admin = admin;
   }
 
-  @Override
-  public String toString() {
-    return "Order{" +
-            "orderId=" + orderId +
-            ", name='" + name + '\'' +
-            ", merId=" + merId +
-            ", userId=" + userId +
-            ", adminId=" + adminId +
-            ", goodList=" + goodList +
-            ", createTime=" + createTime +
-            '}';
-  }
-
-  public Order(Integer orderId, String name, Integer merId, Integer userId, Integer adminId, Date createTime) {
-    this.orderId = orderId;
-    this.name = name;
+  public Order(Integer merId, Integer userId, Integer adminId, List<OrderGoods> goodList, User user, Admin admin) {
     this.merId = merId;
     this.userId = userId;
     this.adminId = adminId;
-    this.createTime = createTime;
-  }
-
-  public Order(Integer orderId) {
-    this.orderId = orderId;
+    this.goodList = goodList;
+    this.user = user;
+    this.admin = admin;
   }
 
   public Order() {
   }
 
-  public Integer getOrderId() {
-    return orderId;
-  }
-
-  public void setOrderId(Integer orderId) {
-    this.orderId = orderId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
+  public Order(Integer merId) {
+    this.merId = merId;
   }
 
   public Integer getMerId() {

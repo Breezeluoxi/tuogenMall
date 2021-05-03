@@ -59,4 +59,9 @@
         where user_id = #{userId}
     </select>
 
+    <!-- 5.query User by id -->
+    <select id="queryUserById" parameterType="Integer" resultMap="user_info">
+        <include refid="user_query"></include>
+        where user_id = #{userId}
+    </select>
 </mapper>

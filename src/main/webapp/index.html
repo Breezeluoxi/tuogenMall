@@ -66,7 +66,7 @@
                 layer.msg(JSON.stringify(data.field),function(){
                     let params = data.field
                     layui.$.ajax({
-                        url: '/login',
+                        url: '/admin/login',
                         data: params,
                         method: 'post',
                         success: function (ret) {

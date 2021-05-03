@@ -41,6 +41,13 @@ public interface AdminMapper {
     Admin queryAdmin(Admin admin);
 
     /**
+     * 通过Id查询用户
+     * @param adminId
+     * @return
+     */
+    Admin queryAdminById(Integer adminId);
+
+    /**
      * 插入Admin
      * @param admins
      * @return

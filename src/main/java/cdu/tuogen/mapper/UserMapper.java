@@ -1,5 +1,6 @@
 package cdu.tuogen.mapper;
 
+import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.User;
 
 import java.util.List;
@@ -31,14 +32,19 @@ import java.util.List;
  */
 
 
-public interface UserMapper {
+public interface UserMapper{
     /**
      * 查寻用户详情
      * @param user
      * @return
      */
     User queryUser(User user);
-
+    /**
+     * 通过Id查询用户
+     * @param userId
+     * @return
+     */
+    User queryUserById(Integer userId);
     /**
      * 增加用户List
      * @param users user集合

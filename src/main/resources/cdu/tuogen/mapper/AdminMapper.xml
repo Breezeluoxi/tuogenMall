@@ -53,4 +53,9 @@
         where admin_id = #{adminId}
     </select>
 
+    <!-- 5.query Admin by adminId -->
+    <select id="queryAdminById" parameterType="Integer" resultMap="admin_info">
+        <include refid="admin_query"/>
+        where admin_id=#{adminId}
+    </select>
 </mapper>

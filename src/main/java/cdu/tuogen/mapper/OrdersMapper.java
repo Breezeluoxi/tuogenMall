@@ -1,6 +1,7 @@
 package cdu.tuogen.mapper;
 
 import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.PrentOrder;
 
 import java.util.List;
 

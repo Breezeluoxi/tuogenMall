@@ -1,6 +1,6 @@
 /**
  * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.bean_LoginMsg
+ * @name : tuogenMall_cdu.tuogen.pojo.myEnum_OrderStatus
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,59 +23,10 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.bean;
+package cdu.tuogen.pojo.myenum;
 
-import cdu.tuogen.pojo.User;
-
-public class LoginMsg <T extends User>{
-    /**
-     * 状态码
-     * 1 :请求正常返回
-     * 0 :请求参数不完整或异常
-     */
-    private Integer code;
-    /**
-     * 返回消息
-     */
-    private String message;
-
-    private T user;
-
-    public LoginMsg(Integer code, String message, T user) {
-        this.code = code;
-        this.message = message;
-        this.user = user;
-    }
-
-    public T getUser() {
-        return user;
-    }
-
-    public void setUser(T user) {
-        this.user = user;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LoginMsg() {
-    }
-
-    public LoginMsg(Integer code, String message) {
-        this.code = code;
-        this.message = message;
+public enum OrderStatus {
+    DOWN("已完成", 1), TODO("待处理", -1), IN_TRANS("运输中", 0);
+    OrderStatus(String describe, int status) {
     }
 }
