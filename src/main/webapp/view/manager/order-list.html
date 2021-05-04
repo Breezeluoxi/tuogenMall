@@ -134,6 +134,10 @@
     </div>
 </div>
 </body>
+<script type="text/html" id="tuogen_bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script>
     layui.use(['laydate', 'form', 'table'],
         function () {
@@ -148,7 +152,8 @@
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    {field: 'orderId', title: '订单编号', sort: true, fixed: 'left'}
+                    {type: 'checkbox', fixed: 'left'}
+                    , {field: 'orderId', title: '订单编号', sort: true, fixed: 'left'}
                     , {field: 'userName', title: '收货人',}
                     , {
                         field: 'data.totalAmount', title: '应付款',
@@ -190,6 +195,7 @@
                     }
                     , {field: 'orderDeliveryMethod', title: '配送方式',}
                     , {field: 'createTime', title: '下单时间', sort: true}
+                    , {fixed: 'right', title:'操作', toolbar: '#tuogen_bar', }
                 ]]
             });
 

@@ -6,5 +6,25 @@
     <!--
         TODO 实现GoodsMapper中定义的相关接口并完成测试
     -->
+    <sql id="goods_query">
+        select *
+        from goods
+    </sql>
 
+    <!-- 映射Map -->
+    <resultMap id="goods_detail" type="cdu.tuogen.pojo.Order">
+        <id column="good_id" property="goodId"/>
+        <result column="good_name" property="goodName"/>
+        <result column="good_type_id" property="goodTypeId"/>
+        <result column="good_sale_type" property="goodSaleType"/>
+        <result column="good_num" property="goodNum"/>
+        <result column="good_introduce" property="goodIntroduce"/>
+        <result column="good_price" property="goodPrice"/>
+    </resultMap>
+
+    <!-- 1.query Goods by adminId -->
+    <select id="queryGoodsByAdminId" resultMap="order_detail" parameterType="Admin">
+        <include refid="goods_query"/>
+        where good_id = #{goodId}
+    </select>
 </mapper>

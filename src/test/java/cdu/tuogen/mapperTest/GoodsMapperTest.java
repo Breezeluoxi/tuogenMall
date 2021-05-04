@@ -1,6 +1,6 @@
 /**
- * @date : 2021/5/2
- * @name : tuogenMall_cdu.tuogen.service.impl_OrderService
+ * @date : 2021/5/4
+ * @name : tuogenMall_cdu.tuogen.mapperTest_GoodsMapperTest
  * @Author: Breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
@@ -23,57 +23,33 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.service.impl;
+package cdu.tuogen.mapperTest;
 
-import cdu.tuogen.bean.Page;
+import cdu.tuogen.mapper.GoodsMapper;
 import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.OrderInfo;
-import cdu.tuogen.service.OrderService;
-import cdu.tuogen.utils.BreezeUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.pojo.Goods;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
-@Service
-public class OrderServiceImpl implements OrderService {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/spring-*.xml")
+public class GoodsMapperTest {
+    Logger log = LoggerFactory.getLogger(GoodsMapperTest.class);
 
     @Autowired
-    private OrdersMapper ordersMapper;
-    @Autowired
-    private BreezeUtil breezeUtil;
+    private GoodsMapper goodsMapper;
 
-    @Override
-    public PageInfo<OrderInfo> queryOrders(Page page) {
-        // 分页限制查询
-        PageHelper.startPage(page.getPageNum(),page.getPageSize());
-        List<Order> orders = ordersMapper.queryOrders();
-        List<OrderInfo> orderInfos = breezeUtil.getPrentOrders(orders);
-        return new PageInfo<>(orderInfos);
-    }
-
-    @Override
-    public OrderInfo queryOrder(Order order) {
-        return breezeUtil.getPrentOrder(ordersMapper.queryOrder(order));
-    }
-
-    @Override
-    public Integer insertOrder(List<Order> orderList) {
-        return ordersMapper.insertOrder(orderList);
-    }
-
-    @Override
-    public Integer deleteOrders(List<Integer> ids) {
-        return null;
-    }
-
-    @Override
-    public Integer updateOrders(Order order) {
-        return null;
+    @Test
+    public void GoodsMapperQueryGoodsByAdminId(){
+        List<Goods> goods = goodsMapper.queryGoodsByAdminId(new Admin(1));
+        log.error(goods.toString());
     }
 }

@@ -17,4 +17,17 @@
     <mvc:annotation-driven></mvc:annotation-driven>
 <!--3.放行静态资源-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
+<!--
+    4.拦截器
+-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:mapping path="/view/**/*.*"/>
+            <mvc:exclude-mapping path="/users/login"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <mvc:exclude-mapping path="/static/**/*"/>
+            <bean class="cdu.tuogen.interceptor.Interceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
