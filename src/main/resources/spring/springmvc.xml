@@ -15,6 +15,7 @@
 <!-- 2.各种适配器 -->
     <!-- 2.1视图解析器 -->
     <mvc:annotation-driven></mvc:annotation-driven>
+
 <!--3.放行静态资源-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 </beans>
