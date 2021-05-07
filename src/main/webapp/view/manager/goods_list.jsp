@@ -209,12 +209,12 @@
                         <c:if test="${adminLevel==1}">
                             <a href="/goods/gmodPer?goodId=${goods.goodId}" title="编辑" ><img src="../../static/img/goods_page/编辑.png" width="30" height="30"/></a>
                             <a href="/goods/delGoods?goodId=${goods.goodId}" title="删除" ><img src="../../static/img/goods_page/删除.png" width="30" height="30"/></a>
-                            <a href="/goods/wareGoods?goodId=${goods.goodId}" title="库存" ><img src="../../static/img/goods_page/库存.png" width="30" height="30"/></a>
+                            <a href="/goods/wareGoods?goodId=${goods.goodId}" title="库存" ><img src="../../static/img/goods_page/KC%20.png" width="30" height="30"/></a>
                         </c:if>
                         <c:if test="${adminLevel==2}">
-                            <a style="pointer-events: none;" href="/goods/gmodPer?goodId=${goods.goodId}" title="编辑" ><img src="../../static/img/goods_page/编辑.png" width="30" height="30"/></a>
-                            <a style="pointer-events: none;" href="/goods/delGoods?goodId=${goods.goodId}" title="删除" ><img src="../../static/img/goods_page/删除.png" width="30" height="30"/></a>
-                            <a style="pointer-events: none;" href="/goods/wareGoods?goodId=${goods.goodId}" title="库存" ><img src="../../static/img/goods_page/库存.png" width="30" height="30"/></a>
+                            <a style="pointer-events: none;" href="/goods/gmodPer?goodId=${goods.goodId}" title="编辑" ><img src="../../static/img/goods_page/JZ.png" width="30" height="30"/></a>
+                            <a style="pointer-events: none;" href="/goods/delGoods?goodId=${goods.goodId}" title="删除" ><img src="../../static/img/goods_page/JZ.png" width="30" height="30"/></a>
+                            <a style="pointer-events: none;" href="/goods/wareGoods?goodId=${goods.goodId}" title="库存" ><img src="../../static/img/goods_page/JZ.png" width="30" height="30"/></a>
                         </c:if>
 
                     </td>

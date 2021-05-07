@@ -67,6 +67,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public boolean updateGoodsWare(int goodsId, int goodsNum) {
+        return  goodsMapper.updateGoodsWare(goodsId,goodsNum) == 1 ? true : false;
+    }
+
+    @Override
     public boolean deleteGoods(int goodId) {
 
         return  goodsMapper.deleteGoods(goodId) == 1 ? true : false;

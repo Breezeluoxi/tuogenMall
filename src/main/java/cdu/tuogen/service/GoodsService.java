@@ -47,6 +47,12 @@ public interface GoodsService {
      * @return
      */
     boolean updateGoods(Goods goods, MultipartFile file);
+    /**
+     * 更新商品库存
+     * @param
+     * @return
+     */
+    boolean updateGoodsWare(int goodsId, int goodsNum);
 
     /**
      * 删除商品集合

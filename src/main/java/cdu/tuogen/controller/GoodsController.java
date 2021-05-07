@@ -233,30 +233,19 @@ public class GoodsController extends HttpServlet{
         request.getRequestDispatcher("/view/manager/goods_warehousing.jsp").forward(request, response);
     }
 
-    @RequestMapping(value = "/wareGoods", method = RequestMethod.POST)
-    public String wareGoods(HttpServletRequest req,HttpServletResponse resp, @RequestParam("goodPicUrl") MultipartFile file){
-        try {
-            req.setCharacterEncoding("utf-8");//设置参数的编码格式
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+
+    @RequestMapping(value = "/goodware", method = RequestMethod.POST)
+    public String goodware(HttpServletRequest req, HttpServletResponse response)  throws ServletException, IOException{
         int goodId = Integer.parseInt(req.getParameter("goodId"));
-        String goodName =req.getParameter("goodName");
-        int goodTypeId = Integer.parseInt(req.getParameter("goodTypeId"));
-        String goodSaleType =req.getParameter("goodSaleType");
         int goodNum = Integer.parseInt(req.getParameter("goodNum"));
-        String goodIntroduce =req.getParameter("goodIntroduce");
-        Double goodPrice = Double.valueOf(req.getParameter("goodPrice"));
-        int goodShopId = Integer.parseInt(req.getParameter("goodShopId"));
-        String goodPicUrl =req.getParameter("goodPicUrl");
-        Goods goods = new Goods(goodId, goodName, goodTypeId, goodSaleType, goodNum,goodIntroduce, goodPrice,goodShopId,goodPicUrl);
         System.out.println("整体测试");
-        System.out.println(goods);
-        if (goodsService.updateGoods(goods, file)){
+        System.out.println(goodId);
+        System.out.println(goodNum);
+        if (goodsService.updateGoodsWare(goodId, goodNum)){
             return "redirect:list"; // 更新成功，跳转到显示页面
         }
 
-        return "redirect:/view/manager/mod_goods.jsp"; // 更新失败，重定向到商品增加页面
+        return "redirect:/view/manager/goods_warehousing.jsp"; // 更新失败，重定向到商品增加页面
     }
 
 }

@@ -47,6 +47,12 @@ public interface GoodsMapper {
      * @return
      */
     Integer updateGoods(Goods goods);
+    /**
+     * 更新商品库存
+     * @param
+     * @return
+     */
+    Integer updateGoodsWare(int goodsId, int goodsNum);
 
     /**
      * 删除商品集合
