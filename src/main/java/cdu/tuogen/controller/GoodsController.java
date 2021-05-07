@@ -232,6 +232,7 @@ public class GoodsController extends HttpServlet{
         request.setAttribute("goods", goods);
         request.getRequestDispatcher("/view/manager/goods_warehousing.jsp").forward(request, response);
     }
+
     @RequestMapping(value = "/wareGoods", method = RequestMethod.POST)
     public String wareGoods(HttpServletRequest req,HttpServletResponse resp, @RequestParam("goodPicUrl") MultipartFile file){
         try {

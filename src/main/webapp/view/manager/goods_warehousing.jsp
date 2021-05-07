@@ -151,17 +151,16 @@
                 <th>商品介绍</th>
                 <th>操作</th>
             </tr>
-            <c:forEach  items="${goods}" var="goods">
                 <tr>
-                    <td class="center"><img src="../../static/img/goods_img/${goods.goodPicUrl}" width="50" height="50" alt="暂无"/></td>
-                    <td class="center" id="gid">${goods.goodId}</td>
-                    <td id="gname">${goods.goodName}</td>
-                    <td class="center" id="gtype">${goods.goodType}</td>
-                    <td class="center" id="gsaletype">${goods.goodSaleType}</td>
-                    <td class="center" id="gprice"><strong class="rmb_icon">${goods.goodPrice}</strong></td>
-                    <td class="center" id="gstock">${goods.goodNum}</td>
-                    <td class="center" id="gsellid">${goods.goodShopId}</td>
-                    <td class="center" id="gintroduce">${goods.goodIntroduce}</td>
+                    <td class="center"><img src="../../static/img/goods_img/${requestScope.goods.goodPicUrl}" width="50" height="50" alt="暂无"/></td>
+                    <td class="center" id="gid">${requestScope.goods.goodId}</td>
+                    <td id="gname">${requestScope.goods.goodName}</td>
+                    <td class="center" id="gtype">${requestScope.goods.goodType}</td>
+                    <td class="center" id="gsaletype">${requestScope.goods.goodSaleType}</td>
+                    <td class="center" id="gprice"><strong class="rmb_icon">${requestScope.goods.goodPrice}</strong></td>
+                    <td class="center" id="gstock">${requestScope.goods.goodNum}</td>
+                    <td class="center" id="gsellid">${requestScope.goods.goodShopId}</td>
+                    <td class="center" id="gintroduce">${requestScope.goods.goodIntroduce}</td>
                     <td class="center">
                         <button onclick="add()"><img src="../../static/img/goods_page/加.png" width="30" height="30"/></button>
                         <script type="text/javascript">
@@ -181,10 +180,10 @@
                                 x.value=a;
                             }
                         </script>
+                        <button onclick="cut()"><img src="../../static/img/goods_page/减.png" width="30" height="30"/></button>
 
                     </td>
                 </tr>
-            </c:forEach>
         </table>
         <aside class="paging">
             <c:if test="${pageInfo.hasPreviousPage}">
