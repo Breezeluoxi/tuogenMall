@@ -146,6 +146,15 @@
             <artifactId>pagehelper</artifactId>
             <version>5.1.10</version>
         </dependency>
+            <!--图片上传-->
+        <!--
+    https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+     -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
 
     </dependencies>
 </project>

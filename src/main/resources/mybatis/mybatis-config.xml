@@ -11,8 +11,12 @@
     <!-- 2.配置分页插件 -->
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--        指定分页插件使用哪种数据库-->
             <property name="helperDialect" value="mysql"/>
+            <!--            默认值为false,当该参数设置为true时,使用RowBounds分页会进行count查询-->
+            <property name="rowBoundsWithCount" value="true"/>
+            <!--            分页合理化参赛,设置为true时,pageNum<=0时会查询第一页-->
+            <property name="reasonable" value="true"/>
         </plugin>
     </plugins>
-
 </configuration>
