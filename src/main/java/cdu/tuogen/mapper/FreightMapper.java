@@ -1,9 +1,9 @@
 /**
  * *   Description:
- * *   @File     :CouponExceptionHandler.py
+ * *   @File     :FreightMapper.py
  * *   @Author   :王炜 IAmTrying
  * *   @QQ       :690622472
- * *   @Time     :5/9/2021 12:37
+ * *   @Time     :5/11/2021 10:24
  * *   =================================================
  * *             ┌─┐       ┌─┐ + +
  * *          ┌──┘ ┴───────┘ ┴──┐++
@@ -30,27 +30,24 @@
  * *   ==================================================
  **/
 
-package cdu.tuogen.controller.exception;
+package cdu.tuogen.mapper;
 
-import cdu.tuogen.bean.CouponMsg;
-import cdu.tuogen.controller.CouponController;
-import cdu.tuogen.controller.UserCouponController;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
-@RestControllerAdvice(assignableTypes = {CouponController.class, UserCouponController.class})
-public class CouponExceptionHandler {
-    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    public CouponMsg argumentMismatch(Exception e) { return CouponMsg.Argument_Mismatch; }
+/**
+ * 运费
+ */
+public interface FreightMapper {
+    @Select({"select transport_discount " +
+            "from uservip_level where" +
+            " vip_level=(select vip_level from user where user_id=#{userId})"})
+    float get(int userId);
 
-    @ExceptionHandler(value = {Exception.class})
-    public CouponMsg allException(Exception e) { return CouponMsg.FAILED.addDescription(e.getMessage()); }
-
-    @ModelAttribute
-    public void clear() { CouponMsg.clearDetail(); }
-
+    @Update("update uservip_level set transport_discount=#{discount} where vip_level=#{vipLevel}")
+    int mod(@Param("discount") float discount, @Param("vipLevel")int vipLevel);
 }
+
+

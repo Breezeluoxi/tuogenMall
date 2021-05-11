@@ -31,19 +31,26 @@
  **/
 package cdu.tuogen.interceptor;
 
+import cdu.tuogen.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String requestURI = request.getRequestURI();
+        //放行login
+        if (request.getRequestURI().contains("login"))return true;
+        //session存在user则放行，否则返回主页
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
+        if (user instanceof User)return true;
+        response.sendRedirect("/index.heml");
         return false;
-
     }
 
     @Override
