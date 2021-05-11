@@ -55,20 +55,20 @@ public class UserCouponController {
     //增加用户优惠卷
     @PostMapping()
     public CouponMsg add(@Valid UserCoupon userCoupon, BindingResult result){
-        result.getFieldErrors().forEach((error)->CouponMsg.FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
-        return userCouponService.add(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.FAILED;
+        result.getFieldErrors().forEach((error)->CouponMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
+        return result.hasErrors()?CouponMsg.ADD_FAILED:userCouponService.add(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.FAILED;
     }
 
     //修改用户优惠卷
     @PutMapping()
     public CouponMsg mod(UserCoupon userCoupon){
-        return userCouponService.mod(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.FAILED;
+        return userCouponService.mod(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.MOD_FAILED;
     }
 
     //删除用户优惠卷
     @DeleteMapping()
     public CouponMsg del(@RequestParam("id") int userCouponId){
         UserCoupon del = userCouponService.del(userCouponId);
-        return del!=null?CouponMsg.SUCCESS.addDetail("deleted_user_coupon",del):CouponMsg.FAILED.addDescription("no user coupon");
+        return del!=null?CouponMsg.SUCCESS.addDetail("deleted_user_coupon",del):CouponMsg.DEL_FAILED.addDescription("no user coupon");
     }
 }

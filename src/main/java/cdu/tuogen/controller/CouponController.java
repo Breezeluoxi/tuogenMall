@@ -57,7 +57,7 @@ public class CouponController {
     @PostMapping
     public CouponMsg add(@Valid Coupon coupon, BindingResult result){
         result.getFieldErrors().forEach((error)->CouponMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
-        return couponService.add(coupon)!=0? CouponMsg.SUCCESS: CouponMsg.ADD_FAILED;
+        return result.hasErrors()?CouponMsg.ADD_FAILED:couponService.add(coupon)!=0? CouponMsg.SUCCESS: CouponMsg.ADD_FAILED;
     }
     //修改
     @PutMapping
