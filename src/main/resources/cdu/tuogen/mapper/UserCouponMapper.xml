@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.UserCouponMapper">
+    <resultMap id="myMap" type="cdu.tuogen.pojo.UserCoupon">
+        <id property="id" column="id"/>
+        <association property="coupon" select="cdu.tuogen.mapper.CouponMapper.get" column="coupon_id"/>
+    </resultMap>
+    <select id="getAll" resultMap="myMap">
+        select * from t_user_coupon where user_id=#{userId}
+    </select>
+
+    <select id="get" resultMap="myMap">
+        select * from t_user_coupon where id=#{userCouponId}
+    </select>
+
+    <insert id="add" parameterType="cdu.tuogen.pojo.UserCoupon" >
+        insert into t_user_coupon values (
+        null,#{userId},#{coupon.id},#{num},
+        <if test="getData!=null">#{getData},</if><if test="getData==null">CURRENT_TIMESTAMP,</if>
+        #{validityDate})
+    </insert>
+
+    <update id="mod" parameterType="cdu.tuogen.pojo.UserCoupon" >
+        update t_user_coupon
+        <set>
+            <if test="userId!=0">
+                user_id=#{userId},
+            </if>
+            <if test="coupon!=null &amp;&amp; coupon.id!=0">
+                coupon_id=#{coupon.id},
+            </if>
+            <if test="num!=0">
+                num=#{num},
+            </if>
+            <if test="getData!=null">
+                get_data=#{getData},
+            </if>
+            <if test="validityDate!=null">
+                validity_date=#{validityDate}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="del" >
+        delete from t_user_coupon where id=#{userCouponId}
+    </delete>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdu.tuogen.mapper.CouponMapper">
+    <select id="get" resultType="cdu.tuogen.pojo.Coupon" >
+        select * from t_coupon where id=#{couponId}
+    </select>
+    <insert id="add" parameterType="cdu.tuogen.pojo.Coupon">
+        insert into t_coupon values (null ,#{discount},#{baseLine})
+    </insert>
+
+    <update id="mod" parameterType="cdu.tuogen.pojo.Coupon">
+        update t_coupon set discount=#{discount},base_line=#{baseLine} where id=#{id}
+    </update>
+
+    <delete id="del">
+        delete from t_coupon where id=#{couponId}
+    </delete>
+
+</mapper>

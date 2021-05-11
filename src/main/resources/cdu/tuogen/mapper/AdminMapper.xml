@@ -8,17 +8,8 @@
         select * from `admin`
     </sql>
 
-    <!-- 映射Map -->
-    <resultMap id="admin_info" type="cdu.tuogen.pojo.Admin">
-        <id column="admin_id" property="adminId"/>
-        <result column="admin_password" property="adminPassword"/>
-        <result column="admin_level" property="adminLevel"/>
-        <result column="admin_shop_name" property="adminShopName"/>
-        <result column="admin_name" property="adminName"/>
-    </resultMap>
-
     <!-- 1. query Admin information -->
-    <select id="queryAdmin" resultMap="admin_info" parameterType="cdu.tuogen.pojo.Admin">
+    <select id="queryAdmin" resultType="cdu.tuogen.pojo.Admin" parameterType="cdu.tuogen.pojo.Admin">
         <include refid="admin_query"/>
         <where>
             <if test="adminId!=null">admin_id=#{adminId}</if>
@@ -54,7 +45,7 @@
     </select>
 
     <!-- 5.query Admin by adminId -->
-    <select id="queryAdminById" parameterType="Integer" resultMap="admin_info">
+    <select id="queryAdminById" parameterType="Integer" resultType="cdu.tuogen.pojo.Admin">
         <include refid="admin_query"/>
         where admin_id=#{adminId}
     </select>
