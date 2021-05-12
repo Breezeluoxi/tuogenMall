@@ -52,13 +52,13 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/login")
-    public LoginMsg<Admin> queryUsers(String username, String password, HttpServletRequest request){
+    public LoginMsg<Admin> queryUsers(String username, String password, HttpServletRequest request) throws Exception {
         Admin admin = adminService.queryAdmin(new Admin(username,password));
         HttpSession session = request.getSession();
         LoginMsg<Admin> msg;
         if (admin == null){
             log.error("登录失败");
-            msg = new LoginMsg(0,"登录失败");
+            throw  new Exception("登录失败");
         }else{
             session.setAttribute("state", "ok");
             session.setAttribute("CrUser", admin);

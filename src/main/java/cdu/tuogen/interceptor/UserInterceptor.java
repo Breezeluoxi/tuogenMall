@@ -49,7 +49,7 @@ public class UserInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
         if (user instanceof User)return true;
-        response.sendRedirect("/index.heml");
+        response.sendRedirect("/index.html");
         return false;
     }
 

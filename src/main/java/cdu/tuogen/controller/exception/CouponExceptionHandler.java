@@ -33,8 +33,7 @@
 package cdu.tuogen.controller.exception;
 
 import cdu.tuogen.bean.CouponMsg;
-import cdu.tuogen.controller.CouponController;
-import cdu.tuogen.controller.UserCouponController;
+import cdu.tuogen.controller.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,7 +41,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-@RestControllerAdvice(assignableTypes = {CouponController.class, UserCouponController.class})
+@RestControllerAdvice(assignableTypes = {CouponController.class,
+        UserCouponController.class,
+        AdminController.class, UserController.class,
+        OrderController.class})
 public class CouponExceptionHandler {
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
     public CouponMsg argumentMismatch(Exception e) { return CouponMsg.Argument_Mismatch; }
