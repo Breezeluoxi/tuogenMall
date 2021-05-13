@@ -2,6 +2,7 @@ package cdu.tuogen.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -12,10 +13,13 @@ public class Admin{
 
   private Integer adminId;
   @JsonIgnore
+  @NotBlank(message = "密码必须存在")
   private String adminPassword;
   private String adminLevel;
   private String adminShopName;
+  @NotBlank(message = "用户名必须存在")
   private String adminName;
+  private String picUrl;
 
   public Admin() {
   }
@@ -29,12 +33,13 @@ public class Admin{
     this.adminName = adminName;
   }
 
-  public Admin(Integer adminId, String adminPassword, String adminLevel, String adminShopName, String adminName) {
-    this.adminId = adminId;
-    this.adminPassword = adminPassword;
-    this.adminLevel = adminLevel;
-    this.adminShopName = adminShopName;
-    this.adminName = adminName;
+
+  public String getPicUrl() {
+    return picUrl;
+  }
+
+  public void setPicUrl(String picUrl) {
+    this.picUrl = picUrl;
   }
 
   @Override
@@ -45,7 +50,17 @@ public class Admin{
             ", adminLevel='" + adminLevel + '\'' +
             ", adminShopName='" + adminShopName + '\'' +
             ", adminName='" + adminName + '\'' +
+            ", picUrl='" + picUrl + '\'' +
             '}';
+  }
+
+  public Admin(Integer adminId, String adminPassword, String adminLevel, String adminShopName, String adminName, String picUrl) {
+    this.adminId = adminId;
+    this.adminPassword = adminPassword;
+    this.adminLevel = adminLevel;
+    this.adminShopName = adminShopName;
+    this.adminName = adminName;
+    this.picUrl = picUrl;
   }
 
   public Integer getAdminId() {

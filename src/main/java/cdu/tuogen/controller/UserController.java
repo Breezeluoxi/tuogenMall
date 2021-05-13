@@ -25,17 +25,13 @@
 
 package cdu.tuogen.controller;
 
-import cdu.tuogen.bean.CouponMsg;
 import cdu.tuogen.bean.LoginMsg;
-import cdu.tuogen.bean.NormalMsg;
-import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.User;
 import cdu.tuogen.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

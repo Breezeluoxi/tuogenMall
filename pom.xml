@@ -50,12 +50,28 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>4.3.18.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-beans</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>4.3.6.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 2. druid 链接池 -->
@@ -99,6 +115,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>5.2.9.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-tx</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- 7. mysql -->
         <dependency>
@@ -158,13 +180,18 @@
 
         <!--validator-->
         <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <!--<dependency>-->
+        <!--    <groupId>org.hibernate.validator</groupId>-->
+        <!--    <artifactId>hibernate-validator</artifactId>-->
+        <!--    <version>6.2.0.Final</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
+            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.2.0.Final</version>
+            <version>5.4.1.Final</version>
         </dependency>
-
-
 
 
     </dependencies>

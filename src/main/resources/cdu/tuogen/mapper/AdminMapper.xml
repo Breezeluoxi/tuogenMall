@@ -22,7 +22,7 @@
         insert into `admin` values
         <foreach collection="list" separator="," item="admins">
             (#{admins.adminId},#{admins.adminPassword},#{admins.adminLevel},
-            #{admins.adminShopName},#{admins.adminName})
+            #{admins.adminShopName},#{admins.adminName},#{admins.picUrl})
         </foreach>
     </insert>
 

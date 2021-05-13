@@ -1,9 +1,9 @@
 /**
  * *   Description:
- * *   @File     :CouponExceptionHandler.py
+ * *   @File     :Tmpl.py
  * *   @Author   :王炜 IAmTrying
  * *   @QQ       :690622472
- * *   @Time     :5/9/2021 12:37
+ * *   @Time     :5/13/2021 21:48
  * *   =================================================
  * *             ┌─┐       ┌─┐ + +
  * *          ┌──┘ ┴───────┘ ┴──┐++
@@ -30,29 +30,32 @@
  * *   ==================================================
  **/
 
-package cdu.tuogen.controller.exception;
+package cdu.tuogen.bean.wei;
 
-import cdu.tuogen.bean.CouponMsg;
-import cdu.tuogen.controller.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+public enum Tmpl{
+    /**
+     *  通用异常模板
+     */
+    GENERAL_ERROR("王大哥提示你异常啦", "返回", "javascript:history.go(-1);"),
+    /**
+     * 注册异常模板
+     */
+    REGISTER_ERROR("注册失败","确定","/register"),
+    /**
+     * 登录异常模板
+     */
+    LOGIN_ERROR("登录失败","返回","javascript:history.go(-1);"),
+    ;
 
-@RestControllerAdvice(assignableTypes = {CouponController.class,
-        UserCouponController.class,
-        AdminController.class, UserController.class,
-        OrderController.class})
-public class CouponExceptionHandler {
-    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    public CouponMsg argumentMismatch(Exception e) { return CouponMsg.Argument_Mismatch; }
+    private MyException tmpl;
+    Tmpl(MyException tmpl){
+        this.tmpl=tmpl;
+    }
+    Tmpl(String error, String aText, String aHref){
+        this.tmpl=new MyException(error,aText,aHref);
+    }
 
-    @ExceptionHandler(value = {Exception.class})
-    public CouponMsg allException(Exception e) { return CouponMsg.FAILED.addDescription(e.getMessage()); }
-
-    @ModelAttribute
-    public void clear() { CouponMsg.clearDetail(); }
-
+    public MyException getTmpl() {
+        return tmpl;
+    }
 }

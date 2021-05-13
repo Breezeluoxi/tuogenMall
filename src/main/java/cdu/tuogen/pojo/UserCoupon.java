@@ -32,12 +32,10 @@
 package cdu.tuogen.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UserCoupon {
@@ -45,7 +43,7 @@ public class UserCoupon {
     private int id;
     @Min(value =1,message = "用于ID必须存在")
     private int userId;
-    @NotNull(message = "优惠卷必须存在")
+    @NotBlank(message = "优惠卷必须存在")
     private Coupon coupon;
     @Min(value =1,message = "优惠卷数据必须存在且大于1")
     private int num;
@@ -54,8 +52,7 @@ public class UserCoupon {
     private Date getData;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    @NotNull(message = "截止日期必须存在")
-    @NotEmpty(message = "截止日期必须存在")
+    @NotBlank(message = "截止日期必须存在NotEmpty")
     private Date validityDate;
 
     public UserCoupon() { }

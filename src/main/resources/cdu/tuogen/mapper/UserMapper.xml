@@ -33,7 +33,7 @@
         insert into `user` values
         <foreach collection="list" separator="," item="users">
             (null,#{users.userPassword},#{users.userVipLevel},
-             #{users.userName},#{users.userAge},#{users.userPhone},#{users.userAddress})
+             #{users.userName},#{users.userAge},#{users.userPhone},#{users.userAddress},#{users.picUrl})
         </foreach>
     </insert>
 

@@ -1,9 +1,9 @@
 /**
  * *   Description:
- * *   @File     :CouponAspect.py
+ * *   @File     :CouponExceptionHandler.py
  * *   @Author   :王炜 IAmTrying
  * *   @QQ       :690622472
- * *   @Time     :5/8/2021 17:03
+ * *   @Time     :5/9/2021 12:37
  * *   =================================================
  * *             ┌─┐       ┌─┐ + +
  * *          ┌──┘ ┴───────┘ ┴──┐++
@@ -30,18 +30,27 @@
  * *   ==================================================
  **/
 
-package cdu.tuogen.aspect;
+package cdu.tuogen.controller.exception;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import cdu.tuogen.bean.wei.CouponMsg;
+import cdu.tuogen.controller.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-@Component
-@Aspect
-public class CouponAspect {
+@RestControllerAdvice(assignableTypes = {CouponController.class,
+        UserCouponController.class,
+        AdminController.class, UserController.class,
+        OrderController.class})
+public class RestExceptionHandler {
+    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
+    public CouponMsg argumentMismatch(Exception e) { return CouponMsg.Argument_Mismatch; }
 
-    //@Before(value = "execution(* cdu.tuogen.controller.*.*(..))")
-    //
-    //public void change() {
-    //
-    //}
+    @ExceptionHandler(value = {Exception.class})
+    public CouponMsg allException(Exception e) { return CouponMsg.FAILED.addDescription(e.getMessage()); }
+
+    @ModelAttribute
+    public void clear() { CouponMsg.clearDetail(); }
+
 }

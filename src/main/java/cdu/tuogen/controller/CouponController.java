@@ -30,17 +30,14 @@
  * *   ==================================================
  **/
 package cdu.tuogen.controller;
-import cdu.tuogen.bean.CouponMsg;
+import cdu.tuogen.bean.wei.CouponMsg;
 import cdu.tuogen.pojo.Coupon;
 import cdu.tuogen.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-//@Validated
 @RestController
 @RequestMapping(value = "/coupon")//,produces = {"application/json;charset=UTF-8"}
 public class CouponController {

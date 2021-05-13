@@ -2,6 +2,8 @@ package cdu.tuogen.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.Min;
 
 /**
  * @author Breezeluoxi
@@ -9,13 +11,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 
   private Integer userId;
+
   @JsonIgnore
+  @NotBlank(message = "密码必须存在")
   private String userPassword;
   private String userVipLevel;
+
+  @NotBlank(message = "用户名必须存在")
   private String userName;
+  @Min(value = 1,message = "年龄最小值为1")
   private Short userAge;
   private String userPhone;
   private String userAddress;
+  private String picUrl;
+
 
   public User(String userName, String userPassword) {
     this.userPassword = userPassword;
@@ -29,7 +38,8 @@ public class User {
     this.userId = userId;
   }
 
-  public User(Integer userId, String userPassword, String userVipLevel, String userName, Short userAge, String userPhone, String userAddress) {
+
+  public User(Integer userId, String userPassword, String userVipLevel, String userName, Short userAge, String userPhone, String userAddress, String picUrl) {
     this.userId = userId;
     this.userPassword = userPassword;
     this.userVipLevel = userVipLevel;
@@ -37,6 +47,7 @@ public class User {
     this.userAge = userAge;
     this.userPhone = userPhone;
     this.userAddress = userAddress;
+    this.picUrl = picUrl;
   }
 
   @Override
@@ -47,11 +58,19 @@ public class User {
             ", userVipLevel='" + userVipLevel + '\'' +
             ", userName='" + userName + '\'' +
             ", userAge=" + userAge +
-            ", userPhone=" + userPhone +
+            ", userPhone='" + userPhone + '\'' +
             ", userAddress='" + userAddress + '\'' +
+            ", picUrl='" + picUrl + '\'' +
             '}';
   }
 
+  public String getPicUrl() {
+    return picUrl;
+  }
+
+  public void setPicUrl(String picUrl) {
+    this.picUrl = picUrl;
+  }
   public Integer getUserId() {
     return userId;
   }

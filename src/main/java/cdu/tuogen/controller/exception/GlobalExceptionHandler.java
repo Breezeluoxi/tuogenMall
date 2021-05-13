@@ -1,9 +1,9 @@
 /**
  * *   Description:
- * *   @File     :CouponAspect.py
+ * *   @File     :GlobalExceptionHandler.py
  * *   @Author   :王炜 IAmTrying
  * *   @QQ       :690622472
- * *   @Time     :5/8/2021 17:03
+ * *   @Time     :5/12/2021 22:56
  * *   =================================================
  * *             ┌─┐       ┌─┐ + +
  * *          ┌──┘ ┴───────┘ ┴──┐++
@@ -30,18 +30,27 @@
  * *   ==================================================
  **/
 
-package cdu.tuogen.aspect;
+package cdu.tuogen.controller.exception;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import cdu.tuogen.bean.wei.MyException;
+import cdu.tuogen.bean.wei.Tmpl;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@Component
-@Aspect
-public class CouponAspect {
-
-    //@Before(value = "execution(* cdu.tuogen.controller.*.*(..))")
-    //
-    //public void change() {
-    //
-    //}
+@ControllerAdvice()
+public class GlobalExceptionHandler {
+    @ExceptionHandler(Exception.class)
+    public String globalExceptionHandler(Exception e, Model model){
+        MyException myException;
+        if (e instanceof MyException){
+            myException=(MyException) e;
+        } else {
+            myException=MyException.getTmpl(Tmpl.GENERAL_ERROR);
+            myException.setDescription(e.getMessage());
+        }
+        model.addAttribute("myException", myException);
+        return "/WBE_INF/view/exception.jsp";
+    }
 }
+

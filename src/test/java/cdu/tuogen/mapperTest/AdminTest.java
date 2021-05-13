@@ -55,9 +55,9 @@ public class AdminTest {
     @Test
     public void AdminMapperInsertAdmin(){
         Integer integer = adminMapper.insertAdmin(Arrays.asList(
-                new Admin((int)System.currentTimeMillis(), "123456", "2", "tuogen_elect", "张三"),
-                new Admin((int)System.currentTimeMillis()+1, "123456", "2", "tuogen_car", "李四"),
-                new Admin((int)System.currentTimeMillis()+2, "123456", "2", "tuogen_furn", "王五")
+                new Admin((int)System.currentTimeMillis(), "123456", "2", "tuogen_elect", "张三",""),
+                new Admin((int)System.currentTimeMillis()+1, "123456", "2", "tuogen_car", "李四",""),
+                new Admin((int)System.currentTimeMillis()+2, "123456", "2", "tuogen_furn", "王五","")
         ));
         log.error("操作数 = " + integer);
     }
@@ -69,7 +69,7 @@ public class AdminTest {
 
     @Test
     public void AdminMapperUpdateAdmin(){
-        adminMapper.updateAdmin(new Admin(713163288,"pujinmin3344","1","4518482458","洛溪"));
+        adminMapper.updateAdmin(new Admin(713163288,"pujinmin3344","1","4518482458","洛溪",""));
     }
 
     @Test

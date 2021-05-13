@@ -30,7 +30,7 @@
  * *   ==================================================
  **/
 package cdu.tuogen.controller;
-import cdu.tuogen.bean.CouponMsg;
+import cdu.tuogen.bean.wei.CouponMsg;
 import cdu.tuogen.pojo.UserCoupon;
 import cdu.tuogen.service.UserCouponService;
 import org.springframework.beans.factory.annotation.Autowired;

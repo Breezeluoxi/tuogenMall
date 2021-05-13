@@ -29,7 +29,7 @@
  * *                      代码无BUG!
  * *   ==================================================
  **/
-package cdu.tuogen.bean;
+package cdu.tuogen.bean.wei;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -138,6 +138,8 @@ public enum CouponMsg {
     }
 
     private static class Util{
-        static int CODE = 0;
+        private static int CODE = 0;
+
     }
+
 }

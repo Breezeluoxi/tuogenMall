@@ -12,5 +12,6 @@
 </head>
 <body>
 <h1 style="text-align: center;color: red">404</h1>
+<h1 style="text-align: center;">找不到页面</h1>
 </body>
 </html>
