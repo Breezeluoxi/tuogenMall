@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>center</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/mygxin.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/myorder.css"/>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div id="head"></div>
+<!------------------------------head------------------------------>
+
+<!------------------------------centInfo------------------------------>
+<div id="centInfo"></div>
+<!------------------------------centInfo------------------------------>
+
+<!------------------------------返回顶部------------------------------>
+<div id="hover"></div>
+<!------------------------------返回顶部------------------------------>
+
+<!--------------------footer-------------------->
+<div id="footer"></div>
+<!--------------------footer-------------------->
+
+</body>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $("#head").load('element/header.html')
+        $("#footer").load('element/footer.html')
+        $("#hover").load('element/hover.html')
+        $("#centInfo").load('element/centOrders.html')
+    }
+</script>
+<script src="../../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/user.js" type="text/javascript" charset="utf-8"></script>
+</html>

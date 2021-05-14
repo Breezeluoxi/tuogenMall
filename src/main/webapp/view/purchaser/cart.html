@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/proList.css"/>
+</head>
+<body>
+<!------------------------------head------------------------------>
+<div id="head"></div>
+<!------------------------------head------------------------------>
+
+<!------------------------------goodsList------------------------------>
+<div id="cartGoodsList"></div>
+<!------------------------------goodsList------------------------------>
+
+
+<!------------------------------返回顶部------------------------------>
+<div id="hover"></div>
+<!------------------------------返回顶部------------------------------>
+
+<!--------------------footer-------------------->
+<div id="footer"></div>
+<!--------------------footer-------------------->
+</body>
+<script src="../../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/pro.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../static/js/cart.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    window.onload = function init() {
+        $("#head").load('element/header.html')
+        $("#footer").load('element/footer.html')
+        $("#hover").load('element/hover.html')
+        $("#cartGoodsList").load('element/cartGoodsList.html')
+    }
+</script>
+</html>

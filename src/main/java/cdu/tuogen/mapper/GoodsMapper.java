@@ -1,5 +1,6 @@
 package cdu.tuogen.mapper;
 
+import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.Goods;
 import cdu.tuogen.pojo.GoodsAll;
 
@@ -33,6 +34,14 @@ public interface GoodsMapper {
      * @return
      */
     Goods queryGoodsByShopId();
+
+    /**
+     * 通过AdminId 查询商品
+     * @param admin
+     * @param <T> T extends Admin
+     * @return
+     */
+    <T extends Admin> List<Goods> queryGoodsByAdminId(T admin);
 
     /**
      * 插入商品

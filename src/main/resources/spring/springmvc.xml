@@ -31,4 +31,5 @@
     </mvc:annotation-driven>
 <!--3.放行静态资源-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
 </beans>
