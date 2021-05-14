@@ -1,3 +1,5 @@
+package cdu.tuogen.mapperTest;
+
 /**
  * @date : 2021/5/4
  * @name : tuogenMall_cdu.tuogen.mapperTest_GoodsMapperTest
@@ -23,10 +25,7 @@
  *                          神兽保佑                   代码无BUG!
  */
 
-package cdu.tuogen.mapperTest;
-
 import cdu.tuogen.mapper.GoodsMapper;
-import cdu.tuogen.mapper.OrdersMapper;
 import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.Goods;
 import org.junit.Test;
@@ -43,13 +42,17 @@ import java.util.List;
 @ContextConfiguration("classpath:spring/spring-*.xml")
 public class GoodsMapperTest {
     Logger log = LoggerFactory.getLogger(GoodsMapperTest.class);
-
     @Autowired
     private GoodsMapper goodsMapper;
 
     @Test
-    public void GoodsMapperQueryGoodsByAdminId(){
+    public void GoodsMapperQueryGoodsByAdminId() {
         List<Goods> goods = goodsMapper.queryGoodsByAdminId(new Admin(1));
         log.error(goods.toString());
+    }
+    public void test(){
+
+        List<Goods> goodsList = goodsMapper.queryGoods();
+        System.out.println(goodsList);
     }
 }

@@ -10,6 +10,130 @@
         select *
         from goods
     </sql>
+    <!-- 映射Map -->
+    <resultMap id="goods_info" type="cdu.tuogen.pojo.Goods">
+        <id column="good_id" property="goodId"/>
+        <result column="good_name" property="goodName"/>
+        <result column="good_type_id" property="goodTypeId"/>
+        <result column="good_sale_type" property="goodSaleType"/>
+        <result column="good_num" property="goodNum"/>
+        <result column="good_introduce" property="goodIntroduce"/>
+        <result column="good_price" property="goodPrice"/>
+        <result column="good_shop_id" property="goodShopId"/>
+        <result column="good_pic_url" property="goodPicUrl"/>
+    </resultMap>
+    <!-- 映射Map -->
+    <resultMap id="goods_all_info" type="cdu.tuogen.pojo.GoodsAll">
+        <id column="good_id" property="goodId"/>
+        <result column="good_name" property="goodName"/>
+        <result column="good_type_id" property="goodTypeId"/>
+        <result column="good_sale_type" property="goodSaleType"/>
+        <result column="good_num" property="goodNum"/>
+        <result column="good_introduce" property="goodIntroduce"/>
+        <result column="good_price" property="goodPrice"/>
+        <result column="good_shop_id" property="goodShopId"/>
+        <result column="good_pic_url" property="goodPicUrl"/>
+        <result column="goods_type_id" property="goodsTypeId"/>
+        <result column="good_type" property="goodType"/>
+    </resultMap>
+<!--    条件查询-->
+    <select id="queryGoodsAllType" resultMap="goods_all_info">
+        SELECT * FROM goods LEFT JOIN goods_type  ON goods.good_type_id=goods_type.goods_type_id  WHERE goods.good_shop_id=#{arg0} and goods.good_type_id=#{arg1} and goods.good_sale_type = #{arg2}
+    </select>
+<!--    通过店铺id查询所有商品-->
+    <select id="queryGoodsAll" resultMap="goods_all_info">
+        SELECT * FROM goods LEFT JOIN goods_type  ON goods.good_type_id=goods_type.goods_type_id  WHERE goods.good_shop_id =#{goodShopId}
+    </select>
+    <!-- 1. 查询所有商品-->
+    <select id="queryGoods" resultMap="goods_info">
+        select * from goods
+    </select>
+
+    <!-- 2. 添加商品-->
+    <insert id="insertGoods" parameterType="cdu.tuogen.pojo.Goods">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                good_id,
+            </if>
+            <if test="goodName != null">
+                good_name,
+            </if>
+            <if test="goodTypeId != null">
+                good_type_id,
+            </if>
+            <if test="goodSaleType != null">
+                good_sale_type,
+            </if>
+            <if test="goodNum != null">
+                good_num,
+            </if>
+            <if test="goodIntroduce != null">
+                good_introduce,
+            </if>
+            <if test="goodPrice != null">
+                good_price,
+            </if>
+            <if test="goodShopId != null">
+                good_shop_id,
+            </if>
+            <if test="goodPicUrl != null">
+                good_pic_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodId != null">
+                #{goodId,jdbcType=INTEGER},
+            </if>
+            <if test="goodName != null">
+                #{goodName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodTypeId != null">
+                #{goodTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="goodSaleType != null">
+                #{goodSaleType,jdbcType=VARCHAR},
+            </if>
+            <if test="goodNum != null">
+                #{goodNum,jdbcType=INTEGER},
+            </if>
+            <if test="goodIntroduce != null">
+                #{goodIntroduce,jdbcType=VARCHAR},
+            </if>
+            <if test="goodPrice != null">
+                #{goodPrice,jdbcType=FLOAT},
+            </if>
+            <if test="goodShopId != null">
+                #{goodShopId,jdbcType=INTEGER},
+            </if>
+            <if test="goodPicUrl != null">
+                #{goodPicUrl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <!--3、更新-->
+    <update id="updateGoods" parameterType="cdu.tuogen.pojo.Goods">
+        update goods set good_name=#{goodName}
+        ,good_type_id=#{goodTypeId}
+        ,good_sale_type=#{goodSaleType}
+        ,good_num=#{goodNum}
+        ,good_introduce=#{goodIntroduce}
+        ,good_shop_id=#{goodShopId}
+        ,good_pic_url=#{goodPicUrl}
+        where good_id=#{goodId}
+    </update>
+    <!--更新库存-->
+    <update id="updateGoodsWare" parameterType="cdu.tuogen.pojo.Goods">
+        update goods set good_num=#{arg1} where good_id=#{arg0}
+    </update>
+    <!--    4、id查询商品-->
+    <select id="queryGoodsById" resultMap="goods_info">
+        select * from goods  where good_id=#{goodId}
+    </select>
+    <!--    5、删除商品-->
+    <delete id="deleteGoods" parameterType="int">
+        delete from goods where good_id=#{goodId}
+    </delete>
 
     <!-- 映射Map -->
     <resultMap id="goods_detail" type="cdu.tuogen.pojo.Order">
@@ -23,7 +147,7 @@
     </resultMap>
 
     <!-- 1.query Goods by adminId -->
-    <select id="queryGoodsByAdminId" resultMap="order_detail" parameterType="Admin">
+    <select id="queryGoodsByAdminId" resultMap="goods_detail" parameterType="Admin">
         <include refid="goods_query"/>
         where good_id = #{goodId}
     </select>

@@ -1,18 +1,18 @@
 package cdu.tuogen.pojo;
 
 
-/**
- * @author Breezeluoxi
- */
+
 public class Goods {
 
   private Integer goodId;
   private String goodName;
-  private Long goodTypeId;
+  private Integer goodTypeId;
   private String goodSaleType;
-  private Long goodNum;
+  private Integer goodNum;
   private String goodIntroduce;
   private Double goodPrice;
+  private Integer goodShopId;
+  private String goodPicUrl;
 
   public Goods() {
   }
@@ -21,7 +21,7 @@ public class Goods {
     this.goodId = goodId;
   }
 
-  public Goods(Integer goodId, String goodName, Long goodTypeId, String goodSaleType, Long goodNum, String goodIntroduce, Double goodPrice) {
+  public Goods(Integer goodId, String goodName, Integer goodTypeId, String goodSaleType, Integer goodNum, String goodIntroduce, Double goodPrice, Integer goodShopId, String goodPicUrl) {
     this.goodId = goodId;
     this.goodName = goodName;
     this.goodTypeId = goodTypeId;
@@ -29,6 +29,16 @@ public class Goods {
     this.goodNum = goodNum;
     this.goodIntroduce = goodIntroduce;
     this.goodPrice = goodPrice;
+    this.goodShopId = goodShopId;
+    this.goodPicUrl =goodPicUrl;
+  }
+
+  public Integer getGoodShopId() {
+    return goodShopId;
+  }
+
+  public void setGoodShopId(Integer goodShopId) {
+    this.goodShopId = goodShopId;
   }
 
   public Integer getGoodId() {
@@ -47,11 +57,11 @@ public class Goods {
     this.goodName = goodName;
   }
 
-  public Long getGoodTypeId() {
+  public Integer getGoodTypeId() {
     return goodTypeId;
   }
 
-  public void setGoodTypeId(Long goodTypeId) {
+  public void setGoodTypeId(Integer goodTypeId) {
     this.goodTypeId = goodTypeId;
   }
 
@@ -63,11 +73,11 @@ public class Goods {
     this.goodSaleType = goodSaleType;
   }
 
-  public Long getGoodNum() {
+  public Integer getGoodNum() {
     return goodNum;
   }
 
-  public void setGoodNum(Long goodNum) {
+  public void setGoodNum(Integer goodNum) {
     this.goodNum = goodNum;
   }
 
@@ -87,6 +97,15 @@ public class Goods {
     this.goodPrice = goodPrice;
   }
 
+  public String getGoodPicUrl() {
+    return goodPicUrl;
+  }
+
+  public void setGoodPicUrl(String goodPicUrl) {
+    this.goodPicUrl = goodPicUrl;
+  }
+
+
   @Override
   public String toString() {
     return "Goods{" +
@@ -96,7 +115,9 @@ public class Goods {
             ", goodSaleType='" + goodSaleType + '\'' +
             ", goodNum=" + goodNum +
             ", goodIntroduce='" + goodIntroduce + '\'' +
-            ", goodPrice=" + goodPrice +
+            ", goodPrice=" + goodPrice + '\'' +
+            ",  goodShopId;=" +  goodShopId+ '\'' +
+            ", goodPicUrl=" + goodPicUrl +
             '}';
   }
 }

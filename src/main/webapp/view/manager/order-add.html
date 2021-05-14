@@ -24,39 +24,44 @@
                 <form class="layui-form">
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>用户名</label>
+                            <span class="x-red">*</span>商家Id</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required"
+                            <input type="text" id="merName" name="adminId" required="" lay-verify="required"
                                    autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>收货人</label>
+                            <span class="x-red">*</span>用户Id</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="nickname" name="username" required="" lay-verify="required"
+                            <input type="text" id="username" name="userId" required="" lay-verify="required"
                                    autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="phone" class="layui-form-label">
-                            <span class="x-red">*</span>手机</label>
+                            <span class="x-red">*</span>应付款</label>
                         <div class="layui-input-inline">
                             <input type="text" id="phone" name="phone" required="" lay-verify="phone" autocomplete="off"
                                    class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>收货地址</label>
+                            <span class="x-red">*</span>实付款</label>
                         <div class="layui-input-inline">
                             <input type="text" id="address" name="username" required="" lay-verify="required" autocomplete="off"
                                    class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>配送物流</label>
+                            <span class="x-red">*</span>订单状态</label>
                         <div class="layui-input-inline">
                             <select id="shipping" name="shipping" class="valid">
-                                <option value="shentong">申通物流</option>
-                                <option value="shunfeng">顺丰物流</option>
+                                <option value="1">中通物流</option>
+                                <option value="2">申通速递</option>
+                                <option value="3">圆通速递</option>
+                                <option value="4">顺丰物流</option>
+                                <option value="5">京东次日达</option>
+                                <option value="6">京东物流</option>
+                                <option value="7">用户自提</option>
                             </select>
                         </div>
                     </div>

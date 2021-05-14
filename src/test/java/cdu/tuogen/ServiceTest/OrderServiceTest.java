@@ -28,6 +28,7 @@ package cdu.tuogen.ServiceTest;
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.pojo.Order;
 import cdu.tuogen.pojo.OrderInfo;
+import cdu.tuogen.service.GoodsService;
 import cdu.tuogen.service.OrderService;
 import com.github.pagehelper.PageInfo;
 import org.junit.Test;
@@ -35,6 +36,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -46,6 +48,9 @@ public class OrderServiceTest {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    @Qualifier("goodsServiceImpl")
+    private GoodsService goodsService;
 
     @Test
     public void testOrderServiceQueryOrder(){

@@ -1,13 +1,12 @@
-package cdu.tuogen.mapper;
+package cdu.tuogen.service;
 
-import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.Goods;
 import cdu.tuogen.pojo.GoodsAll;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-
-public interface GoodsMapper {
+public interface GoodsService {
     /**
      *  类型条件查询
      * @return
@@ -36,37 +35,29 @@ public interface GoodsMapper {
     Goods queryGoodsByShopId();
 
     /**
-     * 通过AdminId 查询商品
-     * @param admin
-     * @param <T> T extends Admin
-     * @return
-     */
-    <T extends Admin> List<Goods> queryGoodsByAdminId(T admin);
-
-    /**
      * 插入商品
      * @param goods
      * @return
      */
-    Integer insertGoods(Goods goods);
+    boolean insertGoods(Goods goods, MultipartFile file);
 
     /**
      * 更新商品
      * @param goods
      * @return
      */
-    Integer updateGoods(Goods goods);
+    boolean updateGoods(Goods goods, MultipartFile file);
     /**
      * 更新商品库存
      * @param
      * @return
      */
-    Integer updateGoodsWare(int goodsId, int goodsNum);
+    boolean updateGoodsWare(int goodsId, int goodsNum);
 
     /**
      * 删除商品集合
      * @param goodId
      * @return
      */
-    Integer deleteGoods(int goodId);
+    boolean deleteGoods(int goodId);
 }
