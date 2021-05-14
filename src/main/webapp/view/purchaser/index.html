@@ -195,10 +195,16 @@
 <div id="footer"></div>
 <!--------------------footer-------------------->
 </body>
+<script src="../../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../static/js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../static/js/nav.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../static/js/jquery.flexslider-min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    window.onload = function init() {
+        $("#head").load('element/header.html')
+        $("#footer").load('element/footer.html')
+        $("#hover").load('element/hover.html')
+    };
     $(function () {
         $('#home_slider').flexslider({
             animation: 'slide',
@@ -210,12 +216,4 @@
             useCSS: false
         });
     });</script>
-<script src="../../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    window.onload= function init() {
-        $("#head").load('element/header.html')
-        $("#footer").load('element/footer.html')
-        $("#hover").load('element/hover.html')
-    }
-</script>
 </html>
