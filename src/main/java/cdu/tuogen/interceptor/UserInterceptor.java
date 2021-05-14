@@ -43,8 +43,9 @@ import javax.servlet.http.HttpSession;
 public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String uri = request.getRequestURI();
         //放行login
-        if (request.getRequestURI().contains("login"))return true;
+        if (uri.contains("login")||uri.contains("register"))return true;
         //session存在user则放行，否则返回主页
         HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
@@ -55,11 +56,9 @@ public class UserInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
     }
 }

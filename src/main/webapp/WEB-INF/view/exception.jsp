@@ -31,4 +31,5 @@
     <h2>${myException.description}</h2>
     <a href="${myException.aHref}">${myException.aText}</a>
 </div>
+</body>
 </html>

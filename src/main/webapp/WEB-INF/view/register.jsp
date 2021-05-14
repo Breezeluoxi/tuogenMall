@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>注册</title>
     <link rel="stylesheet" href="/static/css/wei/reset-min.css">
     <link rel="stylesheet" href="/static/css/wei/register.css">
@@ -17,34 +16,34 @@
             <li class="type buyer selected">
                 <p>用户</p>
                 <div class="registerCont selectCont">
-                    <form action="../register?registerType=Buyer" method="post" enctype="multipart/form-data">
+                    <form action="/register/user" method="post" enctype="multipart/form-data">
                         <ul>
                             <li>
                                 <span class="name">名称:</span>
-                                <input type="text" name="name">
+                                <input type="text" name="userName">
                             </li>
                             <li>
                                 <span class="name">密码:</span>
-                                <input type="password" name="password">
+                                <input type="password" name="userPassword">
                             </li>
                             <li>
-                                <span class="name">邮箱:</span>
-                                <input type="text" name="email">
+                                <span class="name">年龄</span>
+                                <input type="text" name="userAge">
                             </li>
                             <li>
                                 <span class="name">电话:</span>
-                                <input type="text" name="phoneNumber">
+                                <input type="text" name="userPhone">
                             </li>
                             <li>
-                                <span class="name">收货地址:</span>
-                                <input type="text" name="homeAddress">
+                                <span class="name">地址:</span>
+                                <input type="text" name="userAddress">
                             </li>
                             <li>
                                 <div class="centerEle">
                                     <span class="name">头像:</span>
                                     <div class="form-group col-md-3  mb-2">
                                         <input type="text"  id="viewfile1" placeholder="未选择文件" disabled autocomplete="off" class="form-control">
-                                        <input type="file" style="display: none" name="picUrl" onchange="javascript: reShow1();" id="upload1"/>
+                                        <input type="file" style="display: none" name="icon" onchange="javascript: reShow1();" id="upload1"/>
                                     </div>
                                     <label class="btn btn-primary  mb-2" for="upload1" id="upText1">浏览</label>
                                 </div>
@@ -61,39 +60,19 @@
             <li class="type seller">
                 <p>商家</p>
                 <div class="registerCont">
-                    <form action="../register?registerType=Seller" method="post" enctype="multipart/form-data">
+                    <form action="/register/merchant" method="post" enctype="multipart/form-data">
                         <ul>
                             <li>
                                 <span class="name">名称:</span>
-                                <input type="text" name="name">
+                                <input type="text" name="adminName">
+                            </li>
+                            <li>
+                                <span class="name">商店名:</span>
+                                <input type="password" name="adminShopName">
                             </li>
                             <li>
                                 <span class="name">密码:</span>
-                                <input type="password" name="password">
-                            </li>
-                            <li>
-                                <span class="name">邮箱:</span>
-                                <input type="text" name="email">
-                            </li>
-                            <li>
-                                <span class="name">银行卡:</span>
-                                <input type="text" name="bankCard">
-                            </li>
-                            <li>
-                                <span class="name">发货地址:</span>
-                                <input type="text" name="deliveryAddr">
-                            </li>
-                            <li>
-                                <span class="name">类型:</span>
-                                <select name="type">
-                                    <option value="bedroom">卧室家具</option>
-                                    <option value="livingRoom">客厅家具</option>
-                                    <option value="diningRoom">餐厅家具</option>
-                                    <option value="studyRoom">书房家具</option>
-                                    <option value="kitchenRoom">厨房家具</option>
-                                    <option value="bathroom">卫生间家具</option>
-                                    <option value="outdoors">户外家具</option>
-                                </select>
+                                <input type="text" name="adminPassword">
                             </li>
                             <li>
                                 <div class="centerEle">

@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
             myException.setDescription(e.getMessage());
         }
         model.addAttribute("myException", myException);
-        return "/WBE_INF/view/exception.jsp";
+        return "/WEB-INF/view/exception.jsp";
     }
 }
 

@@ -5,7 +5,7 @@
          version="4.0">
     <error-page>
         <error-code>404</error-code>
-        <location>/WBE_INF/view/404.jsp</location>
+        <location>/WEB-INF/view/404.jsp</location>
     </error-page>
 <!--
     1. 启动spring-*
@@ -28,10 +28,10 @@
             <param-name>forceRequestEncoding</param-name>
             <param-value>true</param-value>
         </init-param>
-        <init-param>
-            <param-name>forceResponseEncoding</param-name>
-            <param-value>true</param-value>
-        </init-param>
+        <!--<init-param>-->
+        <!--    <param-name>forceResponseEncoding</param-name>-->
+        <!--    <param-value>true</param-value>-->
+        <!--</init-param>-->
     </filter>
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
