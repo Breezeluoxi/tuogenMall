@@ -60,9 +60,7 @@ public class AdminController {
             log.error("登录失败");
             msg = new LoginMsg(0,"登录失败");
         }else{
-            session.setAttribute("currentUser", admin);
-            session.setAttribute("state", "ok");
-            session.setAttribute("CrUser", admin);
+            session.setAttribute("user", admin);
             msg = new LoginMsg(1, "登录成功");
             log.error("登录成功");
         }

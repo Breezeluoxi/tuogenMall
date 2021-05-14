@@ -28,7 +28,10 @@
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
             <hr class="hr15">
-            <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+            <input value="管理员登录" lay-submit lay-filter="adminLogin" style="width:49.5%;" type="submit">
+            <input value="用户登录" lay-submit lay-filter="userLogin" style="width:49.5%;" type="submit">
+            <hr class="hr15">
+            <a href="http://www.layui.com" class="layui-btn layui-btn-lg">立即注册</a>
             <hr class="hr20" >
         </form>
     </div>
@@ -61,8 +64,8 @@
               //   //关闭后的操作
               //   });
               //监听提交
-              form.on('submit(login)', function(data){
-                // alert(888)
+              form.on('submit(adminLogin)', function(data){
+                  // alert(888)
                 layer.msg(JSON.stringify(data.field),function(){
                     let params = data.field
                     layui.$.ajax({
@@ -81,6 +84,26 @@
                 });
                 return false;
               });
+              form.on('submit(userLogin)', function(data){
+                    // alert(888)
+                    layer.msg(JSON.stringify(data.field),function(){
+                        let params = data.field
+                        layui.$.ajax({
+                            url: '/user/login',
+                            data: params,
+                            method: 'post',
+                            success: function (ret) {
+                                console.log(typeof (ret.code));
+                                if(ret.code == 1){
+                                    location.href='./view/purchaser/index.html'
+                                }else{
+                                    layer.msg("登录失败请检查！！");
+                                }
+                            }
+                        })
+                    });
+                    return false;
+                });
             });
         })
     </script>

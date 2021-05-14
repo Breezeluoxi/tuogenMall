@@ -62,7 +62,7 @@ public class UserController {
             log.error("登录是失败");
             msg = new LoginMsg(0,"登录失败");
         }else{
-            session.setAttribute("state", "ok");
+            session.setAttribute("suer", user);
             msg = new LoginMsg(1, "登录成功");
             log.error("登录成功");
         }
