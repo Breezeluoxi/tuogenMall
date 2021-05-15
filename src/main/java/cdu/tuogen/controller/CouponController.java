@@ -30,7 +30,7 @@
  * *   ==================================================
  **/
 package cdu.tuogen.controller;
-import cdu.tuogen.bean.wei.CouponMsg;
+import cdu.tuogen.bean.wei.MyMsg;
 import cdu.tuogen.pojo.Coupon;
 import cdu.tuogen.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,25 +46,25 @@ public class CouponController {
     private CouponService couponService;
     //查询
     @GetMapping("{id}")
-    public CouponMsg get(@PathVariable("id")int id){
+    public MyMsg get(@PathVariable("id")int id){
         Coupon coupon = couponService.get(id);
-        return coupon!=null?CouponMsg.SUCCESS.addDetail("coupon",coupon): CouponMsg.FAILED.addDescription("no coupon");
+        return coupon!=null? MyMsg.SUCCESS.addDetail("coupon",coupon): MyMsg.FAILED.addDescription("no coupon");
     }
     //添加
     @PostMapping
-    public CouponMsg add(@Valid Coupon coupon, BindingResult result){
-        result.getFieldErrors().forEach((error)->CouponMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
-        return result.hasErrors()?CouponMsg.ADD_FAILED:couponService.add(coupon)!=0? CouponMsg.SUCCESS: CouponMsg.ADD_FAILED;
+    public MyMsg add(@Valid Coupon coupon, BindingResult result){
+        result.getFieldErrors().forEach((error)-> MyMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
+        return result.hasErrors()? MyMsg.ADD_FAILED:couponService.add(coupon)!=0? MyMsg.SUCCESS: MyMsg.ADD_FAILED;
     }
     //修改
     @PutMapping
-    public CouponMsg mod(Coupon coupon){
-        return couponService.mod(coupon)!=0? CouponMsg.SUCCESS: CouponMsg.MOD_FAILED;
+    public MyMsg mod(Coupon coupon){
+        return couponService.mod(coupon)!=0? MyMsg.SUCCESS: MyMsg.MOD_FAILED;
     }
     //删除
     @DeleteMapping()
-    public CouponMsg del(int id){
-        return couponService.del(id)!=null? CouponMsg.SUCCESS: CouponMsg.DEL_FAILED;
+    public MyMsg del(int id){
+        return couponService.del(id)!=null? MyMsg.SUCCESS: MyMsg.DEL_FAILED;
     }
 
 }

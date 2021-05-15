@@ -30,7 +30,7 @@
  * *   ==================================================
  **/
 package cdu.tuogen.controller;
-import cdu.tuogen.bean.wei.CouponMsg;
+import cdu.tuogen.bean.wei.MyMsg;
 import cdu.tuogen.pojo.UserCoupon;
 import cdu.tuogen.service.UserCouponService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,28 +47,28 @@ public class UserCouponController {
     UserCouponService userCouponService;
     //查询用户所有优惠卷
     @GetMapping("{userId}")
-    public CouponMsg get(@PathVariable("userId") int userId){
+    public MyMsg get(@PathVariable("userId") int userId){
         List<UserCoupon> all = userCouponService.getAll(userId);
-        return all.size()!=0?CouponMsg.SUCCESS.addDetail("userCoupons",all):CouponMsg.FAILED.addDescription("no coupon");
+        return all.size()!=0? MyMsg.SUCCESS.addDetail("userCoupons",all): MyMsg.FAILED.addDescription("no coupon");
     }
 
     //增加用户优惠卷
     @PostMapping()
-    public CouponMsg add(@Valid UserCoupon userCoupon, BindingResult result){
-        result.getFieldErrors().forEach((error)->CouponMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
-        return result.hasErrors()?CouponMsg.ADD_FAILED:userCouponService.add(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.FAILED;
+    public MyMsg add(@Valid UserCoupon userCoupon, BindingResult result){
+        result.getFieldErrors().forEach((error)-> MyMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
+        return result.hasErrors()? MyMsg.ADD_FAILED:userCouponService.add(userCoupon)!=0? MyMsg.SUCCESS: MyMsg.FAILED;
     }
 
     //修改用户优惠卷
     @PutMapping()
-    public CouponMsg mod(UserCoupon userCoupon){
-        return userCouponService.mod(userCoupon)!=0?CouponMsg.SUCCESS:CouponMsg.MOD_FAILED;
+    public MyMsg mod(UserCoupon userCoupon){
+        return userCouponService.mod(userCoupon)!=0? MyMsg.SUCCESS: MyMsg.MOD_FAILED;
     }
 
     //删除用户优惠卷
     @DeleteMapping()
-    public CouponMsg del(@RequestParam("id") int userCouponId){
+    public MyMsg del(@RequestParam("id") int userCouponId){
         UserCoupon del = userCouponService.del(userCouponId);
-        return del!=null?CouponMsg.SUCCESS.addDetail("deleted_user_coupon",del):CouponMsg.DEL_FAILED.addDescription("no user coupon");
+        return del!=null? MyMsg.SUCCESS.addDetail("deleted_user_coupon",del): MyMsg.DEL_FAILED.addDescription("no user coupon");
     }
 }
