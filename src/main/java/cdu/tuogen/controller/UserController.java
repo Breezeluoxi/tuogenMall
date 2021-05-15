@@ -60,7 +60,6 @@ public class UserController {
         }else{
             session.setAttribute("user",user);
             msg = new LoginMsg(1, "登录成功");
-            log.error("登录成功");
         }
         return msg;
     }

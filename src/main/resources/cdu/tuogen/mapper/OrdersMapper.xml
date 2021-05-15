@@ -44,12 +44,12 @@
         insert into orders values
         <foreach collection="list" separator="," item="orderList">
             <if test="orderList.orderUseCoupon==null">
-                (null,#{orderList.merId},#{orderList.userId},#{orderList.adminId},
+                (#{orderList.orderId},#{orderList.merId},#{orderList.userId},#{orderList.adminId},
                 #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
                 #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},0,-1.0,-1.0)
             </if>
             <if test="orderList.orderUseCoupon!=null">
-                (null,#{orderList.merId},#{orderList.userId},#{orderList.adminId},
+                (#{orderList.orderId},#{orderList.merId},#{orderList.userId},#{orderList.adminId},
                 #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
                 #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},#{orderList.orderUseCoupon},
                 #{orderList.orderTotalAmount},#{orderList.orderPayableAmount})
@@ -93,4 +93,28 @@
         from order_goods
         where mer_id = #{id}
     </select>
+
+    <!-- 2. InsertGoodsList -->
+    <insert id="insertGoodsList" parameterType="java.util.List">
+        insert into order_goods values
+        <foreach collection="list" separator="," item="goodsIds">
+            (#{goodsIds.merId},#{goodsIds.goodId},#{goodsIds.count})
+        </foreach>
+    </insert>
+
+    <!-- 3. insertUserOrderList -->
+    <insert id="insertUserOrderList" parameterType="java.util.List">
+        insert into userOrder_order values
+        <foreach collection="list" separator="," item="userOrderList">
+            (#{userOrderList.userOrderId},#{userOrderList.orderId})
+        </foreach>
+    </insert>
+
+    <!-- 4. insertUserOrder -->
+    <insert id="insertUserOrder" parameterType="java.util.List">
+        insert into user_order values
+        <foreach collection="list" separator="," item="userOrder">
+            (null,#{userOrder.userOrderId},#{userOrder.userId})
+        </foreach>
+    </insert>
 </mapper>

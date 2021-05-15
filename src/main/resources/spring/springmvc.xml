@@ -13,7 +13,6 @@
 
     <aop:aspectj-autoproxy/>
 
-
 <!-- 1.扫描路径 主要负责 controller-->
     <context:component-scan base-package="cdu.tuogen.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -32,4 +31,7 @@
 <!--3.放行静态资源-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
+    <mvc:interceptors>
+        <bean class="cdu.tuogen.interceptor.UserInterceptor"/>
+    </mvc:interceptors>
 </beans>

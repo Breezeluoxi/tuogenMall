@@ -117,4 +117,29 @@ public class OrderTest {
         List<GoodsMap> maps = ordersMapper.queryGoodsListMapMerId(1);
         System.out.println(maps.toString());
     }
+
+    @Test
+    public void insterGoodsList(){
+        int merId = (int)System.currentTimeMillis();
+        Integer integer = ordersMapper.insertGoodsList(Arrays.asList(new GoodsList(merId, 1, 1),
+                new GoodsList(merId, 2, 1)));
+
+    }
+    @Test
+    public void insterUserOrderList(){
+        int userOrderId = (int)System.currentTimeMillis();
+        Integer integer = ordersMapper.insertUserOrderList(Arrays.asList(
+                new UserOrderList(userOrderId,2),
+                new UserOrderList(userOrderId,6)
+        ));
+
+    }
+    @Test
+    public void insterUserOrder(){
+        int userOrderId = (int)System.currentTimeMillis();
+        Integer integer = ordersMapper.insertUserOrder(Arrays.asList(
+                new UserOrder(userOrderId,2)
+        ));
+
+    }
 }

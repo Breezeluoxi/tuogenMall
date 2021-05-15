@@ -1,9 +1,9 @@
-package cdu.tuogen.mapperTest;
+package cdu.tuogen.pojo;
 
 /**
- * @date : 2021/5/4
- * @name : tuogenMall_cdu.tuogen.mapperTest_GoodsMapperTest
- * @Author: Breezeluoxi
+ * @date : 2021/5/16
+ * @name : cdu.tuogen.pojo.GoodsList
+ * @Author: breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -22,36 +22,40 @@ package cdu.tuogen.mapperTest;
  *                                 _-~-__   ~)  \--______________--~~
  *                               //.-~~~-~_--~- |-------~~~~~~~~
  *                                      //.-~~~--\
- *                          绁炲吔淇濅綉                   浠ｇ爜鏃燘UG!
+ *                          神兽保佑                   代码无BUG!
  */
+public class GoodsList {
+    private Integer merId;
+    private Integer goodId;
+    private Integer count=1;
 
-import cdu.tuogen.mapper.GoodsMapper;
-import cdu.tuogen.pojo.Admin;
-import cdu.tuogen.pojo.Goods;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
-public class GoodsMapperTest {
-    Logger log = LoggerFactory.getLogger(GoodsMapperTest.class);
-    @Autowired
-    private GoodsMapper goodsMapper;
-
-    @Test
-    public void GoodsMapperQueryGoodsByAdminId() {
-        List<Goods> goods = goodsMapper.queryGoodsByAdminId(new Admin(1));
-        log.error(goods.toString());
+    public Integer getMerId() {
+        return merId;
     }
-    public void test(){
-        List<Goods> goodsList = goodsMapper.queryGoods();
-        System.out.println(goodsList);
+
+    public void setMerId(Integer merId) {
+        this.merId = merId;
+    }
+
+    public Integer getGoodId() {
+        return goodId;
+    }
+
+    public void setGoodId(Integer goodId) {
+        this.goodId = goodId;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public GoodsList(Integer merId, Integer goodId, Integer count) {
+        this.merId = merId;
+        this.goodId = goodId;
+        this.count = count;
     }
 }
