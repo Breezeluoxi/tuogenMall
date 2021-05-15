@@ -16,6 +16,7 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -38,10 +39,9 @@ public class RegisterController implements ServletContextAware {
     public void setServletContext(ServletContext servletContext) {
         realPath = servletContext.getRealPath("/");
     }
-
-    @GetMapping("*")
-    public String view(){
-        return "/WBE_INF/view/register.html";
+    @GetMapping
+    public String view2(){
+        return "/WEB-INF/view/register.jsp";
     }
 
     //注册用户
