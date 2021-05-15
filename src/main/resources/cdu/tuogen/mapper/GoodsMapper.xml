@@ -151,4 +151,5 @@
         <include refid="goods_query"/>
         where good_id = #{goodId}
     </select>
+
 </mapper>

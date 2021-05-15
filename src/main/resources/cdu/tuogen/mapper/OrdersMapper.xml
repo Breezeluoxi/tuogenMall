@@ -32,7 +32,7 @@
     </select>
 
     <!-- 2. queryOrder by id -->
-    <select id="queryOrder" resultMap="order_detail" >
+    <select id="queryOrder" resultMap="order_detail">
         <include refid="order_query"/>
         <where>
             <if test="orderId!=null">order_id=#{orderId}</if>
@@ -50,9 +50,9 @@
             </if>
             <if test="orderList.orderUseCoupon!=null">
                 (null,#{orderList.merId},#{orderList.userId},#{orderList.adminId},
-                 #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
-                 #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},#{orderList.orderUseCoupon},
-                 #{orderList.orderTotalAmount},#{orderList.orderPayableAmount})
+                #{orderList.createTime},#{orderList.orderStatus},#{orderList.orderPayStatus},
+                #{orderList.orderDeliveryMethod},#{orderList.orderPayMethod},#{orderList.orderUseCoupon},
+                #{orderList.orderTotalAmount},#{orderList.orderPayableAmount})
             </if>
         </foreach>
     </insert>
@@ -68,7 +68,7 @@
     <!-- 5.updateOrder -->
     <select id="updateOrders" parameterType="cdu.tuogen.pojo.Order">
         update orders
-        <trim prefix="set" suffixOverrides="," >
+        <trim prefix="set" suffixOverrides=",">
             <if test="createTime!=null">create_time=#{createTime},</if>
             <if test="orderStatus!=null">order_status=#{orderStatus},</if>
             <if test="orderPayStatus!=null">order_pay_status=#{orderPayStatus},</if>
@@ -79,5 +79,18 @@
             <if test="orderPayableAmount!=null">order_payable_amount=#{orderPayableAmount},</if>
         </trim>
         where order_id = #{orderId}
+    </select>
+
+
+    <!-- 映射GoodsMap -->
+    <resultMap id="goods_order_detail" type="cdu.tuogen.pojo.GoodsMap">
+        <result column="count" property="count"/>
+        <result column="goodsId" property="good_id"/>
+    </resultMap>
+    <!-- 1.query order_goods by merId -->
+    <select id="queryGoodsListMapMerId" resultMap="goods_order_detail" parameterType="Integer">
+        select good_id, `count`
+        from order_goods
+        where mer_id = #{id}
     </select>
 </mapper>

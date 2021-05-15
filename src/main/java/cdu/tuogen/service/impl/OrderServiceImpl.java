@@ -27,8 +27,8 @@ package cdu.tuogen.service.impl;
 
 import cdu.tuogen.bean.Page;
 import cdu.tuogen.mapper.OrdersMapper;
-import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.OrderInfo;
+import cdu.tuogen.mapper.UserMapper;
+import cdu.tuogen.pojo.*;
 import cdu.tuogen.service.OrderService;
 import cdu.tuogen.utils.BreezeUtil;
 import com.github.pagehelper.PageHelper;
@@ -46,6 +46,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrdersMapper ordersMapper;
     @Autowired
+    private UserMapper userMapper;
+    @Autowired
     private BreezeUtil breezeUtil;
 
     @Override
@@ -55,6 +57,21 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orders = ordersMapper.queryOrders();
         List<OrderInfo> orderInfos = breezeUtil.getPrentOrders(orders);
         return new PageInfo<>(orderInfos);
+    }
+
+    @Override
+    public <T> PageInfo<OrderInfoUser> queryOrdersById(Page page, T user) {
+        if(user instanceof User){
+            PageHelper.startPage(page.getPageNum(),page.getPageSize());
+            List<UserOrderMap> orderListIds = ordersMapper.queryUserOrderListByUserIds(((User) user).getUserId());
+            List<OrderInfoUser> orderForUser = breezeUtil.getOrderForUser(orderListIds, (User) user);
+            return new PageInfo<>(orderForUser);
+        }else if(user instanceof Admin){
+
+        }else{
+            return null;
+        }
+        return null;
     }
 
     @Override

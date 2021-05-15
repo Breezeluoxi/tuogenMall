@@ -1,7 +1,23 @@
+package cdu.tuogen.utilTest;
+
+import cdu.tuogen.mapper.OrdersMapper;
+import cdu.tuogen.mapper.UserMapper;
+import cdu.tuogen.pojo.OrderInfoUser;
+import cdu.tuogen.pojo.User;
+import cdu.tuogen.utils.BreezeUtil;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
- * @date : 2021/5/3
- * @name : tuogenMall_cdu.tuogen.pojo.myenum_OrderPayMethod
- * @Author: Breezeluoxi
+ * @date : 2021/5/14
+ * @name : cdu.tuogen.utilTest.BreezeTest
+ * @Author: breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -22,26 +38,20 @@
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/spring-*.xml")
+public class BreezeTest {
 
-package cdu.tuogen.pojo.myenum;
+    @Autowired
+    private BreezeUtil breezeUtil;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private OrdersMapper ordersMapper;
 
-public enum OrderPayMethod {
-    ALI_PAY("支付宝", (byte)0),
-    CASH_ON_DELIVERY("货到付款",(byte) 1),
-    WEI_CHAT_PAY("微信支付",(byte) 2);
-    private final String payMethod;
-    private final Byte status;
-
-    OrderPayMethod(String payMethod, Byte status) {
-        this.payMethod = payMethod;
-        this.status = status;
-    }
-
-    public String getPayMethod() {
-        return payMethod;
-    }
-
-    public Byte getStatus() {
-        return status;
+    @Test
+    public void test(){
+        List<OrderInfoUser> orderForUser = breezeUtil.getOrderForUser(ordersMapper.queryUserOrderListByUserIds(12), userMapper.queryUser(new User(1)));
+        System.out.println(orderForUser);
     }
 }

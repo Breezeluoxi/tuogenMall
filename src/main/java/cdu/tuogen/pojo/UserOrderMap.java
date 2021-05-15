@@ -1,7 +1,9 @@
+package cdu.tuogen.pojo;
+
 /**
- * @date : 2021/5/3
- * @name : tuogenMall_cdu.tuogen.pojo.myenum_OrderPayMethod
- * @Author: Breezeluoxi
+ * @date : 2021/5/15
+ * @name : cdu.tuogen.pojo.UserOrderMap
+ * @Author: breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -22,26 +24,28 @@
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
  */
+public class UserOrderMap {
+    private Integer userOrderId;
+    private Integer userOrderListId;
 
-package cdu.tuogen.pojo.myenum;
-
-public enum OrderPayMethod {
-    ALI_PAY("支付宝", (byte)0),
-    CASH_ON_DELIVERY("货到付款",(byte) 1),
-    WEI_CHAT_PAY("微信支付",(byte) 2);
-    private final String payMethod;
-    private final Byte status;
-
-    OrderPayMethod(String payMethod, Byte status) {
-        this.payMethod = payMethod;
-        this.status = status;
+    public UserOrderMap(Integer userOrderId, Integer userOrderListId) {
+        this.userOrderId = userOrderId;
+        this.userOrderListId = userOrderListId;
     }
 
-    public String getPayMethod() {
-        return payMethod;
+    public Integer getUserOrderId() {
+        return userOrderId;
     }
 
-    public Byte getStatus() {
-        return status;
+    public void setUserOrderId(Integer userOrderId) {
+        this.userOrderId = userOrderId;
+    }
+
+    public Integer getUserOrderListId() {
+        return userOrderListId;
+    }
+
+    public void setUserOrderListId(Integer userOrderListId) {
+        this.userOrderListId = userOrderListId;
     }
 }

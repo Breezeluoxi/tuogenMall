@@ -31,6 +31,7 @@ import cdu.tuogen.pojo.myenum.OrderPayMethod;
 import cdu.tuogen.pojo.myenum.OrderPayStatus;
 import cdu.tuogen.pojo.myenum.OrderStatus;
 import cdu.tuogen.pojo.myenum.OrderTransMethod;
+import cdu.tuogen.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -39,9 +40,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-*.xml")
@@ -51,7 +50,8 @@ public class OrderTest {
 
     @Autowired
     private OrdersMapper ordersMapper;
-
+    @Autowired
+    private UserService userService;
     @Test
     public void orderMapperQueryOrders(){
         log.error(ordersMapper.queryOrders().get(0).toString());
@@ -98,5 +98,23 @@ public class OrderTest {
         Order order = ordersMapper.queryOrder(new Order(13));
         order.setOrderDeliveryMethod(OrderTransMethod.SF.getDescribe());
         ordersMapper.updateOrders(order);
+    }
+
+    @Test
+    public void userOrderMapperQueryOrders(){
+        List<UserOrderMap> integers = ordersMapper.queryUserOrderListByUserIds(12);
+        System.out.println(integers);
+    }
+
+    @Test
+    public void userOrderMapperQueryOrderIdsByOrderListId(){
+        List<Integer> orderIds = ordersMapper.queryOrdersByOrderListIds(2);
+        System.out.println(orderIds);
+    }
+
+    @Test
+    public void orderMapperQueryGoodListByMerId(){
+        List<GoodsMap> maps = ordersMapper.queryGoodsListMapMerId(1);
+        System.out.println(maps.toString());
     }
 }

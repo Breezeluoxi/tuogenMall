@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface GoodsMapper {
     /**
-     *  类型条件查询
+     * 类型条件查询
+     * @param goodShopId
+     * @param goodTypeId
+     * @param goodSaleType
      * @return
      */
     List<GoodsAll> queryGoodsAllType(int goodShopId,int goodTypeId,String goodSaleType);

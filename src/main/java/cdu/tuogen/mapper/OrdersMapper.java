@@ -1,8 +1,14 @@
 package cdu.tuogen.mapper;
 
+import cdu.tuogen.pojo.Goods;
+import cdu.tuogen.pojo.GoodsMap;
 import cdu.tuogen.pojo.Order;
+import cdu.tuogen.pojo.UserOrderMap;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date : 2021/4/30
@@ -44,6 +50,38 @@ public interface OrdersMapper {
      * @return Order
      */
     Order queryOrder(Order order);
+
+    /**
+     * 查询同用户订单列表Id
+     * @param id
+     * @return
+     */
+    @Select("select user_order_id,userOrder_id from user_order where user_id=#{id}")
+    List<UserOrderMap> queryUserOrderListByUserIds(@Param("id") Integer id);
+
+    /**
+     * 查询goodsList 表通过merId
+     * @param id
+     * @return
+     */
+    @Select("select mer_id from orders where mer_id=#{id}")
+    List<Integer> queryGoodsListIdByMerId(@Param("id") Integer id);
+
+    /**
+     * 查询goodsList 表通过merId
+     * @param id
+     * @return
+     */
+    List<GoodsMap> queryGoodsListMapMerId(@Param("id") Integer id);
+
+    /**
+     * 查询同用户订单列表Id
+     * @param id
+     * @return
+     */
+    @Select("select order_id from userOrder_order where userOrder_order_id=#{id}")
+    List<Integer> queryOrdersByOrderListIds(@Param("id") Integer id);
+
 
     /**
      * 插入订单

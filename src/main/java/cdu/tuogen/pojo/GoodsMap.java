@@ -1,7 +1,9 @@
+package cdu.tuogen.pojo;
+
 /**
- * @date : 2021/5/3
- * @name : tuogenMall_cdu.tuogen.pojo.myenum_OrderPayMethod
- * @Author: Breezeluoxi
+ * @date : 2021/5/14
+ * @name : cdu.tuogen.pojo.GoodsMap
+ * @Author: breezeluoxi
  *                                                    __----~~~~~~~~~~~------___
  *                                   .  .   ~~//====......          __--~ ~~
  *                   -.            \_|//     |||\\  ~~~~~~::::... /~
@@ -22,26 +24,43 @@
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
  */
+public class GoodsMap {
+    /**
+     * 商品
+     */
+    private Integer goodsId;
 
-package cdu.tuogen.pojo.myenum;
+    /**
+     * 数量
+     */
+    private Integer count;
 
-public enum OrderPayMethod {
-    ALI_PAY("支付宝", (byte)0),
-    CASH_ON_DELIVERY("货到付款",(byte) 1),
-    WEI_CHAT_PAY("微信支付",(byte) 2);
-    private final String payMethod;
-    private final Byte status;
-
-    OrderPayMethod(String payMethod, Byte status) {
-        this.payMethod = payMethod;
-        this.status = status;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public String getPayMethod() {
-        return payMethod;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public Byte getStatus() {
-        return status;
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public GoodsMap(Integer goodsId , Integer count) {
+        this.goodsId = goodsId;
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsMap{" +
+                "goodsId=" + goodsId +
+                ", count=" + count +
+                '}';
     }
 }
