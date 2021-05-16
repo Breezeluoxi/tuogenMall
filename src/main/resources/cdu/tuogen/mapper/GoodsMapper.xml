@@ -136,7 +136,7 @@
     </delete>
 
     <!-- 映射Map -->
-    <resultMap id="goods_detail" type="cdu.tuogen.pojo.Order">
+    <resultMap id="goods_detail" type="cdu.tuogen.pojo.Goods">
         <id column="good_id" property="goodId"/>
         <result column="good_name" property="goodName"/>
         <result column="good_type_id" property="goodTypeId"/>
@@ -149,7 +149,7 @@
     <!-- 1.query Goods by adminId -->
     <select id="queryGoodsByAdminId" resultMap="goods_detail" parameterType="Admin">
         <include refid="goods_query"/>
-        where good_id = #{goodId}
+        where good_shop_id = #{adminId}
     </select>
 
 </mapper>

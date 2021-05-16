@@ -1,10 +1,7 @@
 package cdu.tuogen.service;
 
 import cdu.tuogen.bean.Page;
-import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.OrderInfo;
-import cdu.tuogen.pojo.OrderInfoUser;
-import cdu.tuogen.pojo.User;
+import cdu.tuogen.pojo.*;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -62,6 +59,13 @@ public interface OrderService {
     OrderInfo queryOrder(Order order);
 
     /**
+     * 通过id查询单个订单
+     * @param order 完整的订单
+     * @return Order
+     */
+    Order searcherOrder(Order order);
+
+    /**
      * 插入订单
      * @param orderList 完整订单
      * @return 影响行数
@@ -81,4 +85,23 @@ public interface OrderService {
      * @return
      */
     Integer updateOrders(Order order);
+
+    /**
+     * 插入商品关联订单表
+     * @param asList
+     */
+    void insertGoodsList(List<GoodsList> asList);
+    /**
+     * 插入用户订单列表表
+     * @param userOrderLists
+     * @return
+     */
+    Integer insertUserOrderList(List<UserOrderList> userOrderLists);
+
+    /**
+     * 插入用户订单列表表
+     * @param userOrderLists
+     * @return
+     */
+    Integer insertUserOrder(List<UserOrder> userOrderLists);
 }

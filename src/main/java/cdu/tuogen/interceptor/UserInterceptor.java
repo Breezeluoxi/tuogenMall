@@ -31,6 +31,7 @@
  **/
 package cdu.tuogen.interceptor;
 
+import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -51,7 +52,7 @@ public class UserInterceptor implements HandlerInterceptor {
         //session存在user则放行，否则返回主页
         HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
-        if (user instanceof User)return true;
+        if (user instanceof User || user instanceof Admin)return true;
         response.sendRedirect("/index.html");
         return false;
     }

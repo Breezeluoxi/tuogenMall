@@ -80,17 +80,37 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order searcherOrder(Order order) {
+        return ordersMapper.queryOrder(order);
+    }
+
+    @Override
     public Integer insertOrder(List<Order> orderList) {
         return ordersMapper.insertOrder(orderList);
     }
 
     @Override
     public Integer deleteOrders(List<Integer> ids) {
-        return null;
+        return ordersMapper.deleteOrders(ids);
     }
 
     @Override
     public Integer updateOrders(Order order) {
-        return null;
+        return ordersMapper.updateOrders(order);
+    }
+
+    @Override
+    public void insertGoodsList(List<GoodsList> asList) {
+        ordersMapper.insertGoodsList(asList);
+    }
+
+    @Override
+    public Integer insertUserOrderList(List<UserOrderList> userOrderLists) {
+        return ordersMapper.insertUserOrderList(userOrderLists);
+    }
+
+    @Override
+    public Integer insertUserOrder(List<UserOrder> userOrderLists) {
+        return ordersMapper.insertUserOrder(userOrderLists);
     }
 }

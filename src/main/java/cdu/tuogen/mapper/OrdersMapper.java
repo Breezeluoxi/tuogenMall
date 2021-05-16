@@ -1,9 +1,7 @@
 package cdu.tuogen.mapper;
 
-import cdu.tuogen.pojo.Goods;
-import cdu.tuogen.pojo.GoodsMap;
-import cdu.tuogen.pojo.Order;
-import cdu.tuogen.pojo.UserOrderMap;
+import cdu.tuogen.pojo.*;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -103,4 +101,24 @@ public interface OrdersMapper {
      * @return
      */
     Integer updateOrders(Order order);
+
+    /**
+     * 插入商品列表表
+     * @param goodsList
+     * @return
+     */
+    Integer insertGoodsList(List<GoodsList> goodsList);
+    /**
+     * 插入用户订单列表表
+     * @param userOrderLists
+     * @return
+     */
+    Integer insertUserOrderList(List<UserOrderList> userOrderLists);
+
+    /**
+     * 插入用户订单列表表
+     * @param userOrderLists
+     * @return
+     */
+    Integer insertUserOrder(List<UserOrder> userOrderLists);
 }

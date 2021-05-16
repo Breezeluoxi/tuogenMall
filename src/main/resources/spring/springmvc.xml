@@ -34,5 +34,8 @@
     <mvc:interceptors>
         <bean class="cdu.tuogen.interceptor.UserInterceptor"/>
     </mvc:interceptors>
+<<<<<<< HEAD
 
+=======
+>>>>>>> breeze
 </beans>

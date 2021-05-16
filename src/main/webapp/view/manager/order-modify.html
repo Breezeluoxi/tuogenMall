@@ -23,37 +23,30 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>商家Id</label>
+            <div class="layui-form-item" id ="orderIdContent">
+                <label for="orderId" class="layui-form-label">
+                    <span class="x-red">*</span>订单Id</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="merName" name="adminId" required="" lay-verify="required"
+                    <input type="text" id="orderId" name="orderId" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>用户Id</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="username" name="userId" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input"></div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
+                <label for="shipping" class="layui-form-label">
                     <span class="x-red">*</span>订单状态</label>
                 <div class="layui-input-inline">
                     <select id="shipping" name="transMethod" class="valid">
-                        <option value="1">中通物流</option>
-                        <option value="2">申通速递</option>
-                        <option value="3">圆通速递</option>
-                        <option value="4">顺丰物流</option>
-                        <option value="5">京东次日达</option>
-                        <option value="6">京东物流</option>
-                        <option value="7">用户自提</option>
+                        <option value="中通物流">中通物流</option>
+                        <option value="申通速递">申通速递</option>
+                        <option value="圆通速递">圆通速递</option>
+                        <option value="顺丰物流">顺丰物流</option>
+                        <option value="京东次日达">京东次日达</option>
+                        <option value="京东物流">京东物流</option>
+                        <option value="用户自提">用户自提</option>
                     </select>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
+                <label for="shipping" class="layui-form-label">
                     <span class="x-red">*</span>支付方式</label>
                 <div class="layui-input-inline">
                     <select name="payMethod">
@@ -63,12 +56,17 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item layui-form-text">
-                <label for="goodList" class="layui-form-label">
-                    <span class="x-red">*</span>商品Id'_'分隔</label>
+
+            <div class="layui-form-item">
+                <label for="shipping" class="layui-form-label">
+                    <span class="x-red">*</span>订单状态</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="goodList" name="goodsList" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input"></div>
+                    <select name="orderStatus">
+                        <option value="1">已完成</option>
+                        <option value="-1">待处理</option>
+                        <option value="0">运输中</option>
+                    </select>
+                </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label"></label>
@@ -77,11 +75,6 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    window.onload = function () {
-
-    }
-</script>
 <script>
     layui.use(['form', 'layer'],
         function () {
@@ -110,9 +103,8 @@
                     console.log(data.field);
                     let orderAdd = data.field;
                     console.log(orderAdd)
-                    //发异步，把数据提交给php
                     $.ajax({
-                        url:"/addOrder",
+                        url:"/updateOrder",
                         data:orderAdd,
                         method:"post",
                         success:function (data){
