@@ -34,10 +34,13 @@ import cdu.tuogen.bean.wei.MyMsg;
 import cdu.tuogen.pojo.Coupon;
 import cdu.tuogen.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/coupon")//,produces = {"application/json;charset=UTF-8"}
 public class CouponController {
@@ -67,6 +70,11 @@ public class CouponController {
         return couponService.del(id)!=null? MyMsg.SUCCESS: MyMsg.DEL_FAILED;
     }
 
+    //查询所有
+    @GetMapping()
+    public MyMsg get_all(Model model){
+        return MyMsg.SUCCESS.addDetail("coupons",couponService.getAll());
+    }
 }
 
 

@@ -33,8 +33,11 @@ package cdu.tuogen.service;
 
 import cdu.tuogen.pojo.Coupon;
 
+import java.util.List;
+
 public interface CouponService {
     Coupon get(int couponId);
+    List<Coupon> getAll();
     int add(Coupon coupon);
     int mod(Coupon coupon);
     Coupon del(int couponId);
