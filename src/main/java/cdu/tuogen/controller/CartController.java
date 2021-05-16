@@ -30,8 +30,8 @@ public class CartController {
      * @param response
      * @return
      */
-    @PostMapping("/{goodId}")
-    public MyMsg add(@PathVariable("goodId")int goodId,@ModelAttribute("cart")ArrayList<Goods> cart ,HttpSession session, HttpServletResponse response) {
+    @PostMapping
+    public MyMsg add(@RequestParam("goodId")int goodId,@ModelAttribute("cart")ArrayList<Goods> cart ,HttpSession session, HttpServletResponse response) {
         //查询商品
         Goods goods = goodsService.queryGoodsById(goodId);
         if (goods == null) return MyMsg.FAILED;
