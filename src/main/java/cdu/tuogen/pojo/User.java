@@ -12,7 +12,6 @@ public class User {
 
   private Integer userId;
 
-  @JsonIgnore
   @NotBlank(message = "密码必须存在")
   private String userPassword;
   private String userVipLevel;

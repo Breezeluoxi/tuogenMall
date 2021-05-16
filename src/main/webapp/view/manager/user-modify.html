@@ -32,50 +32,47 @@
                            autocomplete="off" class="layui-input"></div>
             </div>
 			<div class="layui-form-item">
-                <label for="userpassword" class="layui-form-label">
+                <label for="userPassword" class="layui-form-label">
                     <span class="x-red">*</span>密码</label>
 					<div class="layui-input-inline">
-                    <input type="text" id="userpassword" name="userpassword" required="" lay-verify="required"
+                    <input type="text" id="userPassword" name="userPassword" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
+                <label for="userName" class="layui-form-label">
                     <span class="x-red">*</span>姓名</label>
 					<div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required="" lay-verify="required"
+                    <input type="text" id="userName" name="userName" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
 			<div class="layui-form-item">
-                <label for="userage" class="layui-form-label">
+                <label for="userAge" class="layui-form-label">
                     <span class="x-red">*</span>年龄</label>
 					<div class="layui-input-inline">
-                    <input type="text" id="userage" name="userage" required="" lay-verify="required"
+                    <input type="text" id="userAge" name="userAge" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
 			<div class="layui-form-item">
-                <label for="userphone" class="layui-form-label">
+                <label for="userPhone" class="layui-form-label">
                     <span class="x-red">*</span>电话</label>
 					<div class="layui-input-inline">
-                    <input type="text" id="userphone" name="userphone" required="" lay-verify="required"
+                    <input type="text" id="userPhone" name="userPhone" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
 			<div class="layui-form-item">
-                <label for="useraddress" class="layui-form-label">
+                <label for="userAddress" class="layui-form-label">
                     <span class="x-red">*</span>地址</label>
 					<div class="layui-input-inline">
-                    <input type="text" id="useraddress" name="useraddress" required="" lay-verify="required"
+                    <input type="text" id="userAddress" name="userAddress" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
 			<div class="layui-form-item">
-                <label for="userviplevel" class="layui-form-label">
+                <label class="layui-form-label">
                     <span class="x-red">*</span>会员等级</label>
                 <div class="layui-input-inline">
-                    <select name="userviplevel">
+                    <select name="userVipLevel">
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        <option value="3">3</option>
-						<option value="4">4</option>
-                        <option value="5">5</option>
                     </select>
                 </div>
             </div>
@@ -101,7 +98,7 @@
                     let userModify = data.field;
                     console.log(userModify)
                     $.ajax({
-                        url:"/",
+                        url:"/user/modify",
                         data:userModify,
                         method:"post",
                         success:function (data){

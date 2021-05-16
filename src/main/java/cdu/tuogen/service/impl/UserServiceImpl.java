@@ -54,16 +54,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUser(List<User> users) {
-        return null;
+        return userMapper.insertUser(users);
     }
 
     @Override
     public Integer deleteUser(List<Integer> id) {
-        return null;
+        return userMapper.deleteUser(id);
     }
 
     @Override
     public Integer updateUser(User user) {
-        return null;
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public List<User> queryUsers() {
+        return userMapper.queryUsers();
     }
 }

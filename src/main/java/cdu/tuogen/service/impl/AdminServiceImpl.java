@@ -27,6 +27,7 @@ package cdu.tuogen.service.impl;
 
 import cdu.tuogen.mapper.AdminMapper;
 import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.pojo.User;
 import cdu.tuogen.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +59,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Integer updateAdmin(Admin admin) {
-        return null;
+        return adminMapper.updateAdmin(admin);
+    }
+
+    @Override
+    public List<Admin> queryAdmins() {
+        return adminMapper.queryAdmins();
     }
 }

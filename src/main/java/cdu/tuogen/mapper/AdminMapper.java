@@ -67,4 +67,6 @@ public interface AdminMapper {
      * @return
      */
     Integer updateAdmin(Admin admin);
+
+    List<Admin> queryAdmins();
 }

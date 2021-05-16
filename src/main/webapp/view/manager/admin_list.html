@@ -58,25 +58,23 @@
 </div>
 </body>
 <script>
-    layui.use(['laydate', 'form', 'table'],
+    layui.use(['table'],
         function () {
             const table = layui.table;
-            const laydate = layui.laydate;
-            const form = layui.form;
 
             table.render({
                 elem: '#admin_list'
                 , height: 412
-                , url: '/admin' //数据接口
+                , url: '/admin/admins' //数据接口
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    , {field: 'adminid', title: '管理员ID',}
-					, {field: 'adminpassword', title: '管理员密码',}
-					, {field: 'adminlevel', title: '管理员权限等级',}
-					, {field: 'adminshopid', title: '管理员店铺ID',}
-					, {field: 'adminshopname', title: '管理员店铺名字',}
-					, {field: 'adminname', title: '管理员名字',}
+                    undefined, {field: 'adminId', title: '管理员ID',}
+					, {field: 'adminPassword', title: '管理员密码',}
+					, {field: 'adminLevel', title: '管理员权限等级',}
+                    , {field: 'adminShopId', title: '管理员店铺ID',}
+					, {field: 'adminName', title: '管理员名字',}
+                    , {field: 'adminShopName', title: '管理员店铺名字',}
                 ]]
             });
         });

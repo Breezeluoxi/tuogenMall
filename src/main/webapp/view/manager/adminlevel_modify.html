@@ -23,16 +23,20 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
+            <div class="layui-form-item" id ="orderIdContent">
+                <label for="adminId" class="layui-form-label">
+                    <span class="x-red">*</span>管理员ID</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="adminId" name="adminId" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input"></div>
+            </div>
             <div class="layui-form-item">
-                <label for="adminlevel" class="layui-form-label">
+                <label class="layui-form-label">
                     <span class="x-red">*</span>管理员等级</label>
                 <div class="layui-input-inline">
-                    <select name="adminlevel">
+                    <select name="adminLevel">
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        <option value="3">3</option>
-						<option value="4">4</option>
-                        <option value="5">5</option>
                     </select>
                 </div>
             </div>
@@ -58,7 +62,7 @@
                     console.log(levleModify)
                     //发异步，把数据提交给php
                     $.ajax({
-                        url:"/addOrder",
+                        url:"/admin/admin_modify",
                         data:levleModify,
                         method:"post",
                         success:function (data){

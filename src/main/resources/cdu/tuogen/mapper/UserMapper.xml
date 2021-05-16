@@ -15,8 +15,8 @@
         <result column="user_name" property="userName"/>
         <result column="user_age" property="userAge"/>
         <result column="user_phone" property="userPhone"/>
-        <result column="user_address" property="userPhone"/>
-        <result column="user_password" property="userAddress"/>
+        <result column="user_address" property="userAddress"/>
+        <result column="pic_url" property="picUrl"/>
     </resultMap>
 
     <!-- 1. query user information -->
@@ -26,6 +26,11 @@
             <if test="userId!=null">user_id=#{userId}</if>
             <if test="userPassword!=null and userName!=null">and user_name=#{userName} and user_password=#{userPassword}</if>
         </where>
+    </select>
+
+    <!-- 1. query user information -->
+    <select id="queryUsers" resultMap="user_info" parameterType="cdu.tuogen.pojo.User">
+        <include refid="user_query"/>
     </select>
 
     <!-- 2.insert user-->
