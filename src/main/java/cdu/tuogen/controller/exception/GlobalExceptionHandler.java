@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
             myException=(MyException) e;
         } else {
             myException=MyException.getTmpl(Tmpl.GENERAL_ERROR);
-            myException.setDescription(e.getMessage());
+            myException.setDescription(e.toString()+" "+e.getMessage());
         }
         model.addAttribute("myException", myException);
         return "/WEB-INF/view/exception.jsp";
