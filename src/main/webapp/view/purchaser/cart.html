@@ -34,6 +34,34 @@
         $("#footer").load('element/footer.html')
         $("#hover").load('element/hover.html')
         $("#cartGoodsList").load('element/cartGoodsList.html')
+
+        $.ajax({
+            url: "/cart",
+            method:'get',
+            success: function (result) {
+                console.log(result)
+                let trs=""
+                $.each(result["detail"]["goods"], function (n, value) {
+                    trs += "<div class=\"th\">\n" +
+                        "            <div class=\"pro clearfix\"><label class=\"fl\"><input type=\"checkbox\"/><span></span></label><a class=\"fl\"\n" +
+                        "                                                                                                        href=\"#\">\n" +
+                        "                <dl class=\"clearfix\">\n" +
+                        "                    <dt class=\"fl\"><img style='width: 122px;' src=/static/img/goods_img/"+value.goodPicUrl+"></dt>\n" +
+                        "                    <dd class=\"fl\"><p>"+value.goodIntroduce+"</p>\n" +
+                        "                        <p>颜色分类:</p>\n" +
+                        "                        <p>白色瓷瓶+白色串枚</p></dd>\n" +
+                        "                </dl>\n" +
+                        "            </a></div>\n" +
+                        "            <div class=\"price\">￥"+value.goodPrice+"</div>\n" +
+                        "            <div class=\"number\"><p class=\"num clearfix\"><img class=\"fl sub\" src=\"../../static/img/temp/sub.jpg\"><span\n" +
+                        "                    class=\"fl\">1</span><img class=\"fl add\" src=\"../../static/img/temp/add.jpg\"></p></div>\n" +
+                        "            <div class=\"price sAll\">￥"+value.goodPrice+"</div>\n" +
+                        "  <div class=\"price\"><a class=\"del\" href=\"#2\">删除</a></div>" +
+                        "        </div>";
+                });
+                $("#wangdage").after(trs)
+            }
+        })
     }
 </script>
 </html>

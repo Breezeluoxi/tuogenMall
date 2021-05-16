@@ -51,21 +51,9 @@
             </div>
         </div>
         <div class="orderR fr">
-            <div class="msg"><h3>订单内容<a href="cart.html" class="fr">返回购物车</a></h3><!--------ul---------------->
-                <ul class="clearfix">
-                    <li class="fl"><img src="../../static/img/temp/order01.jpg"></li>
-                    <li class="fl"><p>创意现代简约干花花瓶摆件</p>
-                        <p>颜色分类：烟灰色玻璃瓶</p>
-                        <p>数量：1</p></li>
-                    <li class="fr">￥69.90</li>
-                </ul>
-                <ul class="clearfix">
-                    <li class="fl"><img src="../../static/img/temp/order02.jpg"></li>
-                    <li class="fl"><p>创意现代简约干花花瓶摆件</p>
-                        <p>颜色分类：烟灰色玻璃瓶</p>
-                        <p>数量：1</p></li>
-                    <li class="fr">￥69.90</li>
-                </ul>
+            <div class="msg">
+                <h3>订单内容<a href="cart.html" class="fr">返回购物车</a></h3><!--------ul---------------->
+                <div id="content"></div>
             </div><!--------tips---------------->
             <div class="tips"><p><span class="fl">商品金额：</span><span class="fr">￥139.80</span></p>
                 <p><span class="fl">优惠金额：</span><span class="fr">￥0.00</span></p>
@@ -109,7 +97,47 @@
         $("#head").load('element/header.html')
         $("#footer").load('element/footer.html')
         $("#hover").load('element/hover.html')
+
+        $.ajax({
+            url: "/cart",
+            method:'get',
+            success: function (data) {
+                console.log(data)
+                let content = $("#content")
+                content.html("")
+                let count = data.detail.goods.length
+                if (count> 2){
+                    for (let i = 0; i < 2; i++) {
+                        content.append("<ul class=\"clearfix\">\n" +
+                            "                    <li class=\"fl\"><img src=\"../../static/img/temp/order0"+(i+1)+".jpg\"></li>\n" +
+                            "                    <li class=\"fl\"><p>"+data.detail.goods[i].goodName+"</p>\n" +
+                            "                        <p>颜色分类：烟灰色玻璃瓶</p>\n" +
+                            "                        <p>数量："+1+"</p></li>\n" +
+                            "                    <li class=\"fr\">￥"+data.detail.goods[i].goodPrice+"</li>\n" +
+                            "                </ul>")
+                    }
+                }else{
+                    content.append("<ul class=\"clearfix\">\n" +
+                        "                    <li class=\"fl\"><img src=/static/img/goods_img/"+data.detail.goods[1].goodPicUrl+"></li>\n" +
+                        "                    <li class=\"fl\"><p>"+data.detail.goods[1].goodName+"</p>\n" +
+                        "                        <p>颜色分类：烟灰色玻璃瓶</p>\n" +
+                        "                        <p>数量："+1+"</p></li>\n" +
+                        "                    <li class=\"fr\">￥"+data.detail.goods[1].goodPrice+"</li>\n" +
+                        "                </ul>")
+                }
+            }
+        })
     };
+    function goToPay() {
+        $.ajax({
+            url: "/order/add",
+            method:'get',
+            success: function (data) {
+                console.log(data)
+                location.href = "index.html"
+            }
+        })
+    }
 
 </script>
 </html>

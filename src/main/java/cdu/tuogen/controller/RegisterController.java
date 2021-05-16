@@ -67,6 +67,7 @@ public class RegisterController implements ServletContextAware {
         if (result.hasErrors())throw MyException.getTmplAndParsing(Tmpl.REGISTER_ERROR,result);
         //设置头像路径
         admin.setPicUrl(dealIcon(icon));
+        System.out.println(admin);
         //插入数据库
         Integer status = adminService.insertAdmin(Arrays.asList(admin));
         if (status==null) throw MyException.getTmpl(Tmpl.REGISTER_ERROR);

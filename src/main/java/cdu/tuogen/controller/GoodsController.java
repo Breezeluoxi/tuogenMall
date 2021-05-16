@@ -110,9 +110,8 @@ public class    GoodsController extends HttpServlet{
             // 图片后缀
             String suffix = originalFileName.substring(originalFileName.lastIndexOf("."));
             String fileName = UUID.randomUUID().toString() + suffix;
-            System.out.println("dgswauigdq");
             String path1 = req.getSession().getServletContext().getRealPath("/");
-            System.out.println(path1);
+            //System.out.println(path1);
             String filePath1 =path1 + Constants.IMG_PATH1 + fileName;
             File saveFile1 = new File(filePath1);
             try {
@@ -164,7 +163,8 @@ public class    GoodsController extends HttpServlet{
             String originalFileName = file.getOriginalFilename(); // 原始文件名
             String suffix = originalFileName.substring(originalFileName.lastIndexOf(".")); // 图片后缀
             String fileName = UUID.randomUUID().toString() + suffix;
-            String filePath1 = Constants.IMG_PATH1 + fileName;
+            String path1 = req.getSession().getServletContext().getRealPath("/");
+            String filePath1 =path1 + Constants.IMG_PATH1 + fileName;
             File saveFile1 = new File(filePath1);
             try {
                 // 将上传的文件保存到服务器文件系统
