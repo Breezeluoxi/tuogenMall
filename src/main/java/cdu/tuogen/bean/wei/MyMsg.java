@@ -40,7 +40,7 @@ import java.util.Map;
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public enum CouponMsg {
+public enum MyMsg {
     /**
      * 操作成功、失败
      */
@@ -65,12 +65,12 @@ public enum CouponMsg {
     //存放额外信息
     private static Map<Object,Object> detail = new HashMap<>();
 
-    CouponMsg(String message) {
+    MyMsg(String message) {
         this.message=message;
         this.code=Util.CODE++;
         this.successStatus=false;
     }
-    CouponMsg(String message,boolean successStatus) {
+    MyMsg(String message, boolean successStatus) {
         this.message=message;
         this.code=Util.CODE++;
         this.successStatus=successStatus;
@@ -82,7 +82,7 @@ public enum CouponMsg {
     public static void clearDetail() {
         detail.clear();
     }
-    public static CouponMsg clearDetail(CouponMsg code) {
+    public static MyMsg clearDetail(MyMsg code) {
         clearDetail();
         return code;
     }
@@ -93,11 +93,11 @@ public enum CouponMsg {
      * @param value
      * @return
      */
-    public CouponMsg addDetail(Object key, Object value){
+    public MyMsg addDetail(Object key, Object value){
         detail.put(key,value);
         return this;
     }
-    public static CouponMsg addDetail(Object key, Object value, CouponMsg code){
+    public static MyMsg addDetail(Object key, Object value, MyMsg code){
         detail.put(key,value);
         return code;
     }
@@ -107,11 +107,11 @@ public enum CouponMsg {
      * @param value
      * @return
      */
-    public CouponMsg addDescription(Object value){
+    public MyMsg addDescription(Object value){
         detail.put("description",value);
         return this;
     }
-    public static CouponMsg addDescription(Object value, CouponMsg code){
+    public static MyMsg addDescription(Object value, MyMsg code){
         detail.put("description",value);
         return code;
     }

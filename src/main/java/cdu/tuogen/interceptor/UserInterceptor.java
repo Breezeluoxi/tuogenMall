@@ -52,7 +52,11 @@ public class UserInterceptor implements HandlerInterceptor {
         //session存在user则放行，否则返回主页
         HttpSession session = request.getSession();
         Object user = session.getAttribute("user");
+<<<<<<< HEAD
         if (user instanceof User || user instanceof Admin)return true;
+=======
+        if (user instanceof User||user instanceof Admin)return true;
+>>>>>>> 03fff18a53e8028809ee37622a7a43307b41d541
         response.sendRedirect("/index.html");
         return false;
     }

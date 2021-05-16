@@ -32,25 +32,22 @@
 
 package cdu.tuogen.controller.exception;
 
-import cdu.tuogen.bean.wei.CouponMsg;
-import cdu.tuogen.controller.*;
+import cdu.tuogen.bean.wei.MyMsg;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-@RestControllerAdvice(assignableTypes = {CouponController.class,
-        UserCouponController.class,
-        AdminController.class, UserController.class,
-        OrderController.class})
+@RestControllerAdvice(annotations = {RestController.class})
 public class RestExceptionHandler {
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    public CouponMsg argumentMismatch(Exception e) { return CouponMsg.Argument_Mismatch; }
+    public MyMsg argumentMismatch(Exception e) { return MyMsg.Argument_Mismatch; }
 
     @ExceptionHandler(value = {Exception.class})
-    public CouponMsg allException(Exception e) { return CouponMsg.FAILED.addDescription(e.getMessage()); }
+    public MyMsg allException(Exception e) { return MyMsg.FAILED.addDescription(e.getMessage()); }
 
     @ModelAttribute
-    public void clear() { CouponMsg.clearDetail(); }
+    public void clear() { MyMsg.clearDetail(); }
 
 }

@@ -249,5 +249,3 @@ public class GoodsController extends HttpServlet{
     }
 
 }
-
-
