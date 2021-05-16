@@ -1,0 +1,81 @@
+body{
+    user-select: none;
+}
+h1{
+    font-family: '华文楷体';
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(66, 71, 83);
+    font-weight: bold;
+    font-size: 45px;
+}
+.pic{
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+}
+table{
+    width: 1200px;
+    height: 600px;
+    text-align: center;
+    margin: 20px auto;
+    border: rgb(63,66,88) 5px solid;
+    border-spacing: 0px;
+    font-family: Georgia;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
+}
+td{
+    height: 100px;
+    width: 12.5%;
+    border-right: 2px rgb(240, 241, 241) solid;
+    color: rgb(149,160,188);
+}
+.td_head{
+    color: rgb(66, 71, 83);
+}
+tr:nth-child(odd) .td_icon{
+    background-color: rgb(153 163 194);
+}
+tr:nth-child(even) .td_icon{
+    background-color: rgb(107,117,141);
+}
+tr:nth-child(even) .td_name,tr:nth-child(even) .td_gender,tr:nth-child(even) .td_hobby,tr:nth-child(even) .td_modify,tr:nth-child(even) .td_password,tr:nth-child(even) .td_age,tr:nth-child(even) .td_delete{
+    background-color: rgb(246,247,250);
+}
+tr:nth-child(odd) .td_name,tr:nth-child(odd) .td_gender,tr:nth-child(odd) .td_hobby,tr:nth-child(odd) .td_modify,tr:nth-child(odd) .td_password,tr:nth-child(odd) .td_age,tr:nth-child(odd) .td_delete{
+    /*background-color: rgb(246,247,250);*/
+}
+nav{
+    position: absolute;
+    width: 30px;
+    top: 300px;
+    right: 80px;
+}
+nav a{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.pageIndex{
+    color: rgb(222, 228, 248);
+    background-color: rgb(149,160,188);
+}
+.selected{
+    background-color: #66afe9;
+}
+.pageIndex:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(190, 195, 213);
+}
+

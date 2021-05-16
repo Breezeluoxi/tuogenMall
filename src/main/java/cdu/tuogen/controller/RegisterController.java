@@ -47,11 +47,11 @@ public class RegisterController implements ServletContextAware {
     //注册用户
     @PostMapping("/user")
     public String user(@Validated User user, BindingResult result, @RequestParam("icon") MultipartFile icon, Model model) throws Exception {
-        System.out.println(user);
         //数据校验
         if (result.hasErrors())throw MyException.getTmplAndParsing(Tmpl.REGISTER_ERROR,result);
         //设置头像路径
         user.setPicUrl(dealIcon(icon));
+        System.out.println(user);
         //插入数据库
         Integer status = userService.insertUser(Arrays.asList(user));
         if (status==null) throw MyException.getTmpl(Tmpl.REGISTER_ERROR);
@@ -67,6 +67,7 @@ public class RegisterController implements ServletContextAware {
         if (result.hasErrors())throw MyException.getTmplAndParsing(Tmpl.REGISTER_ERROR,result);
         //设置头像路径
         admin.setPicUrl(dealIcon(icon));
+        System.out.println(admin);
         //插入数据库
         Integer status = adminService.insertAdmin(Arrays.asList(admin));
         if (status==null) throw MyException.getTmpl(Tmpl.REGISTER_ERROR);

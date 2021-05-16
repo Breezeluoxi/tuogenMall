@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @date : 2021/5/1
@@ -38,8 +39,8 @@ import java.util.Arrays;
  *                          神兽保佑                   代码无BUG!
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("classpath:spring/spring-*.xml")
 public class AdminTest {
     Logger log = LoggerFactory.getLogger(AdminTest.class);
 
@@ -76,5 +77,11 @@ public class AdminTest {
     public void AdminMapperQueryAdminById(){
         Admin admin = adminMapper.queryAdminById(1);
         log.error(admin.toString());
+    }
+
+    @Test
+    public void test(){
+        List<Integer> list = Arrays.asList(1,4,6);
+        //System.out.println(String.join("_",s));
     }
 }
