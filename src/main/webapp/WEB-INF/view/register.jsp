@@ -39,6 +39,10 @@
                                 <input type="text" name="userPhone">
                             </li>
                             <li>
+                                <span class="name">userVipLevel:</span>
+                                <input type="text" name="userVipLevel">
+                            </li>
+                            <li>
                                 <span class="name">地址:</span>
                                 <input type="text" name="userAddress">
                             </li>

@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUser(List<User> users) {
-        return userMapper.insertUser(users);
+        return userMapper.insertUser( users);
     }
 
     @Override
