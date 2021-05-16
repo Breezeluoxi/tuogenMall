@@ -105,16 +105,18 @@ public class    GoodsController extends HttpServlet{
         }
         if (file != null){
             // 生成图片存储的名称，UUID 避免相同图片名冲突
-            String originalFileName = file.getOriginalFilename(); // 原始文件名
-            String suffix = originalFileName.substring(originalFileName.lastIndexOf(".")); // 图片后缀
+            // 原始文件名
+            String originalFileName = file.getOriginalFilename();
+            // 图片后缀
+            String suffix = originalFileName.substring(originalFileName.lastIndexOf("."));
             String fileName = UUID.randomUUID().toString() + suffix;
-            String filePath = Constants.IMG_PATH + fileName;
-            String filePath1 = Constants.IMG_PATH1 + fileName;
-            File saveFile = new File(filePath);
+            System.out.println("dgswauigdq");
+            String path1 = req.getSession().getServletContext().getRealPath("/");
+            System.out.println(path1);
+            String filePath1 =path1 + Constants.IMG_PATH1 + fileName;
             File saveFile1 = new File(filePath1);
             try {
                 // 将上传的文件保存到服务器文件系统
-                file.transferTo(saveFile);
                 file.transferTo(saveFile1);
                 // 记录服务器文件系统图片名称
                 int goodId = 0;
@@ -162,15 +164,12 @@ public class    GoodsController extends HttpServlet{
             String originalFileName = file.getOriginalFilename(); // 原始文件名
             String suffix = originalFileName.substring(originalFileName.lastIndexOf(".")); // 图片后缀
             String fileName = UUID.randomUUID().toString() + suffix;
-            String filePath = Constants.IMG_PATH + fileName;
             String filePath1 = Constants.IMG_PATH1 + fileName;
-            File saveFile = new File(filePath);
             File saveFile1 = new File(filePath1);
             try {
                 // 将上传的文件保存到服务器文件系统
 //                file.transferTo(saveFile);
-//                file.transferTo(saveFile1);
-                this.inputStreamToFile((FileInputStream) file.getInputStream(), new File(filePath));
+                file.transferTo(saveFile1);
                 this.inputStreamToFile((FileInputStream) file.getInputStream(), new File(filePath1));
 
                 // 记录服务器文件系统图片名称
