@@ -71,6 +71,10 @@
                     <form action="/register/merchant" method="post" enctype="multipart/form-data">
                         <ul>
                             <li>
+                                <span class="name">adminId:</span>
+                                <input type="text" name="adminId">
+                            </li>
+                            <li>
                                 <span class="name">名称:</span>
                                 <input type="text" name="adminName">
                             </li>
@@ -79,8 +83,16 @@
                                 <input type="password" name="adminShopName">
                             </li>
                             <li>
+                                <span class="name">adminShopId:</span>
+                                <input type="password" name="adminShopId">
+                            </li>
+                            <li>
                                 <span class="name">密码:</span>
                                 <input type="text" name="adminPassword">
+                            </li>
+                            <li>
+                                <span class="name">adminLevel:</span>
+                                <input type="password" name="adminLevel">
                             </li>
                             <li>
                                 <div class="centerEle">

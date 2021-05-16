@@ -17,6 +17,7 @@ public class Admin{
   private String adminPassword;
   private String adminLevel;
   private String adminShopName;
+  private Integer adminShopId;
   @NotBlank(message = "用户名必须存在")
   private String adminName;
   private String picUrl;
@@ -33,6 +34,13 @@ public class Admin{
     this.adminName = adminName;
   }
 
+  public Integer getAdminShopId() {
+    return adminShopId;
+  }
+
+  public void setAdminShopId(Integer adminShopId) {
+    this.adminShopId = adminShopId;
+  }
 
   public String getPicUrl() {
     return picUrl;

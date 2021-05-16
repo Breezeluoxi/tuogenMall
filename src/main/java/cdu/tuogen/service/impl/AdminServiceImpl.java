@@ -48,16 +48,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Integer insertAdmin(List<Admin> admins) {
-        return null;
+        return adminMapper.insertAdmin(admins);
     }
 
     @Override
     public Integer deleteAdmin(List<Integer> ids) {
-        return null;
+        return adminMapper.deleteAdmin(ids);
     }
 
     @Override
     public Integer updateAdmin(Admin admin) {
-        return null;
+        return adminMapper.updateAdmin(admin);
     }
 }

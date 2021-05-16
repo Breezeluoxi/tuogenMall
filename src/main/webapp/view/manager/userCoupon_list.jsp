@@ -16,53 +16,41 @@
 
 </head>
 <body>
-增加：
-<form action="/coupon" method="post">
-    减免金额:<input type="number" name="discount">
-    减免门槛: <input type="number" name="baseLine">
-    <input type="submit">
-</form>
-修改：
-<form action="/coupon" method="post">
-    <input type="hidden" name="_method" value="put">
-    优惠卷id:<input type="number" name="id">
-    减免金额:<input type="number" name="discount">
-    减免门槛: <input type="number" name="baseLine">
-    <input type="submit">
-</form>
-删除：
-<form action="/coupon" method="post">
-    <input type="hidden" name="_method" value="delete">
-    优惠卷id:<input type="number" name="id">
-    <input type="submit">
-</form>
 <h1>优惠卷列表</h1>
 <article>
     <table>
         <tr>
-            <td class="td_head td_hobby">ID</td>
-            <td class="td_head td_name">Discount</td>
-            <td class="td_head td_password">BaseLine</td>
+            <td class="td_head td_hobby">优惠减免</td>
+            <td class="td_head td_name">优惠门槛</td>
+            <td class="td_head td_password">数量</td>
+            <td class="td_head td_hobby">获得时间</td>
+            <td class="td_head td_name">过期时间</td>
         </tr>
     </table>
 </article>
 </body>
 <script>
     $.ajax({
-        url: "/coupon",
+        url: "/userCoupon/${user.userId}",
         success: function (result) {
             console.log(result)
             let trs=""
-            $.each(result["detail"]["coupons"], function (n, value) {
+            $.each(result["detail"]["userCoupons"], function (n, value) {
                 trs += "                <tr>\n" +
                     "                    <td class='td_hobby'>\n" +
-                    "                            " + value.id + "\n" +
+                    "                            " + value.coupon.discount + "\n" +
                     "                    </td>\n" +
                     "                    <td class='td_name'>\n" +
-                    "                            " + value.discount + "\n" +
+                    "                            " + value.coupon.baseLine + "\n" +
                     "                    </td>\n" +
                     "                    <td class='td_password'>\n" +
-                    "                            " + value.baseLine + "\n" +
+                    "                            " + value.num + "\n" +
+                    "                    </td>\n" +
+                    "                    <td class='td_hobby'>\n" +
+                    "                            " + value.getData + "\n" +
+                    "                    </td>\n" +
+                    "                    <td class='td_name'>\n" +
+                    "                            " + value.validityDate + "\n" +
                     "                    </td>\n" +
                     "                </tr>\n";
             });
