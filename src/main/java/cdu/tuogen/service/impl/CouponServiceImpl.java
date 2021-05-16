@@ -38,6 +38,8 @@ import cdu.tuogen.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Service
 public class CouponServiceImpl implements CouponService {
@@ -48,6 +50,9 @@ public class CouponServiceImpl implements CouponService {
     public Coupon get(int couponId) {
         return couponMapper.get(couponId);
     }
+
+    @Override
+    public List<Coupon> getAll() { return couponMapper.getAll();}
 
     @Override
     public int add(Coupon coupon) {

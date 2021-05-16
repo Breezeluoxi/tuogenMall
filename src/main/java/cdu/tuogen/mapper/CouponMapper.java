@@ -34,10 +34,16 @@ package cdu.tuogen.mapper;
 
 
 import cdu.tuogen.pojo.Coupon;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 
 public interface CouponMapper {
     Coupon get(int couponId);
+
+    @Select("select * from t_coupon")
+    List<Coupon> getAll();
 
     int add(Coupon coupon);
 
