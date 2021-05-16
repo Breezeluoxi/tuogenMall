@@ -59,6 +59,13 @@ public interface OrderService {
     OrderInfo queryOrder(Order order);
 
     /**
+     * 通过id查询单个订单
+     * @param order 完整的订单
+     * @return Order
+     */
+    Order searcherOrder(Order order);
+
+    /**
      * 插入订单
      * @param orderList 完整订单
      * @return 影响行数

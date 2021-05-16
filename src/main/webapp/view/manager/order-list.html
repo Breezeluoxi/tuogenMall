@@ -67,6 +67,14 @@
                         </div>
                     </form>
                 </div>
+                <div class="layui-card-header">
+                    <button class="layui-btn" onclick="xadmin.open('添加订单','./order-modify.html',800,600)">
+                        <i class="layui-icon"></i>更新订单
+                    </button>
+                    <button class="layui-btn" onclick="xadmin.open('添加订单','./order-add.html',800,600)">
+                        <i class="layui-icon"></i>添加
+                    </button>
+                </div>
                 <div class="layui-card-body ">
                     <table class="order-table layui-form" lay-size="sm" id="order-table" lay-filter="test">
                     </table>
@@ -88,7 +96,6 @@
 </div>
 </body>
 <script type="text/html" id="tuogen_bar">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
@@ -105,7 +112,7 @@
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    {field: 'orderId', title: '订单编号', sort: true, fixed: 'left'}
+                    , {field: 'orderId', title: '订单编号', sort: true, fixed: 'left'}
                     , {field: 'userName', title: '收货人',}
                     , {
                         field: 'data.totalAmount', title: '应付款',
@@ -165,16 +172,6 @@
                             }
                         })
                         obj.del();
-                        layer.close(index);
-                    });
-                } else if (obj.event === 'edit') {
-                    layer.prompt({
-                        formType: 2
-                        , value: data.email
-                    }, function (value, index) {
-                        obj.update({
-                            email: value
-                        });
                         layer.close(index);
                     });
                 }

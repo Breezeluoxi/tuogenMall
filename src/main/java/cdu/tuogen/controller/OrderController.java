@@ -110,6 +110,29 @@ public class OrderController {
         return "ok";
     }
 
+    @PostMapping("/updateOrder")
+    public NormalMsg updateOrder(OrderModify orderModify){
+        NormalMsg msg = null;
+
+        System.out.println(orderModify);
+        // 1.查询是否有订单
+        Order queryOrder = orderService.searcherOrder(new Order(orderModify.getOrderId()));
+        if(queryOrder == null){
+            msg = new NormalMsg(-1,"没有此订单",0L, null);
+        }else{
+            // 2.修改值
+            int orderStatus = orderModify.getOrderStatus();
+            int payMethod = orderModify.getPayMethod();
+            queryOrder.setOrderStatus((byte)orderStatus);
+            queryOrder.setOrderDeliveryMethod(orderModify.getTransMethod());
+            queryOrder.setOrderPayMethod((byte)payMethod);
+            // 3. 更新订单
+            orderService.updateOrders(queryOrder);
+            msg =  new NormalMsg(0,"更新成功",1L, null);
+        }
+        return msg;
+    }
+
     private NormalMsg doAddOrder(OrderAdd orderAdd, Object user) {
         if(orderAdd.getAdminId()==null || orderAdd.getGoodsList()==null
         || orderAdd.getPayMethod()==null||orderAdd.getUserId()==null){

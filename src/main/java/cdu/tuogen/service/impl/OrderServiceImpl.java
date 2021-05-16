@@ -80,6 +80,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order searcherOrder(Order order) {
+        return ordersMapper.queryOrder(order);
+    }
+
+    @Override
     public Integer insertOrder(List<Order> orderList) {
         return ordersMapper.insertOrder(orderList);
     }
@@ -91,7 +96,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Integer updateOrders(Order order) {
-        return null;
+        return ordersMapper.updateOrders(order);
     }
 
     @Override
