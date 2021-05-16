@@ -34,7 +34,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/goods")
-public class GoodsController extends HttpServlet{
+public class    GoodsController extends HttpServlet{
     @Autowired
     @Qualifier("goodsServiceImpl")
     private GoodsService goodsService;
@@ -78,7 +78,7 @@ public class GoodsController extends HttpServlet{
     @GetMapping("/list")
     public String list(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1") int pageNo) {
         HttpSession session = request.getSession();
-        Admin admin = (Admin) session.getAttribute("CrUser");
+        Admin admin = (Admin) session.getAttribute("user");
         System.out.println("测试");
         System.out.println(admin);
         int adminShopId = 1;

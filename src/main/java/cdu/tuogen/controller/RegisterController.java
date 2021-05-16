@@ -47,6 +47,7 @@ public class RegisterController implements ServletContextAware {
     //注册用户
     @PostMapping("/user")
     public String user(@Validated User user, BindingResult result, @RequestParam("icon") MultipartFile icon, Model model) throws Exception {
+        System.out.println(result.hasErrors());
         System.out.println(user);
         //数据校验
         if (result.hasErrors())throw MyException.getTmplAndParsing(Tmpl.REGISTER_ERROR,result);

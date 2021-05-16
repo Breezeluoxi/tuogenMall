@@ -31,6 +31,10 @@
                                 <input type="text" name="userAge">
                             </li>
                             <li>
+                                <span class="name">vip等级</span>
+                                <input type="text" name="userVipLevel">
+                            </li>
+                            <li>
                                 <span class="name">电话:</span>
                                 <input type="text" name="userPhone">
                             </li>
