@@ -1,6 +1,7 @@
 package cdu.tuogen.service;
 
 import cdu.tuogen.pojo.Admin;
+import cdu.tuogen.pojo.User;
 
 import java.util.List;
 
@@ -58,4 +59,6 @@ public interface AdminService {
      * @return
      */
     Integer updateAdmin(Admin admin);
+
+    List<Admin> queryAdmins();
 }

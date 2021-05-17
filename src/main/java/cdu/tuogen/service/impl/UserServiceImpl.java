@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUser(List<User> users) {
-        return userMapper.insertUser( users);
+        return userMapper.insertUser(users);
     }
 
     @Override
@@ -65,5 +65,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer updateUser(User user) {
         return userMapper.updateUser(user);
+    }
+
+    @Override
+    public List<User> queryUsers() {
+        return userMapper.queryUsers();
     }
 }

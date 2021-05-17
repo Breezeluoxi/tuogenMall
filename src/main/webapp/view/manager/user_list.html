@@ -67,28 +67,45 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
-    layui.use(['laydate', 'form', 'table'],
+    layui.use(['table'],
         function () {
             const table = layui.table;
-            const laydate = layui.laydate;
-            const form = layui.form;
 
             table.render({
                 elem: '#user_list'
                 , height: 312
-                , url: '/user' //数据接口
+                , url: '/user/list' //数据接口
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    , {field: 'userid', title: '用户ID',}
-					, {field: 'userpassword', title: '用户密码',}
-					, {field: 'useriviplevel', title: '用户vip等级',}
-					, {field: 'username', title: '用户姓名',}
-					, {field: 'userage', title: '用户年龄',}
-					, {field: 'userphone', title: '用户手机号',}
-					, {field: 'useraddress', title: '用户地址',}
+                    undefined, {field: 'userId', title: '用户ID',}
+					, {field: 'userPassword', title: '用户密码',}
+					, {field: 'userVipLevel', title: '用户vip等级',}
+					, {field: 'userName', title: '用户姓名',}
+					, {field: 'userAge', title: '用户年龄',}
+                    , {field: 'userPhone', title: '用户电话号码',}
+					, {field: 'userAddress', title: '用户地址',}
 					, {fixed: 'right', title: '操作', toolbar: '#tuogen_bar',}
                 ]]
+            });
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                //console.log(obj)
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        let id = data.userId
+                        $.ajax({
+                            url:"/user/del?id="+id,
+                            method: "get",
+                            success:function (data) {
+                                console.log(data)
+                            }
+                        })
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
             });
         });
 </script>

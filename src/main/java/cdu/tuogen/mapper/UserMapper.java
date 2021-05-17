@@ -65,4 +65,10 @@ public interface UserMapper{
      * @return
      */
     Integer updateUser(User user);
+
+    /**
+     * 查询所用用户
+     * @return
+     */
+    List<User> queryUsers();
 }

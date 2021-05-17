@@ -31,7 +31,7 @@
 <!--3.放行静态资源-->
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
 
-    <!--<mvc:interceptors>-->
-    <!--    <bean class="cdu.tuogen.interceptor.UserInterceptor"/>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <bean class="cdu.tuogen.interceptor.UserInterceptor"/>
+    </mvc:interceptors>
 </beans>

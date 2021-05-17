@@ -58,29 +58,29 @@
 </div>
 </body>
 <script type="text/html" id="tuogen_bar">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">修改权限</a>
+    <button class="layui-btn" onclick="xadmin.open('修改权限','./adminlevel_modify.html',800,600)">
+        <i class="layui-icon"></i>修改权限
+    </button>
 </script>
 <script>
-    layui.use(['laydate', 'form', 'table'],
+    layui.use(['table'],
         function () {
             const table = layui.table;
-            const laydate = layui.laydate;
-            const form = layui.form;
 
             table.render({
                 elem: '#admin'
                 , height: 412
-                , url: '/admin_level' //数据接口
+                , url: '/admin/admins' //数据接口
                 , page: true //开启分页
                 , method: 'get'
                 , cols: [[ //表头
-                    , {field: 'adminid', title: '管理员ID',}
-					, {field: 'adminpassword', title: '管理员密码',}
-					, {field: 'adminshopid', title: '管理员店铺ID',}
-					, {field: 'adminshopname', title: '管理员店铺名字',}
-					, {field: 'adminname', title: '管理员名字',}
-					, {field: 'adminlevel', title: '管理员权限等级',}
-					, {fixed: 'right', title: '操作', toolbar: '#tuogen_bar',}
+                    , {field: 'adminId', title: '管理员ID',}
+                    , {field: 'adminPassword', title: '管理员密码',}
+                    , {field: 'adminLevel', title: '管理员权限等级',}
+                    , {field: 'adminShopId', title: '管理员店铺ID',}
+                    , {field: 'adminShopName', title: '管理员店铺名字',}
+                    , {field: 'adminName', title: '管理员名字',}
+                    , {fixed: 'right', title: '操作', toolbar: '#tuogen_bar',}
                 ]]
             });
         });

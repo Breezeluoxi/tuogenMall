@@ -102,8 +102,10 @@
                             class="fl add" src="../../static/img/temp/add.jpg">
                         <p class="please fl">请选择商品属性!</p></div>
                 </div>
-                <div class="btns clearfix"><a href="#2"><p class="buy fl">立即购买</p></a><a href="#2"><p class="cart fr">
-                    加入购物车</p></a></div>
+                <div class="btns clearfix"  >
+                    <a href="#2"><p class="buy fl" onclick="buyNow()">立即购买</p></a>
+                    <a href="#2"><p class="cart fr" onclick="addGoodToCart()">加入购物车</p></a>
+                </div>
             </div>
         </div>
     </div>
@@ -338,7 +340,34 @@
 <script src="../../static/js/nav.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../static/js/pro.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../static/js/cart.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">jQuery(".bottom").slide({
+<script type="text/javascript">
+    function buyNow(){
+        let url = window.location.href;
+        let id = url.split("id=")[1]
+        $.ajax({
+            url: "/order/add/"+id,
+            method:"post",
+            success: function (data) {
+                console.log(data)
+                location.href = "ok.html"
+            }
+        })
+    }
+    function addGoodToCart() {
+
+        let url = window.location.href;
+        let id = url.split("id=")[1]
+        $.ajax({
+            url: "/cart/"+id,
+            method:"post",
+            success: function (data) {
+                console.log(data)
+                location.href = "cart.html"
+            }
+        })
+    }
+
+    jQuery(".bottom").slide({
     titCell: ".hd ul",
     mainCell: ".bd .likeList",
     autoPage: true,

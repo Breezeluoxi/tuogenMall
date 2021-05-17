@@ -8,14 +8,30 @@
         select * from `admin`
     </sql>
 
+    <!-- 映射Map -->
+    <resultMap id="admin_info" type="cdu.tuogen.pojo.Admin">
+        <id column="admin_id" property="adminId"/>
+        <result column="admin_password" property="adminPassword"/>
+        <result column="admin_level" property="adminLevel"/>
+        <result column="admin_shop_name" property="adminShopName"/>
+        <result column="admin_name" property="adminName"/>
+        <result column="admin_shop_id" property="adminShopId"/>
+        <result column="pic_url" property="picUrl"/>
+    </resultMap>
+
     <!-- 1. query Admin information -->
-    <select id="queryAdmin" resultType="cdu.tuogen.pojo.Admin" parameterType="cdu.tuogen.pojo.Admin">
+    <select id="queryAdmin" resultMap="admin_info" parameterType="cdu.tuogen.pojo.Admin">
         <include refid="admin_query"/>
         <where>
             <if test="adminId!=null">admin_id=#{adminId}</if>
             <if test="adminPassword!=null and adminName!=null">and admin_name=#{adminName} and admin_password=#{adminPassword}</if>
         </where>
     </select>
+
+    <!-- 1. query Admin information -->
+    <select id="queryAdmins" resultMap="admin_info" parameterType="cdu.tuogen.pojo.Admin">
+        <include refid="admin_query"/>
+</select>
 
     <!-- 2.insert user-->
     <insert id="insertAdmin" parameterType="java.util.List">
@@ -40,6 +56,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="adminName!=null">admin_name=#{adminName},</if>
             <if test="adminPassword!=null">admin_password=#{adminPassword},</if>
+            <if test="adminLevel!=null">admin_level=#{adminLevel},</if>
         </trim>
         where admin_id = #{adminId}
     </select>
