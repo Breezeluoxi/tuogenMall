@@ -106,7 +106,7 @@ public abstract class ALogAspect {
                 //获取model
                 Model model = getObjForType(joinPoint.getArgs(), Model.class);
                 //获取日志
-                String log = (String) method.invoke(this, new Msg(request, session, model, returning));
+                String log = (String) method.invoke(this, new Msg(request, session, model, returning,joinPoint.getArgs()));
                 if (log==null||log.equals(""))return;
                 //输出日志
                 out(log);
@@ -171,12 +171,14 @@ public abstract class ALogAspect {
         public HttpSession session;
         public Model model;
         public Object returning;
+        public Object[] args;
 
-        public Msg(HttpServletRequest request, HttpSession session, Model model, Object returning) {
+        public Msg(HttpServletRequest request, HttpSession session, Model model, Object returning,Object[] args) {
             this.request = request;
             this.session = session;
             this.model = model;
             this.returning = returning;
+            this.args=args;
         }
         @Override
         public String toString() {
