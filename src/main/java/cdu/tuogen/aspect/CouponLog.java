@@ -57,7 +57,7 @@ public class CouponLog extends ALogAspect {
     //记录添加成功
     String add(Msg msg) {
         MyMsg returning = (MyMsg) msg.returning;
-        if (returning.getMessage().contains("success")){
+        if (returning.getMessage().contains("success")&&!returning.getDetail().isEmpty()){
             return "添加了一张优惠卷="+returning.getDetail();
         }
         return null;
@@ -71,5 +71,8 @@ public class CouponLog extends ALogAspect {
         return null;
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }
