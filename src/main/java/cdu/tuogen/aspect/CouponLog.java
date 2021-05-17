@@ -1,9 +1,9 @@
 /**
  * *   Description:
- * *   @File     :CouponAspect.py
+ * *   @File     :CouponLog.py
  * *   @Author   :王炜 IAmTrying
  * *   @QQ       :690622472
- * *   @Time     :5/8/2021 17:03
+ * *   @Time     :5/17/2021 15:18
  * *   =================================================
  * *             ┌─┐       ┌─┐ + +
  * *          ┌──┘ ┴───────┘ ┴──┐++
@@ -32,16 +32,41 @@
 
 package cdu.tuogen.aspect;
 
-import org.aspectj.lang.annotation.Aspect;
+import cdu.tuogen.bean.wei.MyMsg;
+import cdu.tuogen.controller.CouponController;
+import cdu.tuogen.pojo.Coupon;
 import org.springframework.stereotype.Component;
 
+/**
+ * coupon日志类
+ */
 @Component
-@Aspect
-public class CouponAspect {
+public class CouponLog extends ALogAspect {
+    @Override
+    Class getProxyClass() {
+        return CouponController.class;
+    }
 
-    //@Before(value = "execution(* cdu.tuogen.controller.*.*(..))")
-    //
-    //public void change() {
-    //
-    //}
+    @Override
+    String outLogPath() {
+        return "/log/coupon.txt";
+    }
+
+    String add(Msg msg) {
+        MyMsg returning = (MyMsg) msg.returning;
+        if (returning.getMessage().contains("success")){
+            return "添加了一张优惠卷="+returning.getDetail();
+        }
+        return null;
+    }
+
+    String mod(Msg msg) {
+        MyMsg returning = (MyMsg) msg.returning;
+        if (returning.getMessage().contains("success")){
+            return "修改了一张优惠卷="+returning.getDetail();
+        }
+        return null;
+    }
+
+
 }

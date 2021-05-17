@@ -57,12 +57,12 @@ public class CouponController {
     @PostMapping
     public MyMsg add(@Valid Coupon coupon, BindingResult result){
         result.getFieldErrors().forEach((error)-> MyMsg.ADD_FAILED.addDetail(error.getField()+"Error",error.getDefaultMessage()));
-        return result.hasErrors()? MyMsg.ADD_FAILED:couponService.add(coupon)!=0? MyMsg.SUCCESS: MyMsg.ADD_FAILED;
+        return result.hasErrors()? MyMsg.ADD_FAILED:couponService.add(coupon)!=0? MyMsg.SUCCESS.addDetail("coupon",coupon): MyMsg.ADD_FAILED;
     }
     //修改
     @PutMapping
     public MyMsg mod(Coupon coupon){
-        return couponService.mod(coupon)!=0? MyMsg.SUCCESS: MyMsg.MOD_FAILED;
+        return couponService.mod(coupon)!=0? MyMsg.SUCCESS.addDetail("coupon",coupon): MyMsg.MOD_FAILED;
     }
     //删除
     @DeleteMapping()
