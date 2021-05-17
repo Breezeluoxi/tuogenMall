@@ -44,14 +44,17 @@ import org.springframework.stereotype.Component;
 public class CouponLog extends ALogAspect {
     @Override
     Class getProxyClass() {
+        //代理类
         return CouponController.class;
     }
 
     @Override
     String outLogPath() {
+        //指定输出路径
         return "/log/coupon.txt";
     }
 
+    //记录添加成功
     String add(Msg msg) {
         MyMsg returning = (MyMsg) msg.returning;
         if (returning.getMessage().contains("success")){

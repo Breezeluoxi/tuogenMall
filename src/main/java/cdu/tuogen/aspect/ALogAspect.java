@@ -59,6 +59,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * 日记基类
+ */
 @Aspect
 public abstract class ALogAspect {
     //方法列表
