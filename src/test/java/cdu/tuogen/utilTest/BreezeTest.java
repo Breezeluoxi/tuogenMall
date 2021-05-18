@@ -2,11 +2,14 @@ package cdu.tuogen.utilTest;
 
 import cdu.tuogen.mapper.OrdersMapper;
 import cdu.tuogen.mapper.UserMapper;
+import cdu.tuogen.mapperTest.AdminTest;
 import cdu.tuogen.pojo.OrderInfoUser;
 import cdu.tuogen.pojo.User;
 import cdu.tuogen.utils.BreezeUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -38,20 +41,13 @@ import java.util.List;
  *                                      //.-~~~--\
  *                          神兽保佑                   代码无BUG!
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring/spring-*.xml")
+
 public class BreezeTest {
 
-    @Autowired
-    private BreezeUtil breezeUtil;
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private OrdersMapper ordersMapper;
+    Logger log = LoggerFactory.getLogger(BreezeTest.class);
 
     @Test
-    public void test(){
-        List<OrderInfoUser> orderForUser = breezeUtil.getOrderForUser(ordersMapper.queryUserOrderListByUserIds(12), userMapper.queryUser(new User(1)));
-        System.out.println(orderForUser);
+    public void test1(){
+        log.info("你好，成大");
     }
 }

@@ -64,6 +64,8 @@ import java.util.stream.Collectors;
  */
 @Aspect
 public abstract class ALogAspect {
+    Logger mLog = LoggerFactory.getLogger(ALogAspect.class);
+
     //方法列表
     protected Map<String, Method> map;
     //构造函数
