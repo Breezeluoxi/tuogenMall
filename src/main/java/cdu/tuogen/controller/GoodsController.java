@@ -34,7 +34,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/goods")
-public class    GoodsController extends HttpServlet{
+public class    GoodsController{
     @Autowired
     @Qualifier("goodsServiceImpl")
     private GoodsService goodsService;
@@ -247,4 +247,9 @@ public class    GoodsController extends HttpServlet{
         return "redirect:/view/manager/goods_warehousing.jsp"; // 更新失败，重定向到商品增加页面
     }
 
+    @RequestMapping("/{typeId}")
+    @ResponseBody
+    public List<Goods> queryGoodsListByTypeId(@PathVariable("typeId")int typeId){
+        return goodsService.queryGoodsListByTypeId(typeId);
+    }
 }

@@ -76,4 +76,9 @@ public class GoodsServiceImpl implements GoodsService {
 
         return  goodsMapper.deleteGoods(goodId) == 1 ? true : false;
     }
+
+    @Override
+    public List<Goods> queryGoodsListByTypeId(int typeId) {
+        return goodsMapper.queryGoodsListByTypeId(typeId);
+    }
 }

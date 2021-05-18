@@ -7,58 +7,19 @@
 </div><!-----------------paintCon------------------------------->
 <div class="paintCon">
   <section class="wrapper"><h3><img src=" ../../static/img/temp/tit01.jpg"></h3><img src=" ../../static/img/temp/paint01.jpg"/>
-    <div class="paintList"><a href="proDetail.html?id=19">
+    <div class="paintList" id="paint_1">
+      <a href="proDetail.html?id=19">
       <dl>
         <dt><img src=" ../../static/img/temp/sec101.jpg"></dt>
         <dd>新中式客厅山水装饰画墙壁挂画</dd>
         <dd>299.00</dd>
       </dl>
-    </a><a href="proDetail.html?id=20">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec102.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>199.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=21">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec103.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>399.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=22">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec104.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>350.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=23">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec105.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>450.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=24">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec106.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>499.00</dd>
-      </dl>
-    </a></div>
+    </a>
+    </div>
   </section>
   <section class="wrapper"><h3><img src=" ../../static/img/temp/tit02.jpg"></h3><img src=" ../../static/img/temp/paint02.jpg"/>
-    <div class="paintList"><a href="proDetail.html?id=25">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec201.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>298.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=26">
-      <dl>
-        <dt><img src=" ../../static/img/temp/sec202.jpg"></dt>
-        <dd>新中式客厅山水装饰画墙壁挂画</dd>
-        <dd>398.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=27">
+    <div class="paintList" id="paint_2">
+    <a href="proDetail.html?id=27">
       <dl>
         <dt><img src=" ../../static/img/temp/sec203.jpg"></dt>
         <dd>新中式客厅山水装饰画墙壁挂画</dd>
@@ -67,3 +28,34 @@
     </a></div>
   </section>
 </div>
+
+<script type="text/javascript">
+  $.ajax({
+    url: "/goods/3",
+    success: function (data) {
+      console.log(data)
+      const content = $("#paint_1");
+      const content1 = $("#paint_2");
+      content.html("")
+      for (let goods in data) {
+          if (goods < 6){
+            content.append("<a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                    "<dl>" +
+                    "<dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                    "<dd>" + data[goods].goodName + "</dd>" +
+                    "<dd>" + data[goods].goodPrice + "</dd>" +
+                    "</dl>" +
+                    "</a>")
+          }else{
+            content1.append("<a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                    "<dl>" +
+                    "<dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                    "<dd>" + data[goods].goodName + "</dd>" +
+                    "<dd>" + data[goods].goodPrice + "</dd>" +
+                    "</dl>" +
+                    "</a>")
+          }
+      }
+    }
+  })
+</script>

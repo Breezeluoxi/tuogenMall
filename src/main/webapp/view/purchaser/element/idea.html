@@ -6,76 +6,47 @@
 <div class="imgList1">
   <div class="wrapper">
     <div class="box1"><a href="proDetail.html" class="banner"><img src="../../static/img/idea1.jpg"/></a>
-      <ul>
-        <li><a href="proDetail.html?id=37">
-          <dl>
-            <dt><img src="../../static/img/idea2.jpg"/></dt>
-            <dd>【最家】创意家居饰品工艺品装饰三口之家</dd>
-            <dd>¥58.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=38">
-          <dl>
-            <dt><img src="../../static/img/idea3.jpg"/></dt>
-            <dd>【最家】创意家居饰品工艺品装饰三口鹿摆设</dd>
-            <dd>¥68.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=39">
-          <dl>
-            <dt><img src="../../static/img/idea4.jpg"/></dt>
-            <dd>【最家】简约欧式装饰五彩缤纷花朵</dd>
-            <dd>¥32.00</dd>
-          </dl>
-        </a></li>
+      <ul id="idea_1">
       </ul>
-      <ul>
-        <li><a href="proDetail.html?id=40">
-          <dl>
-            <dt><img src="../../static/img/idea5.jpg"/></dt>
-            <dd>【最家】客厅餐桌创意插花桌面摆件</dd>
-            <dd>¥54.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=41">
-          <dl>
-            <dt><img src="../../static/img/idea6.jpg"/></dt>
-            <dd>【最家】简约欧式陶瓷花瓶三件套</dd>
-            <dd>¥50.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=42">
-          <dl>
-            <dt><img src="../../static/img/idea7.jpg"/></dt>
-            <dd>【最家】简约可爱创意玻璃水杯</dd>
-            <dd>¥38.00</dd>
-          </dl>
-        </a></li>
+      <ul  id="idea_2">
       </ul>
-      <ul>
-        <li><a href="proDetail.html?id=43">
-          <dl>
-            <dt><img src="../../static/img/idea8.jpg"/></dt>
-            <dd>【最家】简约可爱创意玻璃拼盘</dd>
-            <dd>¥43.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=44">
-          <dl>
-            <dt><img src="../../static/img/idea9.jpg"/></dt>
-            <dd>【最家】创意亲嘴鱼陶瓷装饰摆件</dd>
-            <dd>¥168.00</dd>
-          </dl>
-        </a></li>
-        <li><a href="proDetail.html?id=45">
-          <dl>
-            <dt><img src="../../static/img/idea10.jpg"/></dt>
-            <dd>【最家】创意多彩种子收纳摆件</dd>
-            <dd>¥178.00</dd>
-          </dl>
-        </a></li>
+      <ul  id="idea_3">
       </ul>
     </div>
     <h2><img src="../../static/img/ih5.jpg"/></h2>
   </div>
 </div>
+<script type="text/javascript">
+  $.ajax({
+    url: "/goods/5",
+    success: function (data) {
+      console.log(data)
+      const content = $("#idea_1");
+      const content1 = $("#idea_2");
+      const content2 = $("#idea_3");
+      content.html("")
+      for (let goods in data) {
+        console.log(goods)
+        if (goods < 3){
+          console.log("Id1")
+          content.append("<li><a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                  "<dl><dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                  "<dd>" + data[goods].goodName + "</dd>" +
+                  "<dd>￥" + data[goods].goodPrice + "</dd></dl></a></li>")
+        }else if(goods < 6){
+          console.log("Id2")
+          content1.append("<li><a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                  "<dl><dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                  "<dd>" + data[goods].goodName + "</dd>" +
+                  "<dd>￥" + data[goods].goodPrice + "</dd></dl></a></li>")
+        }else{
+          console.log("Id3")
+          content2.append("<li><a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                  "<dl><dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                  "<dd>" + data[goods].goodName + "</dd>" +
+                  "<dd>￥" + data[goods].goodPrice + "</dd></dl></a></li>")
+        }
+      }
+    }
+  })
+</script>

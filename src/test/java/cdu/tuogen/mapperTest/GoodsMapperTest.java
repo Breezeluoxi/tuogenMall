@@ -35,10 +35,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
 @ContextConfiguration("classpath:spring/spring-*.xml")
 public class GoodsMapperTest {
     Logger log = LoggerFactory.getLogger(GoodsMapperTest.class);
@@ -50,8 +52,9 @@ public class GoodsMapperTest {
         List<Goods> goods = goodsMapper.queryGoodsByAdminId(new Admin(1));
         log.error(goods.toString());
     }
+    @Test
     public void test(){
-        List<Goods> goodsList = goodsMapper.queryGoods();
+        List<Goods> goodsList = goodsMapper.queryGoodsListByTypeId(2);
         System.out.println(goodsList);
     }
 }

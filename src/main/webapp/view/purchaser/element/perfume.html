@@ -7,63 +7,55 @@
 </div><!-----------------paintCon------------------------------->
 <div class="paintCon">
   <section class="wrapper"><h3><img src=" ../../static/img/temp/perfumeTit01.jpg"></h3><img src=" ../../static/img/temp/xxB01.jpg"/>
-    <div class="paintList"><a href="proDetail.html?id=28">
+    <div class="paintList" id="perfume_1">
+      <a href="proDetail.html?id=28">
       <dl>
         <dt><img src=" ../../static/img/temp/xx01.jpg"></dt>
         <dd>P.F Candle Co</dd>
         <dd>￥299.00</dd>
       </dl>
-    </a><a href="proDetail.html?id=29">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx02.jpg"></dt>
-        <dd>Q.F Candle Co</dd>
-        <dd>￥350.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=30">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx103.jpg"></dt>
-        <dd>T.H Candle Co</dd>
-        <dd>￥450.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=31">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx104.jpg"></dt>
-        <dd>E.F Candle Co</dd>
-        <dd>￥699.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=32">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx105.jpg"></dt>
-        <dd>L.O Candle Co</dd>
-        <dd>￥299.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=33">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx106.jpg"></dt>
-        <dd>L.P Candle Co</dd>
-        <dd>￥399.00</dd>
-      </dl>
-    </a></div>
+    </a>
+    </div>
   </section>
   <section class="wrapper"><h3><img src=" ../../static/img/temp/perfumeTit02.jpg"></h3><img src=" ../../static/img/temp/xxB02.jpg"/>
-    <div class="paintList"><a href="proDetail.html?id=34">
+    <div class="paintList" id="perfume_2">
+      <a href="proDetail.html?id=34">
       <dl>
         <dt><img src=" ../../static/img/temp/xx201.jpg"></dt>
         <dd>L.Y Candle Co</dd>
         <dd>￥499.00</dd>
       </dl>
-    </a><a href="proDetail.html?id=35">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx202.jpg"></dt>
-        <dd>L.I Candle Co</dd>
-        <dd>￥499.00</dd>
-      </dl>
-    </a><a href="proDetail.html?id=36">
-      <dl>
-        <dt><img src=" ../../static/img/temp/xx203.jpg"></dt>
-        <dd>L.F Candle Co</dd>
-        <dd>￥400.00</dd>
-      </dl>
-    </a></div>
+    </a>
+    </div>
   </section>
 </div>
+<script type="text/javascript">
+  $.ajax({
+    url: "/goods/4",
+    success: function (data) {
+      console.log(data)
+      const content = $("#perfume_1");
+      const content1 = $("#perfume_2");
+      content.html("")
+      for (let goods in data) {
+        if (goods < 6){
+          content.append("<a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                  "<dl>" +
+                  "<dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                  "<dd>" + data[goods].goodName + "</dd>" +
+                  "<dd>" + data[goods].goodPrice + "</dd>" +
+                  "</dl>" +
+                  "</a>")
+        }else{
+          content1.append("<a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                  "<dl>" +
+                  "<dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                  "<dd>" + data[goods].goodName + "</dd>" +
+                  "<dd>" + data[goods].goodPrice + "</dd>" +
+                  "</dl>" +
+                  "</a>")
+        }
+      }
+    }
+  })
+</script>

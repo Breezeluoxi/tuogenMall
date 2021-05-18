@@ -48,6 +48,9 @@
     <select id="queryGoods" resultMap="goods_info">
         select * from goods
     </select>
+    <select id="queryGoodsListByTypeId" resultMap="goods_info">
+        select * from goods where goods.good_type_id=#{arg0}
+    </select>
 
     <!-- 2. 添加商品-->
     <insert id="insertGoods" parameterType="cdu.tuogen.pojo.Goods">

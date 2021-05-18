@@ -60,4 +60,11 @@ public interface GoodsService {
      * @return
      */
     boolean deleteGoods(int goodId);
+
+    /**
+     * 查询
+     * @param typeId
+     * @return
+     */
+    List<Goods> queryGoodsListByTypeId(int typeId);
 }

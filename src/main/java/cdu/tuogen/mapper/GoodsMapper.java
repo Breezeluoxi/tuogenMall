@@ -72,4 +72,11 @@ public interface GoodsMapper {
      * @return
      */
     Integer deleteGoods(int goodId);
+
+    /**
+     * 差
+     * @param typeId
+     * @return
+     */
+    List<Goods> queryGoodsListByTypeId(int typeId);
 }

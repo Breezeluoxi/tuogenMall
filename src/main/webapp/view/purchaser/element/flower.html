@@ -20,68 +20,24 @@
     </div>
 </div>
 <!----------------proList------------------------->
-<ul class="proList wrapper clearfix">
+<ul class="proList wrapper clearfix" id="flowerContent">
     <li><a href="proDetail.html?id=1">
-        <dl>
-            <dt><img src=" ../../static/img/temp/pro01.jpg"></dt>
+        <dl><dt><img src=" ../../static/img/temp/pro01.jpg"></dt>
             <dd>【最家】跳舞兰仿真花干花</dd>
-            <dd>￥17.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=2">
-        <dl>
-            <dt><img src=" ../../static/img/temp/pro02.jpg"></dt>
-            <dd>【最家】跳舞兰仿真花干花</dd>
-            <dd>￥17.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=3">
-        <dl>
-            <dt><img src=" ../../static/img/temp/pro03.jpg"></dt>
-            <dd>【最家】跳舞兰仿真花干花</dd>
-            <dd>￥17.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=4">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase01.jpg"></dt>
-            <dd>【最家】创意现代简约白瓷干花花瓶摆件</dd>
-            <dd>￥17.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=5">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase02.jpg"></dt>
-            <dd>【最家】现代简约白色条纹干花花瓶摆件</dd>
-            <dd>￥16.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=6">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase03.jpg"></dt>
-            <dd>【最家】北欧现代陶瓷花瓶摆件</dd>
-            <dd>￥19.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=7">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase04.jpg"></dt>
-            <dd>【最家】现代简约客厅茶几白色陶瓷花瓶摆件</dd>
-            <dd>￥21.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=8">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase05.jpg"></dt>
-            <dd>【最家】仿木纹漆金裂纹台面花瓶系列套装</dd>
-            <dd>￥22.90</dd>
-        </dl>
-    </a></li>
-    <li><a href="proDetail.html?id=9">
-        <dl>
-            <dt><img src=" ../../static/img/temp/vase06.jpg"></dt>
-            <dd>【最家】仿木竖条纹雅致台面花瓶</dd>
-            <dd>￥23.90</dd>
-        </dl>
-    </a></li>
+            <dd>￥17.90</dd></dl></a></li>
 </ul>
+<script type="text/javascript">
+    $.ajax({
+        url: "/goods/1",
+        success: function (data) {
+            const content = $("#flowerContent");
+            content.html("")
+            for (let goods in data) {
+                content.append("<li><a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                    "<dl><dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                    "<dd>" + data[goods].goodName + "</dd>" +
+                    "<dd>￥" + data[goods].goodPrice + "</dd></dl></a></li>")
+            }
+        }
+    })
+</script>

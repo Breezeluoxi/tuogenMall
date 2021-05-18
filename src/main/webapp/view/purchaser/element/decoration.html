@@ -18,7 +18,7 @@
     </div>
   </div>
 </div><!----------------proList------------------------->
-<ul class="proList wrapper clearfix">
+<ul class="proList wrapper clearfix" id="deContent">
   <li>
     <a href="proDetail.html?id=10">
     <dl>
@@ -28,61 +28,23 @@
       <dd>￥24.00</dd>
     </dl>
   </a></li>
-  <li><a href="proDetail.html?id=11">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz06.jpg"></dt>
-      <dd>【最家】时尚图案抱枕</dd>
-      <dd>￥25.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=12">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz05.jpg"></dt>
-      <dd>【最家】北欧时尚现代动物抱枕</dd>
-      <dd>￥26.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=13">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz04.jpg"></dt>
-      <dd>【最家】简约格子抱枕</dd>
-      <dd>￥32.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=14">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz03.jpg"></dt>
-      <dd>【最家】纯色棉麻抱枕</dd>
-      <dd>￥24.00</dd>
-      <!--test-->
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=15">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz02.jpg"></dt>
-      <dd>【最家】时尚现代叮当猫抱枕</dd>
-      <dd>￥32.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=16">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz01.jpg"></dt>
-      <dd>【最家】欧式现代棉麻抱枕</dd>
-      <dd>￥33.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=17">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz08.jpg"></dt>
-      <dd>【最家】清新乡村田园抱枕</dd>
-      <dd>￥36.00</dd>
-    </dl>
-  </a></li>
-  <li><a href="proDetail.html?id=18">
-    <dl>
-      <dt><img src=" ../../static/img/temp/bz07.jpg"></dt>
-      <dd>【最家】法式乡村复古抱枕</dd>
-      <dd>￥38.00</dd>
-    </dl>
-  </a></li>
 </ul><!----------------mask------------------->
+<script type="text/javascript">
+  $.ajax({
+    url: "/goods/2",
+    success: function (data) {
+      console.log(data)
+      const content = $("#deContent");
+      content.html("")
+      for (let goods in data) {
+        content.append("<li>" +
+                "<a href=\"proDetail.html?id=" + data[goods].goodId + "\">" +
+                "<dl>" +
+                "<dt><img src=\" ../../static/img/temp/" + data[goods].goodPicUrl + "\"></dt>" +
+                "<dd>" + data[goods].goodName + "</dd>\n<dd>￥" + data[goods].goodPrice + "</dd>" +
+                "</dl>" +
+                "</a></li>")
+      }
+    }
+  })
+</script>
