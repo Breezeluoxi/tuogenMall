@@ -49,6 +49,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Integer insertAdmin(List<Admin> admins) {
+        if(admins.size() == 1){
+            Admin admin = admins.get(0);
+            admin.setAdminId((int)System.currentTimeMillis());
+            admin.setAdminLevel("1");
+        }
         return adminMapper.insertAdmin(admins);
     }
 

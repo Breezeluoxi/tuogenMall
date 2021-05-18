@@ -54,6 +54,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer insertUser(List<User> users) {
+        if(users.size() == 1){
+            User user = users.get(0);
+            user.setUserVipLevel("1");
+        }
         return userMapper.insertUser(users);
     }
 
