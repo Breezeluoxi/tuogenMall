@@ -65,14 +65,9 @@ public class CouponLog extends ALogAspect {
 
     String mod(Msg msg) {
         MyMsg returning = (MyMsg) msg.returning;
-        if (returning.getMessage().contains("success")){
+        if (returning.getMessage().contains("success")&&!returning.getDetail().isEmpty()){
             return "修改了一张优惠卷="+returning.getDetail();
         }
         return null;
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }

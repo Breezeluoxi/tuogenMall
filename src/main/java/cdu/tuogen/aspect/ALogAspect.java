@@ -128,12 +128,11 @@ public abstract class ALogAspect {
     /**
      * @return 根据类型获取改类型的对象，只返回第一个找到的
      */
-    private <T> T getObjForType(Object[] args, Class<T> _class) {
+    protected  <T> T getObjForType(Object[] args, Class<T> _class) {
         try {
             Optional<Object> first = Arrays.stream(args).filter((item) -> _class.isInstance(item)).findFirst();
             return (T) first.get();
         } catch (Exception e){ return null;}
-
     }
 
 
