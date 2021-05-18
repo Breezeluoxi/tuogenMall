@@ -252,4 +252,11 @@ public class    GoodsController{
     public List<Goods> queryGoodsListByTypeId(@PathVariable("typeId")int typeId){
         return goodsService.queryGoodsListByTypeId(typeId);
     }
+
+    @RequestMapping("/id/{id}")
+    @ResponseBody
+    public Goods queryGoods(@PathVariable("id")int typeId){
+        return goodsService.queryGoodsById(typeId);
+    }
+
 }

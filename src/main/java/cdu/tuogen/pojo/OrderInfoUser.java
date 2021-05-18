@@ -66,6 +66,25 @@ public class OrderInfoUser implements Serializable {
      */
     @JsonIgnore
     private Map<Goods,Integer> goodsList;
+
+    /**
+     * orderImg
+     */
+    private String orderImg;
+
+    public String getOrderImg() {
+        return orderImg;
+    }
+
+    public void setOrderImg(String orderImg) {
+        for (Map.Entry map :
+                goodsList.entrySet()) {
+            Goods key = (Goods)map.getKey();
+            this.orderImg = key.getGoodPicUrl();
+            return;
+        }
+    }
+
     /**
      * 商品名
      */
