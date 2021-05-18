@@ -130,7 +130,7 @@ public class UserController {
     }
 
     @RequestMapping("/info")
-    public Admin userInfo(HttpServletRequest request){
-        return (Admin)request.getSession().getAttribute("user");
+    public User userInfo(HttpServletRequest request){
+        return (User)request.getSession().getAttribute("user");
     }
 }

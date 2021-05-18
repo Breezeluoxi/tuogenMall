@@ -87,6 +87,10 @@ article, aside, figcaption, figure, footer, header, hgroup, nav, section, summar
     float: right;
 }
 
+fs{
+    text-align: center;
+}
+
 .mt {
     margin-top: 80px;
 }

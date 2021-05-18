@@ -10,7 +10,15 @@
     <div class="wrapper clearfix">
         <div class="zuo fl">
             <h3><a href="#"><img src="../../static/img/tx.png"/></a>
-                <p class="clearfix"><span class="fl">[羊羊羊]</span><span class="fr">[退出登录]</span></p></h3>
+                <p class="clearfix"><span class="fs" id="userInfo"></span></p></h3>
+            <script type="text/javascript">
+                $.ajax({
+                    url:"/user/info",
+                    success:function (data) {
+                        $("#userInfo").html(data.userName)
+                    }
+                })
+            </script>
             <div><h4>我的交易</h4>
                 <ul>
                     <li><a onclick="changeInfo(1)">我的信息</a></li>
@@ -18,13 +26,11 @@
                 </ul>
                 <h4>个人中心</h4>
                 <ul>
-                    <li><a href="personalCenter.html">我的中心</a></li>
                     <li><a href="/view/manager/userCoupon_list.jsp">优惠卷</a></li>
                 </ul>
                 <h4>账户管理</h4>
                 <ul>
-                    <li class="on"><a href="personalCenter.html">个人信息</a></li>
-                    <li><a href="remima.html">修改密码</a></li>
+                    <li><a href="/logout">退出登录</a></li>
                 </ul>
             </div>
         </div>

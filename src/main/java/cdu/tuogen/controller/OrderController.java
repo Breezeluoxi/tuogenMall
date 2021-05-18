@@ -36,7 +36,6 @@ import cdu.tuogen.pojo.myenum.OrderTransMethod;
 import cdu.tuogen.service.OrderService;
 import cdu.tuogen.service.UserService;
 import com.github.pagehelper.PageInfo;
-import com.sun.deploy.net.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
