@@ -64,12 +64,12 @@ import java.util.stream.Collectors;
  */
 @Aspect
 public abstract class ALogAspect {
-    Logger mLog = LoggerFactory.getLogger(ALogAspect.class);
 
     //方法列表
     protected Map<String, Method> map;
     //构造函数
     public ALogAspect() { map = Arrays.stream(this.getClass().getDeclaredMethods()).collect(Collectors.toMap(Method::getName, (item) -> item)); }
+    Logger logger = LoggerFactory.getLogger(ALogAspect.class);
 
     /**
      * @return 被代理的类
@@ -112,7 +112,7 @@ public abstract class ALogAspect {
                 if (log==null||log.equals(""))return;
                 //输出日志
                 out(log);
-                System.out.println(log);
+
             }catch (ClassCastException e){
                 logger.error("类型转换异常：代理方法返回值必须为String");
                 System.out.println("类型转换异常：代理方法返回值必须为String");
@@ -138,7 +138,6 @@ public abstract class ALogAspect {
 
     //时间格式化
     static private DateTimeFormatter df= DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     ServletContext servletContext;
 
@@ -156,6 +155,9 @@ public abstract class ALogAspect {
             String time = "["+df.format(LocalDateTime.now())+"] ";
             BufferedWriter bf = new BufferedWriter(new FileWriter(path,true));
             bf.append(time+log+"\n");
+            //输出控制台
+            logger.info(time+log);
+            System.out.println(time+log);
             bf.flush();
             bf.close();
         } catch (IOException e) {
