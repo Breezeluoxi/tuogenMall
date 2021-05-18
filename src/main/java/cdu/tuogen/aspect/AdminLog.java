@@ -2,12 +2,10 @@ package cdu.tuogen.aspect;
 
 import cdu.tuogen.bean.LoginMsg;
 import cdu.tuogen.bean.NormalMsg;
-import cdu.tuogen.bean.wei.MyMsg;
+import cdu.tuogen.controller.AdminController;
 import cdu.tuogen.controller.OrderController;
 import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
@@ -38,11 +36,11 @@ import javax.servlet.http.HttpSession;
  */
 
 @Component
-public class OrderLog extends ALogAspect{
+public class AdminLog extends ALogAspect{
 
     @Override
     Class getProxyClass() {
-        return OrderController.class;
+        return AdminController.class;
     }
 
     @Override
@@ -53,45 +51,7 @@ public class OrderLog extends ALogAspect{
     /**
      * 添加一条优惠券
      */
-    String addOrder(Msg msg) {
-        NormalMsg returning = (NormalMsg) msg.returning;
-        HttpSession session = msg.session;
-        Object user = session.getAttribute("user");
-        if (user == null){
-            return "未登录的非法操作";
-        }
-        String name= user instanceof User?((User) user).getUserName():((Admin)user).getAdminName();
-        String message =returning.getMessage();
-        String success = "添加成功";
-        String fail = "添加失败";
-        if(success.equals(message)){
-            return name+"成功添加一条订单";
-        }else if(fail.equals(message)){
-            return name+"添加订单失败";
-        }
-        return null;
-    }
-
-    String updateOrder(Msg msg) {
-        NormalMsg returning = (NormalMsg) msg.returning;
-        HttpSession session = msg.session;
-        Object user = session.getAttribute("user");
-        if (user == null){
-            return "未登录的非法操作";
-        }
-        String name= user instanceof User?((User) user).getUserName():((Admin)user).getAdminName();
-        String message =returning.getMessage();
-        String success = "更新成功";
-        String fail = "没有此订单";
-        if(success.equals(message)){
-            return name+"成功更新订单";
-        }else if(fail.equals(message)){
-            return name+"更新订单失败";
-        }
-        return null;
-    }
-
-    String logout(Msg msg) {
+    String login(Msg msg) {
         LoginMsg returning = (LoginMsg) msg.returning;
         HttpSession session = msg.session;
         Object user = session.getAttribute("user");
@@ -99,6 +59,14 @@ public class OrderLog extends ALogAspect{
             return "未登录的非法操作";
         }
         String name= user instanceof User?((User) user).getUserName():((Admin)user).getAdminName();
-        return name+"退出";
+        String message =returning.getMessage();
+        String success = "登录成功";
+        String fail = "登录失败";
+        if(success.equals(message)){
+            return name+"商家登录成功";
+        }else if(fail.equals(message)){
+            return "商家登录失败";
+        }
+        return null;
     }
 }

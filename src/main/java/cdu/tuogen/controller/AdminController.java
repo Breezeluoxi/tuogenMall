@@ -54,7 +54,7 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/login")
-    public LoginMsg<Admin> queryUsers(String username, String password, HttpServletRequest request) throws Exception {
+    public LoginMsg<Admin> login(String username, String password, HttpServletRequest request) throws Exception {
         Admin admin = adminService.queryAdmin(new Admin(username,password));
         HttpSession session = request.getSession();
         LoginMsg<Admin> msg;

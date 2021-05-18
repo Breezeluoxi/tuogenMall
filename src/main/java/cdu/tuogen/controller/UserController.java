@@ -57,7 +57,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public LoginMsg<User> queryUsers(String username, String password, HttpServletRequest request) throws Exception {
+    public LoginMsg<User> login(String username, String password, HttpServletRequest request) throws Exception {
         User user = userService.queryUser(new User(username, password));
         HttpSession session = request.getSession();
         LoginMsg<User> msg;
