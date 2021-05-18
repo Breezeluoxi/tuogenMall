@@ -30,9 +30,12 @@
  * *   ==================================================
  **/
 package cdu.tuogen.controller;
+import cdu.tuogen.aspect.ALogAspect;
 import cdu.tuogen.bean.wei.MyMsg;
 import cdu.tuogen.pojo.Coupon;
 import cdu.tuogen.service.CouponService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,6 +47,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/coupon")//,produces = {"application/json;charset=UTF-8"}
 public class CouponController {
+    Logger logger = LoggerFactory.getLogger(ALogAspect.class);
 
     @Autowired
     private CouponService couponService;

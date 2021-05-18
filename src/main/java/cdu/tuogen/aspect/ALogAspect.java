@@ -115,10 +115,8 @@ public abstract class ALogAspect {
 
             }catch (ClassCastException e){
                 logger.error("类型转换异常：代理方法返回值必须为String");
-                System.out.println("类型转换异常：代理方法返回值必须为String");
             }catch (IllegalArgumentException e ){
                 logger.error("参数不匹配：代理方法的参数只能为Msg");
-                System.out.println("参数不匹配：代理方法的参数只能为Msg");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -157,7 +155,6 @@ public abstract class ALogAspect {
             bf.append(time+log+"\n");
             //输出控制台
             logger.info(time+log);
-            System.out.println(time+log);
             bf.flush();
             bf.close();
         } catch (IOException e) {
