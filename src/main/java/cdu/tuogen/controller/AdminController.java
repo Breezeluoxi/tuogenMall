@@ -99,4 +99,9 @@ public class AdminController {
         return msg;
     }
 
+    @RequestMapping("/info")
+    public Admin userInfo(HttpServletRequest request){
+        return (Admin)request.getSession().getAttribute("user");
+    }
+
 }

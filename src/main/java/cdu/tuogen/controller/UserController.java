@@ -27,6 +27,7 @@ package cdu.tuogen.controller;
 
 import cdu.tuogen.bean.LoginMsg;
 import cdu.tuogen.bean.NormalMsg;
+import cdu.tuogen.pojo.Admin;
 import cdu.tuogen.pojo.User;
 import cdu.tuogen.service.UserService;
 import org.slf4j.Logger;
@@ -126,5 +127,10 @@ public class UserController {
     public String deleteUser(Integer id){
         Integer integer = userService.deleteUser(Arrays.asList(id));
         return "ok";
+    }
+
+    @RequestMapping("/info")
+    public Admin userInfo(HttpServletRequest request){
+        return (Admin)request.getSession().getAttribute("user");
     }
 }
