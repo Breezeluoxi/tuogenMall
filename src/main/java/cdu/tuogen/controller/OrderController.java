@@ -42,6 +42,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -183,6 +184,13 @@ public class OrderController {
             msg = new NormalMsg(0, "更新成功", 1L, null);
         }
         return msg;
+    }
+
+    @RequestMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request,ModelAndView modelAndView){
+        request.getSession().setAttribute("user",null);
+        modelAndView.setViewName("redirect:/index.html");
+        return modelAndView;
     }
 
     private NormalMsg doAddOrder(OrderAdd orderAdd, Object user) {
